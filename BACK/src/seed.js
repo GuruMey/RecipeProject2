@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 dotenv.config();
-
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import User from '../src/models/userModel';
@@ -32,12 +31,25 @@ const seedUsers = async () => {
         await User.create(mockUsers);
         console.log('Mockup Users created succefully')
     } catch(error) {
-        console.log('error occured while seeding users:', error )
+        console.log('error occurred while seeding users:', error )
 
     }
 }
 
 const seedAll = async () => {
+
+    //Guard
+    const arguments = process.argv;
+
+    if (!arguments.includes('i-am-a-pro')) {
+        console.log('WARNING!!');
+        console.log('You are about to replace all the data in your database');
+        console.log('If you want to continue, run this script with the following argument:');
+        console.log('i-am-a-pro');
+        process.exit(1);
+    };
+
+
     //Connect to MongoDB
     await mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,

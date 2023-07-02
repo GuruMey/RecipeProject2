@@ -10,6 +10,7 @@ const RecipeSchema = new Schema({
     steps: [String],
     tags: [String],
     createdAt: Date,
+    saved: Boolean,
     published: Boolean
 });
 

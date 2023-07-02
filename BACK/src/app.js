@@ -1,23 +1,26 @@
+// Import libraries and functions
 import dotenv from 'dotenv';
-import cors from 'cors';
 import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
-import helmet from 'helmet';
+import {connectDatabase} from "./config/database.js";
+import errorHandler from './middleware/errorHandler.js';
+import {refreshAuthTokenCookie} from "./config/jwt.js";
+
+// Import Routes
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from "./routes/userRoutes.js";
-import {connectDatabase} from "./config/database.js";
+import recipeRoutes from "./routes/recipeRoutes.js";
+import ratingRoutes from "./routes/ratingRoutes.js";
+
+// Activate express
+const app = express();
 
 dotenv.config();
 
-const port = process.env.PORT;
-
-console.log("Je suis le 1er console.log de app.js")
-
-const app = express();
-
-connectDatabase()
-
+// Use middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,18 +29,29 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(morgan('dev'));
 
+// Connect to database
+connectDatabase()
+
+// Refresh auth cookie (if exists)
+app.use(refreshAuthTokenCookie);
+
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/recipe', recipeRoutes);
+app.use('/api/rating', ratingRoutes);
 
-console.log("Je suis le 2e console.log de app.js")
+// Error handler middleware
+app.use(errorHandler);
 
 
-console.log("Je suis le 3e console.log de app.js")
-
+// Start Server
 if (!port) {
     throw new Error("Port must be defined")
 }
 
+
+const port = process.env.PORT;
 app.listen(port, ()=> (
     console.log('server is running on port', port)
 ))

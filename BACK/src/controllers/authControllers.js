@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import {generateToken} from "../config/jwt.js";
 import UserModel from "../models/UserModel.js";
+const { AUTH_MAX_AGE } = process.env;
 
 // ----------------- SIGN UP ----------------- //
 async function signUp (req, res) {
