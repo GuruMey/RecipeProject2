@@ -106,7 +106,10 @@ import * as React from 'react';
             </div>
             {/*--------------BUTTON-------------------*/}
             <div className="button-container">
-                <div className="form-add-primary-button ">Add Recipe</div>
+                <div className="form-primary-button ">Save Recipe</div>
+            </div>
+            <div className="button-container">
+                <div className="form-primary-button ">Publish Recipe</div>
             </div>
             <br/><br/><br/><br/>
         </div>

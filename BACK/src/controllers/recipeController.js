@@ -1,5 +1,19 @@
 import RecipeModel from "../models/RecipeModel.js";
 
+
+
+// //----------------- GET RECIPE ----------------- //
+const getRecipe = async (req, res, next) => {
+    try {
+        console.log("yo man");
+        const recipe = await RecipeModel.find();
+        return res.status(200).json({data: recipe});
+    } catch(error) {
+        next(error);
+    }
+};
+
+
 //----------------- CREATE RECIPE ----------------- //
 const createRecipe = async (req, res) => {
     const receivedTitle = req.body.title;
@@ -125,4 +139,4 @@ const deleteRecipe = async (req, res) => {
     }
 };
 
-export {createRecipe, saveRecipe, publishRecipe, editRecipe, deleteRecipe};
+export {getRecipe,createRecipe, saveRecipe, publishRecipe, editRecipe, deleteRecipe};

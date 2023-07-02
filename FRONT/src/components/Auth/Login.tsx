@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default function LogIn() {
+export default function LogIn(props:any) {
     return (
         <div className="login-page">
             <div className="auth-form-container">
@@ -12,7 +12,7 @@ export default function LogIn() {
                     <br></br>
                     <button className="auth-button" type="submit">Log In</button>
                 </form>
-                <p>Not a member yet? Sign up here</p>
+                <p>Not a member yet? Sign up <button onClick={() => props.setPageType('signup')}>here</button> </p>
             </div>
         </div>
     );

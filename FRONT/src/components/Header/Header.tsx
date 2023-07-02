@@ -13,7 +13,7 @@ export default function Header() {
                     <h1 className="navbar-title">DELISHDISH</h1>
                 </div>
                 <div className="navbar-right">
-                    <Link href="/LoginPage" className="navbar-element">Login </Link>
+                    <Link href="/authpage" className="navbar-element">Login </Link>
                     <Link href="/MyFavourites" className="navbar-element">My Favorites </Link>
                 </div>
             </nav>

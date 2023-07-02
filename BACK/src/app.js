@@ -46,8 +46,9 @@ app.use(errorHandler);
 
 
 // Start Server
-if (!port) {
-    throw new Error("Port must be defined")
+if (!process.env.PORT) {
+    console.error('Missing PORT environment variable. Try running "source .env"');
+    process.exit(1);
 }
 
 

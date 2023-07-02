@@ -15,10 +15,10 @@
   ],
   "rootMainFiles": [],
   "pages": {
-    "/CreateRecipe": [
+    "/": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/CreateRecipe.js"
+      "static/chunks/pages/index.js"
     ],
     "/MyFavourites": [
       "static/chunks/webpack.js",
@@ -34,6 +34,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
+    ],
+    "/authpage": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/authpage.js"
     ]
   },
   "ampFirstPages": []

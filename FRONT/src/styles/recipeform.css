@@ -113,7 +113,7 @@
     flex-direction: column;
 }
 
-.form-add-primary-button {
+.form-primary-button {
     display: flex;
     justify-content: center;
     background-color: #F07167;

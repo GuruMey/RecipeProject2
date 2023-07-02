@@ -1,7 +1,8 @@
 import express from 'express';
 import {deleteUser, editUser, addFavorite, removeFavorite, getAllUsers, getUserById, createUser} from "../controllers/userController.js";
 const router = express.Router();
-const {authenticateUser, authorizeUser} = require('../middleware/authentication.js');
+import {authenticateUser, authorizeUser} from "../middleware/authentication.js";
+
 
 router.post('/createUser',authenticateUser, authorizeUser(['admin']), createUser);
 router.get('/getAllUsers', authenticateUser, authorizeUser(['admin']), getAllUsers);

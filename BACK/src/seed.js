@@ -39,9 +39,9 @@ const seedUsers = async () => {
 const seedAll = async () => {
 
     //Guard
-    const arguments = process.argv;
+    const argu = process.argv;
 
-    if (!arguments.includes('i-am-a-pro')) {
+    if (!argu.includes('i-am-a-pro')) {
         console.log('WARNING!!');
         console.log('You are about to replace all the data in your database');
         console.log('If you want to continue, run this script with the following argument:');
