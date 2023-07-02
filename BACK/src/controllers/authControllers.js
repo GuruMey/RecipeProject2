@@ -3,28 +3,45 @@ import {generateToken} from "../config/jwt.js";
 import UserModel from "../models/UserModel.js";
 
 // ----------------- SIGN UP ----------------- //
-const signUp = async (req,res,next) => {
+const signUp = async (req,res) => {
+    const receivedUsername = req.body.username;
+    const receivedEmail = req.body.email;
+    const receivedPassword = req.body.password;
 
-    const {username, email, password} = req.body;
+    if (!receivedUsername || !receivedEmail || !receivedPassword) {
+        return res.status(400).json({error: 'Missing required fields'});
+    }
+
+    // todo: add validation for username, email, password
 
     try {
-        const existingUser = await UserModel.findOne({email});
+        const existingUser = await UserModel.findOne({ $or: [{
+                email: receivedEmail
+            }, {
+                username: receivedUsername
+        }] });
 
-        if (existingUser) {
-            return res.status(409).json({error: 'User already exists'});
+        if (existingUser && existingUser.email === receivedEmail) {
+            return res.status(409).json({error: 'You already have an account with this email'});
         }
-        const hashedPassword = await bcrypt.hash(password, 10);
+
+        if (existingUser && existingUser.username === receivedUsername) {
+            return res.status(409).json({error: 'Username already taken'});
+        }
+
+        const hashedPassword = await bcrypt.hash(receivedPassword, 10);
 
         const newUser = await UserModel.create({
-            username,
+            username: receivedUsername,
             password: hashedPassword,
-            email,
+            email: receivedEmail,
+            admin: false,
+            createdAt: new Date(),
         });
 
         const payload = {
             id: newUser.id,
             username: newUser.username,
-            password: newUser.password,
             email: newUser.email,
             admin: newUser.admin,
         };
@@ -39,7 +56,7 @@ const signUp = async (req,res,next) => {
         return res.status(200).json({message:'user signed up successfully'});
     } catch(error) {
         console.error(error)
-        res.status(400).json({error: error});
+        res.status(500).json({error: error});
     }
 };
 
@@ -47,11 +64,12 @@ const signUp = async (req,res,next) => {
 // ----------------- SIGN IN ----------------- //
 const signIn = async (req,res,next) => {
 
+    // todo: use receivedEmail and receivedPassword
     const {email, password} = req.body;
 
     try {
 
-        const user = await userModel.findOne({email});
+        const user = await UserModel.findOne({email});
         // user.passwordHash = undefined;
 
         if (!user) {

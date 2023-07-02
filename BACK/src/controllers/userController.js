@@ -8,7 +8,6 @@ const editUser = async (req, res) => {
 
     console.log('Je suis le 2e console.log de userController.js')
 
-
     try {
         // Check if user already exists in db
         const existingUser = await UserModel.findById(userId);

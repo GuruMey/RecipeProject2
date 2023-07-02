@@ -4,15 +4,25 @@ const { Schema, model } = mongoose;
 const UserSchema = new Schema({
     username: {
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
-    password: String,
+    password: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
-    admin: Boolean,
-    createdAt: Date,
+    admin: {
+        type: Boolean,
+        default: false
+    },
+    createdAt: {
+        type: Date
+    },
     profilePicture: String,
     favorites: [String]
 });
