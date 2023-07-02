@@ -39,7 +39,7 @@ export default function RecipesGallery() {
                                   href={`/recipes/${recipe._id}`}>{recipe.tags.map((tag: any) => <span
                                 className={styles.card_tags}> #{tag} </span>)}</Link></div>
                         <div className={styles.gallery_card_bottom}>
-                            <Link href={`/recipes/${recipe._id}`}><button className={styles.button_primary}>Open Recipe</button></Link>
+                            <Link href={`/recipes/${recipe._id}`}><button className="button_primary">Open Recipe</button></Link>
                         </div>
                     </div>
                 ))}

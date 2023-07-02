@@ -6,8 +6,7 @@ export default function LoginPage() {
     const [pageType, setPageType] = React.useState("login")
 
     return (
-        <div className="login-body">
-
+        <div className="auth_body">
             {pageType==='login'&&<LogIn setPageType={setPageType}/>}
             {pageType==='signup'&&<SignUp setPageType={setPageType}/>}
 

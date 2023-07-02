@@ -1,13 +1,10 @@
 .main_form_container{
+    background-color: cyan;
     display: flex;
     flex-direction: column;
     background-color: white;
     align-items: center;
     padding: 10px;
-}
-
-.recipe_form_title{
-    margin: auto;
 }
 
 .form {
@@ -16,6 +13,10 @@
     max-width: 50%;
     border: 1px solid #7D8844;
     border-radius: 25px;
+}
+
+.recipe_form_title{
+    margin: auto;
 }
 
 .recipe_title {
@@ -27,21 +28,7 @@
     padding: 10px;
     margin: 10px;
     max-width: 100%;
-
 }
-
-
-.recipe_time {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px;
-    margin: 10px;
-    max-width: 100%;
-    min-height: 50px;
-
-}
-
 
 .recipe_cover_photo{
     display: flex;
@@ -53,28 +40,6 @@
     min-height: 50px;
 }
 
-.recipe_ingredients {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    max-width: 100%;
-    background-color: aqua;
-}
-
-
-/*.recipe_list {*/
-/*}*/
-
-
-.recipe_steps {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
-    max-width: 100%;
-
-}
-
 .recipe_fields{
     display: flex;
     flex-direction: row;
@@ -82,52 +47,33 @@
     align-items: center;
 }
 
-
-
-.recipe_tags {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
-    max-width: 100%;
-}
-
-/* INPUTS CSS */
-
 .input_short {
     max-width: 50px;
     height: 30px;
-    border: none;
-    margin: 10px;
-    background-color: rgba(169, 168, 168, 0.7);
-    border-radius: 15px;
-
+    margin: 10px 0;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    border: 1px solid #7d8844;
 }
 
 .input_medium {
-    min-width: 400px;
+    width: 95%;
+    max-width: 400px;
     height: 30px;
-    border: none;
-    margin: 10px;
-    background-color: rgba(169, 168, 168, 0.7);
-    border-radius: 15px;
+    margin: 10px 0;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    border: 1px solid #7d8844;
 }
 
 .input_long {
     min-height: 70px;
     min-width: 400px;
-    border: none;
-    margin: 10px;
-    background-color: rgba(169, 168, 168, 0.7);
-    border-radius: 15px;
-
+    margin: 10px 0;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    border: 1px solid #7d8844;
 }
-
-/*.label {*/
-/*    background-color: #7d8844;*/
-/*}*/
-
-
 
 .button_container {
     display: flex;
@@ -135,25 +81,62 @@
     align-items: center;
 }
 
-.form_primary_button {
-    display: flex;
-    justify-content: center;
-    background-color: #7d8844;
-    border-radius: 15px;
-    border: none;
-    padding: 5px 10px;
+.button_primary{
     margin: 10px;
+    background-color: #7d8844;
+    color: white;
+    border-radius: 15px;
+    padding: 10px 20px;
+    border: none;
     cursor: pointer;
-    max-width: 100px;
+}
+
+.button_primary:hover{
+    background-color: #5e6e3b;
+    color: white;
+    border-radius: 15px;
+    padding: 10px 20px;
+    border: none;
+}
+
+.button_primary:disabled{
+    opacity: 0.5;
+    cursor: auto;
 }
 
 .plus_button {
-    background-color: #7d8844;
-    border-radius: 25px;
-    border: none;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    border: 1px solid #7d8844;
     padding: 5px 10px;
     margin: 10px;
     cursor: pointer;
-    width: 35px;
+    width: 30px;
     max-height: 40px;
 }
+
+.plus_button:hover {
+    background-color: #7d8844;
+    color: white;
+}
+
+.button_secondary{
+    border: 1px solid #7d8844;
+    border-radius: 10px;
+    margin: 0;
+    background-color: white;
+    color: #7d8844;
+    cursor: pointer;
+}
+
+.button_secondary:hover{
+    border: 1px solid #7d8844;
+    border-radius: 10px;
+    margin: 0;
+    background-color: #7D8844;
+    color: white;
+}
+
+
+@media only screen and (max-width: 600px) {}
+

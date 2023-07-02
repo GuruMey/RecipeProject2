@@ -1,28 +1,15 @@
 
-
-.recipe_title {
+.input_button_field_container{
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
     border: none;
     padding: 10px;
     margin: 10px;
     max-width: 100%;
-
 }
 
-
-.recipe_time {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px;
-    margin: 10px;
-    max-width: 100%;
-    min-height: 50px;
-
-}
 
 
 .recipe_cover_photo{
@@ -35,27 +22,7 @@
     min-height: 50px;
 }
 
-.recipe_ingredients {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    max-width: 100%;
-    background-color: aqua;
-}
 
-
-/*.recipe_list {*/
-/*}*/
-
-
-.recipe_steps {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
-    max-width: 100%;
-
-}
 
 .recipe_fields{
     display: flex;
@@ -80,13 +47,9 @@
     align-items: center;
 }
 
-.plus_button {
-    background-color: #7d8844;
-    border-radius: 25px;
-    border: none;
-    padding: 5px 10px;
-    margin: 10px;
-    cursor: pointer;
-    width: 35px;
-    max-height: 40px;
+.recipe_list_container{
+    border: 1px solid black;
+    border-radius: 15px;
+    min-width: 460px;
 }
+

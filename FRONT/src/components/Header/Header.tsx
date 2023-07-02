@@ -4,7 +4,7 @@ import {useContext} from "react";
 import MyContext from "../../context/MyContext";
 
 export default function Header() {
-    const context = useContext(MyContext)
+    const context:any = useContext(MyContext)
 
     return (
         <div>
@@ -13,9 +13,11 @@ export default function Header() {
                     <button onClick={() => {
                         //@ts-ignore
                         context.setGlobalState((ps) => ({...ps, showBurgerMenu: !ps.showBurgerMenu}))
-                    }} className={"display-on-tablet-only"}>_ _ _</button>
+                    }} className={`${styles.navbar_burger} display-on-tablet-only`}>
+                        <img  src={`./burger.svg`} alt="burger" />
+                    </button>
                     <Link href="/" className={`${styles.navbar_element} display-on-desktop-only`}> Home</Link>
-                    <Link href="/CreateRecipe" className={`${styles.navbar_element} display-on-desktop-only`} > Create Recipe </Link>
+                    {context?.globalState?.loggedIn &&<Link href="/CreateRecipe" className={`${styles.navbar_element} display-on-desktop-only`} > Create Recipe </Link>}
                 </div>
 
                 <div className={styles.navbar_center}>
@@ -24,7 +26,7 @@ export default function Header() {
                     <h2 className={styles.navbar_undertitle}>The best vegan recipes</h2>
                 </div>
                 <div className={styles.navbar_right}>
-                    <Link href="/MyFavourites" className={`${styles.navbar_element} display-on-desktop-only`}>My Favorites </Link>
+                    {context?.globalState?.loggedIn &&<Link href="/MyFavourites" className={`${styles.navbar_element} display-on-desktop-only`}>My Favorites </Link>}
                     <Link href="/authpage" className={`${styles.navbar_element} display-on-desktop-only`}>Login </Link>
                 </div>
             </nav>

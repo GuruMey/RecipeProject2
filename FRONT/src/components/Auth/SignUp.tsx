@@ -1,57 +1,99 @@
 import * as React from 'react';
 import axios from "axios";
 import styles from "./auth.module.css";
-
-
+import getInvalidFieldsForNewRecipes from "../RecipeCreation/getInvalidFieldsForNewRecipes";
+import {useState} from "react";
 
 function isPasswordValid(password:string) {
     const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d{4,})(?=.*[!@#$%^&*-_])[A-Za-z\d!@#$%^&*-_]{8,}$/;
     return reg.test(password);
 }
+
+function getSignUpDataInvalidFields(signUpData: any) {
+    const invalidFields = [];
+    // todo meyrav: ajouter des regles plus complexes
+
+    if(!signUpData.username) {
+        invalidFields.push('username')
+    }
+
+    if(!signUpData.email) {
+        invalidFields.push('email')
+    }
+
+    if(!isPasswordValid(signUpData.password)) {
+        invalidFields.push('password')
+    }
+
+    return invalidFields;
+}
+
 export default function SignUp(props:any) {
     const [signUpData, setSignUpData] = React.useState({
         username: "",
         email: "",
         password: ""
     });
+
+    const [showErrors, setShowErrors] = useState(false);
+
+    const [apiError, setApiError] = useState('');
+
+    const [success, setSuccess] = useState(false);
+
     async function handleSignUp(e:any) {
         e.preventDefault();
-        if(!isPasswordValid(signUpData.password)) {
-            alert('invalid password format');
-            return
+
+        setApiError('')
+        setSuccess(false)
+
+        const errors = getSignUpDataInvalidFields(signUpData);
+
+        if(errors.length !== 0) {
+            setShowErrors(true);
+            return;
         }
-        alert("Sign up form submitted")
 
-
-        // requete au serveur avec axios
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/auth/signup`, signUpData)
+            await axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/auth/signup`, signUpData)
 
-            console.log(response.data);
-            alert("Sign up successful")
-            props.setPageType('login');
-        } catch (error) {
-            console.error(error)
+            setSuccess(true)
+        } catch (error: any) {
+            console.error(error.response.data.error);
+            setApiError(error.response.data.error || 'An error occurred');
         }
-
     }
+
     return (
         <div className={styles.signup_page}>
             <div className={styles.auth_form_container}>
                 <h2>SIGN UP</h2>
                 <form className={styles.auth_form} onSubmit={handleSignUp}>
-                    <div className={styles.auth_input}><input type="text" name="username" id="username" placeholder="Username" value={signUpData.username} onChange={
-                        (e)=> setSignUpData((prevState)=> ({...prevState, username: e.target.value}))}/></div>
+                    <input className="input_medium"  type="text" name="username" id="username" placeholder="Username" value={signUpData.username} onChange={
+                        (e)=> setSignUpData((prevState)=> ({...prevState, username: e.target.value}))}/>
+
+                    {getSignUpDataInvalidFields(signUpData).includes('username') && showErrors && <>Invalid username</>}
+
                     <br></br>
-                    <div className={styles.auth_input}><input type="email" name="email" id="email" placeholder="Email" value={signUpData.email} onChange={
-                        (e)=> setSignUpData((prevState)=> ({...prevState, email: e.target.value}))}/></div>
+                    <input className="input_medium"  type="email" name="email" id="email" placeholder="Email" value={signUpData.email} onChange={
+                        (e)=> setSignUpData((prevState)=> ({...prevState, email: e.target.value}))}/>
+
+                    {getSignUpDataInvalidFields(signUpData).includes('email') && showErrors && <>Invalid email</>}
+
                     <br></br>
-                    <div className={styles.auth_input}><input type="password" name="password" id="password" placeholder="Password" value={signUpData.password} onChange={
-                        (e)=> setSignUpData((prevState)=> ({...prevState, password: e.target.value}))}/></div>
+                    <input className="input_medium"  type="password" name="password" id="password" placeholder="Password" value={signUpData.password} onChange={
+                        (e)=> setSignUpData((prevState)=> ({...prevState, password: e.target.value}))}/>
+
+                    {getSignUpDataInvalidFields(signUpData).includes('password') && showErrors && <>Invalid password</>}
+
                     <br></br>
-                    <button className={styles.auth_button} type="submit">Sign Up</button>
+                    <button className="button_primary" type="submit">Sign Up</button>
+
+                    {apiError && <p>{apiError}</p>}
+                    {success && <p>Account created successfully, you can now login.</p>}
                 </form>
-                <p>Already have an account? Log in <button onClick={() => props.setPageType('login')}>here</button> </p>
+
+                <p>Already have an account? Log in <button className="button_secondary" onClick={() => props.setPageType('login')}>here</button> </p>
 
             </div>
         </div>

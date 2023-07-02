@@ -1,4 +1,5 @@
 import '../styles/global.css';
+import '../styles/forms.css';
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import MyContext from "../context/MyContext";

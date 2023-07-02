@@ -142,14 +142,6 @@
     justify-content: center;
 }
 
-.button_primary{
-    margin: 20px;
-    background-color: #7d8844;
-    color: white;
-    border-radius: 15px;
-    padding: 10px 20px;
-    border: none;
-}
 
 
 @media only screen and (max-width: 600px) {

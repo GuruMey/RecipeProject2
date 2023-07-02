@@ -6,27 +6,22 @@ import getInvalidFieldsForNewRecipes from "./getInvalidFieldsForNewRecipes";
 
 export default function RecipeCreationForm() {
 
-
-    // Initialise un état pour gérer le contenu de l'input qui va servir à ajouter le prochain ingrédient, étape ou tag :
-    const [ingredientInput, setIngredientInput] = React.useState<string>('');
-    const [stepInput, setStepInput] = React.useState<string>('');
-    const [tagInput, setTagInput] = React.useState<string>('');
-
-
     // Initialise un état pour gérer la liste d'ingrédients, d'étapes et de tags :
     const [coverPhoto, setCoverPhoto] = React.useState<File | null>(null);
-    const [ingredients, setIngredients] = React.useState<string[]>([]);
-    const [steps, setSteps] = React.useState<string[]>([]);
-    const [tags, setTags] = React.useState<string[]>([]);
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<any>({
         title: '',
+        description: '',
         time: '',
         coverPhoto: '',
         ingredients: [],
         steps: [],
         tags: [],
     });
+
+    const [newIngredient, setNewIngredient] = useState<string>('');
+    const [newStep, setNewStep] = useState<string>('');
+    const [newTag, setNewTag] = useState<string>('');
 
     const [showErrors, setShowErrors] = useState(false);
 
@@ -37,7 +32,6 @@ export default function RecipeCreationForm() {
 
         if (errors.length > 0) {
             setShowErrors(true);
-            alert('errors');
             return;
         }
     }
@@ -49,113 +43,155 @@ export default function RecipeCreationForm() {
         }
     };
 
-    const addIngredient = () => {
-        setIngredients([...ingredients, ingredientInput]);
-        setIngredientInput('');
-    };
-
-    const addStep = () => {
-        setSteps([...steps, stepInput]);
-        setStepInput('');
-    };
-
-    const addTag = () => {
-        setTags([...tags, tagInput]);
-        setTagInput('');
-    };
 
     return (
-        <div className={styles.main_form_container}>
-            <div className={styles.recipe_form_title}>
-            <h2>Create a new recipe</h2>
+        <div className="main_form_container">
+            <div className="recipe_form_title">
+                <h2>Create a new recipe</h2>
             </div>
 
-            <form className={styles.form} >
-                <div className={styles.recipe_title}>
+            <form className="form" >
+                <div className={styles.input_button_field_container}>
                     <label>Recipe Title:</label>
-                    <input className={styles.input_medium} type="text" name="title" value={formData.title} onChange={(e)=>{
+                    <input className="input_medium" type="text" name="title" value={formData.title} onChange={(e)=>{
                         setFormData({...formData, title: e.target.value})
                     }} />
                 </div>
 
                 {getInvalidFieldsForNewRecipes(formData).includes('title') && showErrors && <>Invalid title</>}
 
-                <div className={styles.recipe_time}>
-                    <label>Recipe Time (min):</label>
-                    <input className={styles.input_short} type="number" name="time" />
+                <div className={styles.input_button_field_container}>
+                    <label>Short description:</label>
+                    <input className="input_medium" type="text" name="description" value={formData.description} onChange={(e)=>{
+                        setFormData({...formData, description: e.target.value})
+                    }} />
                 </div>
 
-                <div className={styles.recipe_cover_photo}>
+                {getInvalidFieldsForNewRecipes(formData).includes('description') && showErrors && <>Invalid description</>}
+
+                <div className={styles.input_button_field_container}>
+                    <label>Recipe Time (min):</label>
+                    <input className="input_short" type="number" name="time" value={formData.time} onChange={(e) => {
+                        setFormData({...formData, time: e.target.value})
+                    }
+                    }/>
+                </div>
+
+                {getInvalidFieldsForNewRecipes(formData).includes('time') && showErrors && <>Invalid time</>}
+
+                <div className={styles.input_button_field_container}>
                     <label>Cover Photo:</label>
                     <input type="file" name="cover-photo" accept="image/*" onChange={CoverPhotoChange} />
                 </div>
 
-                <div className={styles.recipe_ingredients}>
-                    <div className={styles.recipe_fields}>
+                <div className={styles.input_button_field_container}>
                     <label>Ingredients:</label>
-                    <input
-                        className={styles.input_medium}
-                        value={ingredientInput}
-                        onChange={(e) => {
-                            setIngredientInput(e.target.value);
+                    <div className="recipe_fields">
+                        <input
+                            className="input_medium"
+                            value={newIngredient}
+                            onChange={(e) => {
+                                setNewIngredient(e.target.value);
+                            }}
+                            type="text"
+                            name="ingredients"
+                        />
+                        <button className="plus_button" type="button" onClick={() => {
+                            setFormData((prevState: any) => ({
+                                ...prevState,
+                                ingredients: [...prevState.ingredients, newIngredient]
+                            }))
+                            setNewIngredient('');
                         }}
-                        type="text"
-                        name="ingredients"
-                    />
-                    <button className={styles.plus_button} type="button" onClick={addIngredient}>+</button>
+                                disabled={(newIngredient.length<1 )}
+                        >+</button>
                     </div>
-                    <div className={styles.recipe_ingredients_list}>
-                    <ul className={styles.recipe_list}>
-                        {ingredients.map((ingredient, index) => (
-                            <li key={index}>{ingredient}</li>
-                        ))}
-                    </ul>
-                    </div>
+                    {formData.ingredients.length !== 0 && <div className={styles.recipe_list_container}>
+                        <ul className={styles.recipe_list}>
+                            {formData.ingredients.map((ingredient: string, index: number) => (
+                                <li key={index}>{ingredient}</li>
+                            ))}
+                        </ul>
+                    </div> }
                 </div>
 
-                <div className={styles.recipe_steps}>
-                    <div className={styles.recipe_fields}>
+                {getInvalidFieldsForNewRecipes(formData).includes('ingredients') && showErrors && <>Invalid ingredients</>}
+
+
+                <div className={styles.input_button_field_container}>
                     <label>Steps:</label>
-                    <input
-                        className={styles.input_long}
-                        value={stepInput}
-                        onChange={(e) => {
-                            setStepInput(e.target.value);
+                    <div className="recipe_fields">
+                        <input
+                            className="input_long"
+                            value={newStep}
+                            onChange={(e) => {
+                                setNewStep(e.target.value);
+                            }}
+                            type="text"
+                            name="steps"
+                        />
+                        <button className="plus_button" type="button" onClick={() => {
+                            setFormData((prevState: any) => ({
+                                ...prevState,
+                                steps: [...prevState.steps, newStep]
+                            }))
+                            setNewStep('');
                         }}
-                        type="text"
-                        name="steps"
-                    />
-                    <button className={styles.plus_button} type="button" onClick={addStep}>+</button>
+                                disabled={(newStep.length<1 )}
+                        >+</button>
                     </div>
-                    <div className={styles.recipe_steps_list}>
-                    <ul className={styles.recipe_list}>
-                        {steps.map((step, index) => (
-                            <li key={index}>{step}</li>
-                        ))}
-                    </ul>
-                    </div>
+                    {formData.steps.length !== 0 && <div className={styles.recipe_list_container}>
+                        <ul className={styles.recipe_list}>
+                            {formData.steps.map((steps: string, index: number) => (
+                                <li key={index}>{steps}</li>
+                            ))}
+                        </ul>
+                    </div>}
                 </div>
 
-                <div className={styles.recipe_tags}>
-                    <div className={styles.recipe_fields}>
+                {getInvalidFieldsForNewRecipes(formData).includes('steps') && showErrors && <>Invalid steps</>}
+
+
+                <div className={styles.input_button_field_container}>
                     <label>Tags:</label>
-                    <input className={styles.input_medium} value={tagInput} onChange={(e) => setTagInput(e.target.value)} type="text" name="tags" />
-                    <button className={styles.plus_button} type="button" onClick={addTag}>
-                        +
-                    </button>
+                    <div className="recipe_fields">
+                        <input className="input_medium"
+                               value={newTag}
+                               onChange={(e) => {
+                                   setNewTag(e.target.value);
+                               }}
+                               type="text"
+                               name="tags"
+                        />
+                        <button className="plus_button" type="button" onClick={()=> {
+                            setFormData((prevState: any) => ({
+                                ...prevState,
+                                tags: [...prevState.tags, newTag]
+                            }))
+                            setNewTag('');
+                        }} disabled={(formData.tags.length>=3 || newTag.length<1 )}>
+                            +
+                        </button>
                     </div>
+                    {formData.tags.length !== 0 && <div className={styles.recipe_list_container}>
                     <ul className={styles.recipe_list}>
-                        {tags.map((tag, index) => (
+                        {formData.tags.map((tag:string, index:number) => (
                             <li key={index}>{tag}</li>
                         ))}
                     </ul>
+                    </div> }
                 </div>
 
-                <div className={styles.button_container}>
-                    <button className={styles.form_primary_button} type="submit" onClick={handleSubmit}>
+                {getInvalidFieldsForNewRecipes(formData).includes('tags') && showErrors && <>Invalid tags</>}
+
+
+                <div className="button_container">
+                    <button className="button_primary" type="submit" onClick={handleSubmit}>
                         Save
                     </button>
-                    <div className={styles.form_primary_button}>Publish</div>
+                    <button className="button_primary" type="submit" onClick={handleSubmit}>
+                        Publish
+                    </button>
                 </div>
             </form>
         </div>

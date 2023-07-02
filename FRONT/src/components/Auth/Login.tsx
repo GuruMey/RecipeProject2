@@ -30,15 +30,15 @@ export default function LogIn(props:any) {
             <div className={styles.auth_form_container} onSubmit={handleLogIn}>
                 <h2>LOG IN</h2>
                 <form className={styles.auth_form}>
-                    <div className={styles.auth_input}><input type="email" name="email" id="email" placeholder="Email" value={logInData.email} onChange={
-                        (e)=> setLogInData((prevState) =>({...prevState, email: e.target.value}))} /></div>
+                        <input className="input_medium" type="email" name="email" id="email" placeholder="Email" value={logInData.email} onChange={
+                        (e)=> setLogInData((prevState) =>({...prevState, email: e.target.value}))} />
                     <br></br>
-                    <div className={styles.auth_input}><input type="password" name="password" id="password" placeholder="Password" value={logInData.password} onChange={
-                    (e)=> setLogInData((prevState)=> ({...prevState, password: e.target.value}))}/></div>
+                        <input className="input_medium" type="password" name="password" id="password" placeholder="Password" value={logInData.password} onChange={
+                    (e)=> setLogInData((prevState)=> ({...prevState, password: e.target.value}))}/>
                     <br></br>
-                    <button className={styles.auth_button} type="submit">Log In</button>
+                    <button disabled={!logInData.email || !logInData.password} className="button_primary" type="submit">Log In</button>
                 </form>
-                <p>Not a member yet? Sign up <button onClick={() => props.setPageType('signup')}>here</button> </p>
+                <p>Not a member yet? Sign up <button className="button_secondary" onClick={() => props.setPageType('signup')}>here</button> </p>
             </div>
         </div>
     );
