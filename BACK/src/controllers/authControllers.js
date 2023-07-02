@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import {generateToken} from "../config/jwt.js";
 import UserModel from "../models/UserModel.js";
+import Joi from 'joi';
 
 const { AUTH_MAX_AGE } = process.env;
 
@@ -11,25 +12,31 @@ function isPasswordValid(password) {
 
 // ----------------- SIGN UP ----------------- //
 async function signUp (req, res, next) {
-    const receivedUsername = req.body.username?.trim();
-    const receivedEmail = req.body.email?.trim().toLowerCase();
-    const receivedPassword = req.body.password;
+    const schema = Joi.object({
+        email: Joi.string().min(3).max(50).email().required(),
+        username: Joi.string().min(3).max(50).required(),
+        password: Joi.string().min(8).max(30).required(),
+    })
 
-    // todo: add better validation for username, email and password
+    const validation = schema.validate(req.body);
 
-    if (!receivedUsername || !receivedEmail || !receivedPassword) {
+    if (validation.error) {
         return res.status(400).json({
             status: "error",
-            error: 'Missing required fields'
+            error: validation.error
         });
     }
 
-    if (!isPasswordValid(receivedPassword)) {
+    if (!isPasswordValid(req.body.password)) {
         return res.status(400).json({
             status: "error",
             error: 'Invalid password'
         });
     }
+
+    const receivedUsername = req.body.username.trim();
+    const receivedEmail = req.body.email.trim().toLowerCase();
+    const receivedPassword = req.body.password;
 
     try {
         const existingUser = await UserModel.findOne({ $or: [{
@@ -39,17 +46,17 @@ async function signUp (req, res, next) {
             }]
         });
 
-        if (existingUser && existingUser.email === receivedEmail) {
-            return res.status(409).json({
-                status: "error",
-                error: 'You already have an account with this email'
-            });
-        }
-
         if (existingUser && existingUser.username === receivedUsername) {
             return res.status(409).json({
                 status: "error",
                 error: 'Username already taken'
+            });
+        }
+
+        if (existingUser && existingUser.email === receivedEmail) {
+            return res.status(409).json({
+                status: "error",
+                error: 'You already have an account with this email'
             });
         }
 
@@ -63,27 +70,28 @@ async function signUp (req, res, next) {
             createdAt: new Date(),
         });
 
-        const payload = {
-            id: newUser.id,
-            username: newUser.username,
-            email: newUser.email,
-            admin: newUser.admin,
-        };
-
-        const token = await generateToken(payload);
-
-        res.cookie('token', token, {
-            httpOnly: false,
-            secure: true,
-            maxAge: AUTH_MAX_AGE,
-        });
+        // To use only if we want to automatically log in the user after signing up
+        //
+        // const payload = {
+        //     id: newUser.id,
+        //     admin: newUser.admin,
+        // };
+        //
+        // const token = await generateToken(payload);
+        //
+        // res.cookie('token', token, {
+        //     httpOnly: true,
+        //     maxAge: process.env.AUTH_MAX_AGE,
+        //     sameSite: 'none',
+        //     secure: true
+        // });
 
         return res.status(200).json({
             status: 'success',
             message:'user signed up successfully'
         });
     } catch(error) {
-        next(error);
+        return next(error);
     }
 };
 

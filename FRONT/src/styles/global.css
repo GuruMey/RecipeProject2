@@ -31,3 +31,11 @@ h1 {
         display: none !important;
     }
 }
+
+.colorError {
+    color: #dc1f1f;
+}
+
+.colorSuccess {
+    color: #13a613;
+}

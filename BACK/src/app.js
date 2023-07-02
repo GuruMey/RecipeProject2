@@ -7,7 +7,6 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import {connectDatabase} from "./config/database.js";
 import errorHandler from './middleware/errorHandler.js';
-import {refreshAuthTokenCookie} from "./config/jwt.js";
 
 // Import Routes
 import authRoutes from './routes/authRoutes.js';
@@ -50,8 +49,8 @@ if (!process.env.PORT) {
     process.exit(1);
 }
 
-
 const port = process.env.PORT;
+
 app.listen(port, ()=> (
     console.log('server is running on port', port)
 ))

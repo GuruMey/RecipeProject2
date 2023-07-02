@@ -28,7 +28,7 @@ export default function Header() {
                 <div className={styles.navbar_right}>
                     {context?.globalState?.loggedIn &&<Link href="/MyFavourites" className={`${styles.navbar_element} display-on-desktop-only`}>My Favorites </Link>}
                     {context?.globalState?.loggedIn &&<Link href="/UserDetails" className={`${styles.navbar_element} display-on-desktop-only`}>Profile</Link>}
-                    <Link href="/authpage" className={`${styles.navbar_element} display-on-desktop-only`}>Login </Link>
+                    <Link href="/auth/login" className={`${styles.navbar_element} display-on-desktop-only`}>Login </Link>
                 </div>
             </nav>
         </div>

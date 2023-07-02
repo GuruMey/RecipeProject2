@@ -3,6 +3,7 @@ import axios from "axios";
 import styles from "./auth.module.css";
 import getInvalidFieldsForNewRecipes from "../RecipeCreation/getInvalidFieldsForNewRecipes";
 import {useState} from "react";
+import Link from "next/link";
 
 function isPasswordValid(password:string) {
     const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d{4,})(?=.*[!@#$%^&*-_])[A-Za-z\d!@#$%^&*-_]{8,}$/;
@@ -36,9 +37,7 @@ export default function SignUp(props:any) {
     });
 
     const [showErrors, setShowErrors] = useState(false);
-
     const [apiError, setApiError] = useState('');
-
     const [success, setSuccess] = useState(false);
 
     async function handleSignUp(e:any) {
@@ -55,12 +54,14 @@ export default function SignUp(props:any) {
         }
 
         try {
-            await axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/auth/signup`, signUpData)
+            await axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/auth/signup`, signUpData, {
+                withCredentials: true
+            })
 
             setSuccess(true)
         } catch (error: any) {
-            console.error(error.response.data.error);
-            setApiError(error.response.data.error || 'An error occurred');
+            console.error(error);
+            setApiError(error.response?.data?.error || 'An error occurred');
         }
     }
 
@@ -89,11 +90,15 @@ export default function SignUp(props:any) {
                     <br></br>
                     <button className="button_primary" type="submit">Sign Up</button>
 
-                    {apiError && <p>{apiError}</p>}
-                    {success && <p>Account created successfully, you can now login.</p>}
+                    {apiError && <p className={"colorError"}>{apiError}</p>}
+                    {success && <p className={"colorSuccess"}>Account created successfully, you can now login.</p>}
                 </form>
 
-                <p>Already have an account? Log in <button className="button_secondary" onClick={() => props.setPageType('login')}>here</button> </p>
+                <p>Already have an account? Log in <Link href={'/auth/login'}>
+                    <button className="button_secondary">
+                        here
+                    </button>
+                </Link> </p>
 
             </div>
         </div>
