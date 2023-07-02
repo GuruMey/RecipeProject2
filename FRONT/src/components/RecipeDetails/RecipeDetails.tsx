@@ -4,6 +4,8 @@ import axios from 'axios';
 import {useRouter} from "next/router";
 import styles from "./RecipeDetails.module.css";
 
+
+
 export default function RecipeDetails() {
     const [recipe, setRecipe] = useState<any>({});
 
@@ -34,6 +36,11 @@ export default function RecipeDetails() {
 
     return (
         <div className={styles.recipe_view}>
+            <div className={styles.recipe_buttons_logged_in}>
+            <button className={styles.favorites_button}>♡</button>
+                <button className={styles.edit_recipe_button}>edit</button>
+                <button className={styles.primary_button}>Delete recipe</button>
+            </div>
             {_id && (
                 <div key={_id} className={styles.recipe}>
                     <div className={styles.main_recipe_banner}>
@@ -41,9 +48,6 @@ export default function RecipeDetails() {
                         <div className={styles.title_banner}>
                         <div className={styles.recipe_view_title}>
                             <Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{title}</Link>
-                            {/*<button className={styles.favorites_button}>Add to favorites</button>*/}
-                            {/*<button className={styles.favorites_button}>Remove from favorites</button>*/}
-                            {/*<button className={styles.edit_recipe_button}>Edit</button>*/}
                         </div>
                         <div className={styles.recipe_view_description}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{description}</Link></div>
                         <div className={styles.recipe_view_time}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>Preparation time: {preparation_time} min</Link></div>
@@ -72,7 +76,6 @@ export default function RecipeDetails() {
                                 </ol>
                             </Link>
                         </div>
-                        <button className={styles.primary_button}>Delete recipe</button>
                     </div>
 
 

@@ -2,6 +2,12 @@
 
 }
 
+.recipe_buttons_logged_in{
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px  100px;
+}
+
 .main_recipe_banner{
     display: flex;
     flex-direction: column;

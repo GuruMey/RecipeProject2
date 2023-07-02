@@ -8,6 +8,7 @@ import styles from "./RecipesGallery.module.css";
 export default function RecipesGallery() {
     const [recipes, setRecipes] = React.useState<any>([]);
 
+
     useEffect(() => {
         const fetchData = async () => {
             try {
