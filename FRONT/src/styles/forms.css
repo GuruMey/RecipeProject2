@@ -1,4 +1,22 @@
+.main_form_container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    padding: 10px;
+}
 
+.recipe_form_title{
+    margin: auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    border: 1px solid #7D8844;
+    border-radius: 25px;
+}
 
 .recipe_title {
     display: flex;
@@ -74,10 +92,59 @@
     max-width: 100%;
 }
 
+/* INPUTS CSS */
+
+.input_short {
+    max-width: 50px;
+    height: 30px;
+    border: none;
+    margin: 10px;
+    background-color: rgba(169, 168, 168, 0.7);
+    border-radius: 15px;
+
+}
+
+.input_medium {
+    min-width: 400px;
+    height: 30px;
+    border: none;
+    margin: 10px;
+    background-color: rgba(169, 168, 168, 0.7);
+    border-radius: 15px;
+}
+
+.input_long {
+    min-height: 70px;
+    min-width: 400px;
+    border: none;
+    margin: 10px;
+    background-color: rgba(169, 168, 168, 0.7);
+    border-radius: 15px;
+
+}
+
+/*.label {*/
+/*    background-color: #7d8844;*/
+/*}*/
+
+
+
 .button_container {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.form_primary_button {
+    display: flex;
+    justify-content: center;
+    background-color: #7d8844;
+    border-radius: 15px;
+    border: none;
+    padding: 5px 10px;
+    margin: 10px;
+    cursor: pointer;
+    max-width: 100px;
 }
 
 .plus_button {

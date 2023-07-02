@@ -1,0 +1,10 @@
+
+.burger_menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 400px;
+    height: 100vh;
+    background-color: black;
+}

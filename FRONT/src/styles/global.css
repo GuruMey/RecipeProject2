@@ -47,3 +47,23 @@ h1 {
 /*        transform: rotate(360deg);*/
 /*    }*/
 /*}*/
+
+/* Helpers for responsive design */
+
+.display-on-tablet-only {
+    display: none;
+}
+
+.display-on-desktop-only {
+    display: block;
+}
+
+@media only screen and (max-width: 768px) {
+    .display-on-tablet-only {
+        display: block;
+    }
+
+    .display-on-desktop-only {
+        display: none;
+    }
+}
