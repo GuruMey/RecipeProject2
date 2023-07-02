@@ -5,11 +5,13 @@ import {
     publishRecipe,
     editRecipe,
     deleteRecipe,
+    getAllRecipes,
     getRecipe
 } from "../controllers/recipeController.js";
 const router = express.Router();
 
-router.get('/', getRecipe);
+router.get('/', getAllRecipes);
+router.get('/getRecipe/:recipeId', getRecipe);
 router.post('/createRecipe/:recipeId', createRecipe);
 router.post('/saveRecipe/:recipeId', saveRecipe);
 router.post('publishRecipe/:recipeId', publishRecipe);

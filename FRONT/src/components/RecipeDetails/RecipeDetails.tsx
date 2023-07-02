@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import {useRouter} from "next/router";
 
 export default function RecipeDetails() {
     const [recipe, setRecipe] = useState<any>({});
 
+    const router = useRouter()
+    const { recipeId } = router.query
+
     useEffect(() => {
-        const fetchData = async () => {
+        if (!recipeId) {
+            return
+        }
+
+        async function getRecipe () {
             try {
-                const response = await axios.get("http://localhost:8001/recipes/id");
-                setRecipe(response.data);
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/recipe/getRecipe/${recipeId}`);
+                setRecipe(response.data.data);
             } catch (error) {
-                console.error("Erreur lors de la récupération des données :", error);
+                console.error("Error fetching data:", error);
             }
-        };
-        fetchData();
-    }, []);
+        }
+
+        getRecipe()
+
+    }, [recipeId]);
+
 
     const { _id, title, description, preparation_time, ingredients, steps } = recipe;
 

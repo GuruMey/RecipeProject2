@@ -2,8 +2,8 @@ import RecipeModel from "../models/RecipeModel.js";
 
 
 
-// //----------------- GET RECIPE ----------------- //
-const getRecipe = async (req, res, next) => {
+// //----------------- GET ALL RECIPES ----------------- //
+const getAllRecipes = async (req, res, next) => {
     try {
         console.log("yo man");
         const recipe = await RecipeModel.find();
@@ -13,6 +13,18 @@ const getRecipe = async (req, res, next) => {
     }
 };
 
+// //----------------- GET RECIPE ----------------- //
+
+const getRecipe = async (req, res, next) => {
+    const recipeId = req.params.recipeId;
+
+    try {
+        const recipe = await RecipeModel.findById(recipeId);
+        return res.status(200).json({data: recipe});
+    } catch(error) {
+        next(error);
+    }
+}
 
 //----------------- CREATE RECIPE ----------------- //
 const createRecipe = async (req, res) => {
@@ -139,4 +151,4 @@ const deleteRecipe = async (req, res) => {
     }
 };
 
-export {getRecipe,createRecipe, saveRecipe, publishRecipe, editRecipe, deleteRecipe};
+export {getAllRecipes, getRecipe ,createRecipe, saveRecipe, publishRecipe, editRecipe, deleteRecipe};
