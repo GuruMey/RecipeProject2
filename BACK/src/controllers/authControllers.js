@@ -60,25 +60,25 @@ const signUp = async (req,res) => {
     }
 };
 
-
 // ----------------- SIGN IN ----------------- //
 const signIn = async (req,res,next) => {
+    const receivedEmail = req.body.email;
+    const receivedPassword = req.body.password;
 
-    // todo: use receivedEmail and receivedPassword
-    const {email, password} = req.body;
+    if (!receivedEmail || !receivedPassword) {
+        return res.status(400).json({error: 'Missing required fields'});
+    }
 
     try {
-
-        const user = await UserModel.findOne({email});
-        // user.passwordHash = undefined;
+        const user = await UserModel.findOne({ email: receivedEmail });
 
         if (!user) {
             return res.status(401).json({error: 'Invalid email or password'});
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
+        const passwordMatching = await bcrypt.compare(receivedPassword, user.password);
 
-        if (!isMatch) {
+        if (!passwordMatching) {
             return res.status(401).json({error: 'invalid email or password'});
         }
 
