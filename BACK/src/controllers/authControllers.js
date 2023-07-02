@@ -3,7 +3,14 @@ import {generateToken} from "../config/jwt.js";
 import UserModel from "../models/UserModel.js";
 const { AUTH_MAX_AGE } = process.env;
 
+
+
 // ----------------- SIGN UP ----------------- //
+
+function isPasswordValid(password) {
+    const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d{4,})(?=.*[!@#$%^&*-_])[A-Za-z\d!@#$%^&*-_]{8,}$/;
+    return reg.test(password);
+}
 async function signUp (req, res) {
     const receivedUsername = req.body.username;
     const receivedEmail = req.body.email;
@@ -11,6 +18,10 @@ async function signUp (req, res) {
 
     if (!receivedUsername || !receivedEmail || !receivedPassword) {
         return res.status(400).json({error: 'Missing required fields'});
+    }
+
+    if (!isPasswordValid(receivedPassword)) {
+        return res.status(400).json({error: 'Invalid password'});
     }
 
     // todo: add validation for username, email, password
@@ -62,8 +73,8 @@ async function signUp (req, res) {
     }
 };
 
-// ----------------- SIGN IN ----------------- //
-const signIn = async (req,res,next) => {
+// ----------------- LOG IN ----------------- //
+const logIn = async (req,res,next) => {
     const receivedEmail = req.body.email;
     const receivedPassword = req.body.password;
 
@@ -87,15 +98,20 @@ const signIn = async (req,res,next) => {
         const payload = {
             id: user._id,
             username: user.username,
-            email: user.email,
             admin: user.admin,
         };
 
+        console.log(payload)
+
         const token = await generateToken(payload);
+
+        console.log(token)
 
         res.cookie('token', token, {
             httpOnly: true,
             maxAge: 900000,
+            sameSite: 'none',
+            secure: true
         });
 
         res.status(200).json({message: 'signed in successfully'});
@@ -113,4 +129,4 @@ const signOut = (req, res) => {
     res.status(200).json({message: 'Signed out successfully'});
 };
 
-export {signUp, signIn, signOut};
+export {signUp, logIn, signOut};

@@ -30,10 +30,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/recipes/[recipeId]": [
+    "/authpage": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/recipes/[recipeId].js"
+      "static/chunks/pages/authpage.js"
     ]
   },
   "ampFirstPages": []

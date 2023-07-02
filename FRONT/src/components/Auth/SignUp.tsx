@@ -1,23 +1,36 @@
 import * as React from 'react';
 import axios from "axios";
 
+
+function isPasswordValid(password:string) {
+    const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d{4,})(?=.*[!@#$%^&*-_])[A-Za-z\d!@#$%^&*-_]{8,}$/;
+    return reg.test(password);
+}
 export default function SignUp(props:any) {
     const [signUpData, setSignUpData] = React.useState({
         username: "",
         email: "",
         password: ""
     });
-    function handleSignUp(e:any) {
+    async function handleSignUp(e:any) {
         e.preventDefault();
+        if(!isPasswordValid(signUpData.password)) {
+            alert('invalid password format');
+            return
+        }
         alert("Sign up form submitted")
 
+
         // requete au serveur avec axios
-        axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/auth/signup`, signUpData)
-        .then((res) => {
-            console.log(res.data);
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/auth/signup`, signUpData)
+
+            console.log(response.data);
             alert("Sign up successful")
             props.setPageType('login');
-        })
+        } catch (error) {
+            console.error(error)
+        }
 
     }
     return (

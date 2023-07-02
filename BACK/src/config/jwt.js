@@ -6,7 +6,6 @@ const generateToken =  (payload) => {
         {
             id: payload.id,
             username: payload.username,
-            email: payload.email,
             admin: payload.admin,
         },
         process.env.JWT_SECRET,

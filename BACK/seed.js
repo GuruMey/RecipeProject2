@@ -3,6 +3,7 @@ import RecipeModel  from './src/models/RecipeModel.js';
 import UserModel from './src/models/UserModel.js';
 import mongoose from "mongoose";
 import seedRecipesJson from './data/seedRecipes.json' assert { type: "json" };
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -12,42 +13,51 @@ const seedUsers = async () => {
         await UserModel.deleteMany();
 
         const mockUsers = [
-            {
-                "username": "johnsmith",
-                "password": "password123",
-                "email": "johnsmith@example.com",
-                "admin": false,
-                "createdAt": "2023-05-30T09:00:00Z",
-                "profilePicture": "",
-                "favorites": []
-            },
-            {
-                "username": "alicejohnson",
-                "password": "password456",
-                "email": "alicejohnson@example.com",
-                "admin": false,
-                "createdAt": "2023-05-30T10:00:00Z",
-                "profilePicture": "",
-                "favorites": []
-            },
-            {
-                "username": "emilybrown",
-                "password": "password789",
-                "email": "emilybrown@example.com",
-                "admin": false,
-                "createdAt": "2023-05-30T11:00:00Z",
-                "profilePicture": "",
-                "favorites": []
-            },
-            {
-                "username": "michaeldavis",
-                "password": "passwordabc",
-                "email": "michaeldavis@example.com",
-                "admin": false,
-                "createdAt": "2023-05-30T12:00:00Z",
-                "profilePicture": "",
-                "favorites": []
-            },
+                    {
+                        username: "johnsmith",
+                        password: await bcrypt.hash('password123', 10),
+                        email: "johnsmith@example.com",
+                        admin: false,
+                        createdAt: "2023-05-30T09:00:00Z",
+                        profilePicture: "",
+                        favorites: []
+                    },
+                    {
+                        username: "alicejohnson",
+                        password: await bcrypt.hash('password456', 10),
+                        email: "alicejohnson@example.com",
+                        admin: false,
+                        createdAt: "2023-05-30T10:00:00Z",
+                        profilePicture: "",
+                        favorites: []
+                    },
+                    {
+                        username: "emilybrown",
+                        password: await bcrypt.hash('password789', 10),
+                        email: "emilybrown@example.com",
+                        admin: false,
+                        createdAt: "2023-05-30T11:00:00Z",
+                        profilePicture: "",
+                        favorites: []
+                    },
+                    {
+                        username: "michaeldavis",
+                        password: await bcrypt.hash('passwordabc', 10),
+                        email: "michaeldavis@example.com",
+                        admin: false,
+                        createdAt: "2023-05-30T12:00:00Z",
+                        profilePicture: "",
+                        favorites: []
+                    },
+                    {
+                        username: "sophiawilson",
+                        password: await bcrypt.hash('passworddef', 10),
+                        email: "sophiawilson@example.com",
+                        admin: false,
+                        createdAt: "2023-05-30T13:00:00Z",
+                        profilePicture: "",
+                        favorites: []
+                    }
         ]
 
         await UserModel.create(mockUsers);
