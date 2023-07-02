@@ -1,10 +1,10 @@
-import RecipeGallery from "../components/RecipeGallery/RecipeGallery";
+import RecipesGallery from "../components/RecipeGallery/RecipesGallery";
 
 export default function Index() {
 
         return (
             <div>
-                <RecipeGallery/>
+                <RecipesGallery/>
             </div>
         );
     }

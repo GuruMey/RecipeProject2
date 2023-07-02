@@ -1,11 +1,11 @@
-import RecipeGallery from "../components/RecipeGallery/RecipeGallery";
+import RecipesGallery from "../components/RecipeGallery/RecipesGallery";
 
 export default function MyFavourites() {
 
     return (
-        <div className="myfavourite-body">
+        <div className="favourites-title-container">
             <h1>My Favourites</h1>
-            <RecipeGallery/>
+            <RecipesGallery/>
             </div>
     );
 

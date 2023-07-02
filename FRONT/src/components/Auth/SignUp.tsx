@@ -1,5 +1,7 @@
 import * as React from 'react';
 import axios from "axios";
+import styles from "./auth.module.css";
+
 
 
 function isPasswordValid(password:string) {
@@ -34,20 +36,20 @@ export default function SignUp(props:any) {
 
     }
     return (
-        <div className="signup-page">
-            <div className="auth-form-container">
-                <h1>SIGN UP</h1>
-                <form className="auth-form" onSubmit={handleSignUp}>
-                    <div className="auth-input"><input type="text" name="username" id="username" placeholder="Username" value={signUpData.username} onChange={
+        <div className={styles.signup_page}>
+            <div className={styles.auth_form_container}>
+                <h2>SIGN UP</h2>
+                <form className={styles.auth_form} onSubmit={handleSignUp}>
+                    <div className={styles.auth_input}><input type="text" name="username" id="username" placeholder="Username" value={signUpData.username} onChange={
                         (e)=> setSignUpData((prevState)=> ({...prevState, username: e.target.value}))}/></div>
                     <br></br>
-                    <div className="auth-input"><input type="email" name="email" id="email" placeholder="Email" value={signUpData.email} onChange={
+                    <div className={styles.auth_input}><input type="email" name="email" id="email" placeholder="Email" value={signUpData.email} onChange={
                         (e)=> setSignUpData((prevState)=> ({...prevState, email: e.target.value}))}/></div>
                     <br></br>
-                    <div className="auth-input"><input type="password" name="password" id="password" placeholder="Password" value={signUpData.password} onChange={
+                    <div className={styles.auth_input}><input type="password" name="password" id="password" placeholder="Password" value={signUpData.password} onChange={
                         (e)=> setSignUpData((prevState)=> ({...prevState, password: e.target.value}))}/></div>
                     <br></br>
-                    <button className="auth-button" type="submit">Sign Up</button>
+                    <button className={styles.auth_button} type="submit">Sign Up</button>
                 </form>
                 <p>Already have an account? Log in <button onClick={() => props.setPageType('login')}>here</button> </p>
 

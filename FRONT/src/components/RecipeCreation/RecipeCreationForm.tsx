@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from "./RecipeCreationForm.module.css"
 
 
  export default function RecipeCreationForm() {
@@ -40,76 +41,77 @@ import * as React from 'react';
     };
 
     return (
-        <div className="main-form-container">
+        <div className={styles.main_form_container}>
+            <div className={styles.recipe_form_title}>
+            <h2>Create a new recipe</h2>
+            </div>
 
-            <h1>CREATE A NEW RECIPE</h1>
-
+            <div className={styles.form}>
             {/*--------------RECIPE TITLE-------------------*/}
-            <div className="recipe-title">
-                <form className="title-form">
+            <div className={styles.recipe_title}>
+                <form className={styles.title_form}>
                     <label> Recipe Title: </label>
-                    <input className="input-medium" type="text" name="title" />
+                    <input className={styles.input_medium} type="text" name="title" />
                 </form> </div>
 
             {/*--------------TIME-------------------*/}
-            <div className="recipe-time">
-                <form className="time-form">
+            <div className={styles.recipe_time}>
+                <form className={styles.time_form}>
                     <label> Recipe Time (min): </label>
-                    <input className="input-short" type="number" name="time" />
+                    <input className={styles.input_short} type="number" name="time" />
                 </form>
             </div>
             {/*--------------PHOTO-------------------*/}
-            <div className="recipe-cover-photo">
-                <form className="cover-photo-form">
+            <div className={styles.recipe_cover_photo}>
+                <form className={styles.cover_photo_form}>
                     <label> Cover Photo: </label>
                     <input type="file" name="cover-photo" accept="image/*" onChange={handleCoverPhotoChange} />
                 </form>
             </div>
             {/*--------------INGREDIENTS-------------------*/}
-            <div className="recipe-ingredients">
-                <form className="ingredients-form">
+            <div className={styles.recipe_ingredients}>
+                <form className={styles.ingredients_form}>
                     <label> Ingredients: </label> <br/>
-                    <input className="input-medium" value={ingredientInput} onChange={(e)=>{setIngredientInput(e.target.value)}} type="text" name="ingredients" />
-                    <button className="form-add-secondary-button" type="button" onClick={addIngredient}>+</button>
+                    <input className={styles.input_medium} value={ingredientInput} onChange={(e)=>{setIngredientInput(e.target.value)}} type="text" name="ingredients" />
+                    <button className={styles.form_add_secondary_button} type="button" onClick={addIngredient}>+</button>
                 </form>
-                <div className="recipe-list"><ul>
+                <div className={styles.recipe_list}><ul>
                     {ingredients.map((ingredient, index) => (
                         <li key={index}>{ingredient}</li>
                     ))}
                 </ul></div>
             </div>
             {/*--------------STEPS-------------------*/}
-            <div className="recipe-steps">
-                <form className="steps-form">
+            <div className={styles.recipe_steps}>
+                <form className={styles.steps_form}>
                     <label> Steps: </label> <br/>
-                    <input className="input-long" value={stepInput} onChange={(e)=>{setStepInput(e.target.value)}} type="text" name="steps" />
-                    <button className="form-add-secondary-button" type="button" onClick={addStep}>+</button>
+                    <input className={styles.input_long} value={stepInput} onChange={(e)=>{setStepInput(e.target.value)}} type="text" name="steps" />
+                    <button className={styles.form_add_secondary_button} type="button" onClick={addStep}>+</button>
                 </form>
-                <div className="recipe-list"><ul>
+                <div className={styles.recipe_list}><ul>
                     {steps.map((step, index) => (
                         <li key={index}>{step}</li>
                     ))}
                 </ul></div>
             </div>
             {/*--------------TAGS-------------------*/}
-            <div className="recipe-tags">
-                <form className="tags-form">
+            <div className={styles.recipe_tags}>
+                <form className={styles.tags_form}>
                     <label> Tags: </label>
                     <input value={tagInput} onChange={(e)=>{setTagInput(e.target.value)}} type="text" name="tags" />
-                    <button className="form-add-secondary-button" type="button" onClick={addTag}>+</button>
+                    <button className={styles.form_add_secondary_button} type="button" onClick={addTag}>+</button>
                 </form>
-                <div className="recipe-list"><ul>
+                <div className={styles.recipe_list}><ul>
                     {tags.map((tag, index) => (
                         <li key={index}>{tag}</li>
                     ))}
                 </ul></div>
             </div>
-            {/*--------------BUTTON-------------------*/}
-            <div className="button-container">
-                <div className="form-primary-button ">Save Recipe</div>
             </div>
-            <div className="button-container">
-                <div className="form-primary-button ">Publish Recipe</div>
+            {/*--------------BUTTON-------------------*/}
+            <div className={styles.button_container}>
+                <div className={styles.form_primary_button}>Save </div>
+                <div className={styles.form_primary_button}>Publish </div>
             </div>
             <br/><br/><br/><br/>
         </div>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import axios from "axios";
+import styles from "./auth.module.css"
 
 export default function LogIn(props:any) {
     const [logInData, setLogInData] = React.useState({
@@ -25,17 +26,17 @@ export default function LogIn(props:any) {
     }
 
     return (
-        <div className="login-page">
-            <div className="auth-form-container" onSubmit={handleLogIn}>
-                <h1>LOG IN</h1>
-                <form className="auth-form">
-                    <div className="auth-input"><input type="email" name="email" id="email" placeholder="Email" value={logInData.email} onChange={
+        <div className={styles.login_page}>
+            <div className={styles.auth_form_container} onSubmit={handleLogIn}>
+                <h2>LOG IN</h2>
+                <form className={styles.auth_form}>
+                    <div className={styles.auth_input}><input type="email" name="email" id="email" placeholder="Email" value={logInData.email} onChange={
                         (e)=> setLogInData((prevState) =>({...prevState, email: e.target.value}))} /></div>
                     <br></br>
-                    <div className="auth-input"><input type="password" name="password" id="password" placeholder="Password" value={logInData.password} onChange={
+                    <div className={styles.auth_input}><input type="password" name="password" id="password" placeholder="Password" value={logInData.password} onChange={
                     (e)=> setLogInData((prevState)=> ({...prevState, password: e.target.value}))}/></div>
                     <br></br>
-                    <button className="auth-button" type="submit">Log In</button>
+                    <button className={styles.auth_button} type="submit">Log In</button>
                 </form>
                 <p>Not a member yet? Sign up <button onClick={() => props.setPageType('signup')}>here</button> </p>
             </div>

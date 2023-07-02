@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import {useRouter} from "next/router";
+import styles from "./RecipeDetails.module.css";
 
 export default function RecipeDetails() {
     const [recipe, setRecipe] = useState<any>({});
@@ -32,24 +33,28 @@ export default function RecipeDetails() {
 
 
     return (
-        <div className="recipe-view">
+        <div className={styles.recipe_view}>
             {_id && (
-                <div key={_id} className="recipe">
-                    <div className="title-banner">
-                        <div className="recipe-view-title"><Link href={`/recipe/${_id}`}>{title}</Link>
-                            <button className="favorites-button">Add to favorites</button>
-                            <button className="favorites-button">Remove from favorites</button>
-                            <button className="edit-recipe-button">Edit</button>
+                <div key={_id} className={styles.recipe}>
+                    <div className={styles.main_recipe_banner}>
+                        <Link href={'/'}><img className={styles.recipe_img} src={recipe.coverUrl} alt="recipe-image"/></Link>
+                        <div className={styles.title_banner}>
+                        <div className={styles.recipe_view_title}>
+                            <Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{title}</Link>
+                            {/*<button className={styles.favorites_button}>Add to favorites</button>*/}
+                            {/*<button className={styles.favorites_button}>Remove from favorites</button>*/}
+                            {/*<button className={styles.edit_recipe_button}>Edit</button>*/}
                         </div>
-                        <div className="recipe-view-description"><Link href={`/recipe/${_id}`}>{description}</Link></div>
-                        <div className="recipe-view-time"><Link href={`/recipe/${_id}`}>Preparation time: {preparation_time} min</Link></div>
-                        <div className="recipe-view-tags"><Link href={`/recipe/${_id}`}>{recipe.tags.map((tag: any) => <span
-                            className="card-tag">{tag} </span>)}</Link></div>
+                        <div className={styles.recipe_view_description}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{description}</Link></div>
+                        <div className={styles.recipe_view_time}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>Preparation time: {preparation_time} min</Link></div>
+                        <div className={styles.recipe_view_tags}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{recipe.tags.map((tag: any) => <span
+                            className={styles.recipe_view_tag}> #{tag} </span>)}</Link></div>
                     </div>
-                    <div className="recipe-view-text">
-                        <div className="recipe-view-ingredients">
+                    </div>
+                    <div className={styles.recipe_view_text}>
+                        <div className={styles.recipe_view_ingredients}>
                             Ingredients:
-                            <Link href={`/recipe/${_id}`}>
+                            <Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>
                                 <ul>
                                     {ingredients.map((ingredient: string) => (
                                         <li key={ingredient}>{ingredient}</li>
@@ -57,9 +62,9 @@ export default function RecipeDetails() {
                                 </ul>
                             </Link>
                         </div>
-                        <div className="recipe-view-steps">
+                        <div className={styles.recipe_view_steps}>
                             Steps to follow:
-                            <Link href={`/recipe/${_id}`}>
+                            <Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>
                                 <ol>
                                     {steps.map((step: string) => (
                                         <li key={step}>{step}</li>
@@ -67,7 +72,7 @@ export default function RecipeDetails() {
                                 </ol>
                             </Link>
                         </div>
-                        <button>Delete recipe</button>
+                        <button className={styles.primary_button}>Delete recipe</button>
                     </div>
 
 
