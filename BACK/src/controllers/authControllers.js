@@ -132,7 +132,10 @@ const logIn = async (req, res, next) => {
             secure: true
         });
 
-        res.status(200).json({message: 'signed in successfully'});
+        res.status(200).json({
+            status: "success",
+            message: 'signed in successfully'
+        });
 
     } catch (error) {
         next(error);

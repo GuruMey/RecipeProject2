@@ -3,8 +3,11 @@ import axios from "axios";
 import styles from "./auth.module.css"
 import {useState} from "react";
 import Link from "next/link";
+import { useRouter } from 'next/router'
 
 export default function LogIn(props: any) {
+    const router = useRouter()
+
     const [logInData, setLogInData] = React.useState({
         email: "",
         password: ""
@@ -22,8 +25,11 @@ export default function LogIn(props: any) {
                 withCredentials: true
             })
 
-            if (response.status === 200) {
+            console.log(response.data)
 
+            if (response.data.status === "success") {
+                await router.push('/')
+                router.reload();
             }
         } catch (error: any) {
             console.error(error)
