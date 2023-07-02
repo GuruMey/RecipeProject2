@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Link from 'next/link';
 
+//code the burger menu for mobile
+
+
 export default function Header() {
     return (
         <div>
@@ -11,10 +14,11 @@ export default function Header() {
                 </div>
                 <div className="navbar-center">
                     <h1 className="navbar-title">DELISHDISH</h1>
+                    <h2 className="navbar-undertitle">The best vegan recipes</h2>
                 </div>
                 <div className="navbar-right">
-                    <Link href="/authpage" className="navbar-element">Login </Link>
                     <Link href="/MyFavourites" className="navbar-element">My Favorites </Link>
+                    <Link href="/authpage" className="navbar-element">Login </Link>
                 </div>
             </nav>
         </div>

@@ -36,7 +36,11 @@ export default function RecipeDetails() {
             {_id && (
                 <div key={_id} className="recipe">
                     <div className="title-banner">
-                        <div className="recipe-view-title"><Link href={`/recipe/${_id}`}>{title}</Link></div>
+                        <div className="recipe-view-title"><Link href={`/recipe/${_id}`}>{title}</Link>
+                            <button className="favorites-button">Add to favorites</button>
+                            <button className="favorites-button">Remove from favorites</button>
+                            <button className="edit-recipe-button">Edit</button>
+                        </div>
                         <div className="recipe-view-description"><Link href={`/recipe/${_id}`}>{description}</Link></div>
                         <div className="recipe-view-time"><Link href={`/recipe/${_id}`}>Preparation time: {preparation_time} min</Link></div>
                         <div className="recipe-view-tags"><Link href={`/recipe/${_id}`}>{recipe.tags.map((tag: any) => <span
@@ -63,6 +67,7 @@ export default function RecipeDetails() {
                                 </ol>
                             </Link>
                         </div>
+                        <button>Delete recipe</button>
                     </div>
 
 

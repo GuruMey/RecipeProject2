@@ -21,7 +21,7 @@ export default function RecipeGallery() {
     return (
         <div className="gallery-page">
             <div className="before-gallery">
-                <h1 className="gallery-page-title">Recipes</h1>
+                <h2 className="gallery-page-title">Recipes</h2>
                 <input className="search-input" type="text" placeholder="Search for a recipe..."/>
             </div>
             <div className="gallery-main">
