@@ -2,9 +2,25 @@ import Link from 'next/link';
 import  styles from "./Header.module.css";
 import {useContext} from "react";
 import MyContext from "../../context/MyContext";
+import axios from "axios";
+import {useRouter} from "next/router";
 
 export default function Header() {
     const context:any = useContext(MyContext)
+    const router = useRouter()
+
+    async function signOut() {
+        try {
+            await axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/auth/signout`, {}, {
+                withCredentials: true
+            })
+            await router.push('/')
+            router.reload();
+        } catch(error) {
+            console.log(error)
+            alert("An error occurred")
+        }
+    }
 
     return (
         <div>
@@ -28,7 +44,8 @@ export default function Header() {
                 <div className={styles.navbar_right}>
                     {context?.globalState?.loggedIn &&<Link href="/MyFavourites" className={`${styles.navbar_element} display-on-desktop-only`}>My Favorites </Link>}
                     {context?.globalState?.loggedIn &&<Link href="/UserDetails" className={`${styles.navbar_element} display-on-desktop-only`}>Profile</Link>}
-                    <Link href="/auth/login" className={`${styles.navbar_element} display-on-desktop-only`}>Login </Link>
+                    {!context?.globalState?.loggedIn &&<Link href="/auth/login" className={`${styles.navbar_element} display-on-desktop-only`}>Login </Link>}
+                    {context?.globalState?.loggedIn &&<button onClick={signOut}>Log out</button> }
                 </div>
             </nav>
         </div>
