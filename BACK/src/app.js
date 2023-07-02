@@ -22,7 +22,7 @@ dotenv.config();
 
 // Use middlewares
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: ['http://localhost:3000'],
     credentials: true
 }));
 app.use(express.json());
@@ -33,10 +33,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 // Connect to database
-connectDatabase()
-
-// Refresh auth cookie (if exists)
-app.use(refreshAuthTokenCookie);
+connectDatabase();
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -46,7 +43,6 @@ app.use('/api/rating', ratingRoutes);
 
 // Error handler middleware
 app.use(errorHandler);
-
 
 // Start Server
 if (!process.env.PORT) {
