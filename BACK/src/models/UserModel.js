@@ -6,13 +6,14 @@ const UserSchema = new Schema({
         type: String,
         unique: true
     },
-    passwordHash: String,
+    password: String,
     email: {
         type: String,
         unique: true
     },
     admin: Boolean,
     createdAt: Date,
+    profilePicture: String,
     favorites: [String]
 });
 
