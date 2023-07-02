@@ -14,8 +14,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "prepare": "husky install"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
