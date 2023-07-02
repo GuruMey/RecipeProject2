@@ -19,32 +19,35 @@
 }
 
 .recipe_title {
-    background-color: rgba(125, 136, 68, 0.14);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
     border: none;
-    border-radius: 25px;
     padding: 10px;
     margin: 10px;
     max-width: 100%;
-    min-height: 50px;
 
 }
 
 
 .recipe_time {
-    background-color: rgba(125, 136, 68, 0.14);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     border: none;
-    border-radius: 25px;
     padding: 10px;
-    margin: 10px;
     max-width: 100%;
-    min-height: 50px;
+
 
 }
 
 
 .recipe_cover_photo{
-    background-color: rgba(125, 136, 68, 0.14);
-    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 10px;
     margin: 10px;
     max-width: 100%;
@@ -52,16 +55,17 @@
 }
 
 .recipe_ingredients {
-    background-color: rgba(125, 136, 68, 0.14);
-    border-radius: 25px;
+    display: grid;
+
     padding: 10px;
     margin: 10px;
     max-width: 100%;
 }
 
 .recipe_steps {
-    background-color: rgba(125, 136, 68, 0.14);
-    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 10px;
     margin: 10px;
     max-width: 100%;
@@ -69,8 +73,9 @@
 }
 
 .recipe_tags {
-    background-color: rgba(125, 136, 68, 0.14);
-    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 10px;
     margin: 10px;
     max-width: 100%;
@@ -84,7 +89,8 @@
     max-width: 40px;
     border: none;
     margin: 10px;
-
+    background-color: rgba(169, 168, 168, 0.7);
+    border-radius: 15px;
 
 }
 
@@ -93,6 +99,8 @@
     height: 30px;
     border: none;
     margin: 10px;
+    background-color: rgba(169, 168, 168, 0.7);
+    border-radius: 15px;
 }
 
 .input_long {
@@ -100,10 +108,14 @@
     min-width: 400px;
     border: none;
     margin: 10px;
+    background-color: rgba(169, 168, 168, 0.7);
+    border-radius: 15px;
 
 }
 
-/* FORM ADD BUTTONS */
+.label {
+    background-color: #7d8844;
+}
 
 
 
@@ -132,4 +144,8 @@
     padding: 5px 10px;
     margin: 10px;
     cursor: pointer;
+}
+
+.recipe_list{
+    background-color: #a92323;
 }
