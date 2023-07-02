@@ -3,6 +3,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import {useRouter} from "next/router";
 import styles from "./RecipeDetails.module.css";
+import { getRecipeById } from '../../services/recipeService';
 
 
 
@@ -19,7 +20,7 @@ export default function RecipeDetails() {
 
         async function getRecipe () {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/recipe/getRecipe/${recipeId}`);
+                const response = await getRecipeById(recipeId);
                 setRecipe(response.data.data);
             } catch (error) {
                 console.error("Error fetching data:", error);

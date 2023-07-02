@@ -5,8 +5,8 @@ import RecipeModel from "../models/RecipeModel.js";
 // //----------------- GET ALL RECIPES ----------------- //
 const getAllRecipes = async (req, res, next) => {
     try {
-        const recipe = await RecipeModel.find();
-        return res.status(200).json({data: recipe});
+        const recipes = await RecipeModel.find();
+        return res.status(200).json({data: recipes});
     } catch(error) {
         next(error);
     }

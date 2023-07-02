@@ -15,6 +15,7 @@
     justify-content: center;
     width: 100vw;
     padding: 20px 0;
+    height: calc(100vh - 240px);
 }
 
 .auth_form_container {

@@ -1,5 +1,4 @@
 .main_form_container{
-    background-color: cyan;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -10,7 +9,8 @@
 .form {
     display: flex;
     flex-direction: column;
-    max-width: 50%;
+    max-width: 500px;
+    width: 100%;
     border: 1px solid #7D8844;
     border-radius: 25px;
 }
@@ -68,7 +68,7 @@
 
 .input_long {
     min-height: 70px;
-    min-width: 400px;
+    max-width: 400px;
     margin: 10px 0;
     background-color: #FAFAFA;
     border-radius: 10px;

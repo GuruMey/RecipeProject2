@@ -13,8 +13,7 @@ const router = express.Router();
 
 router.get('/', getAllRecipes);
 router.get('/getRecipe/:recipeId', getRecipe);
-router.post('/createRecipe/:recipeId', authenticateUser, authorizeUser, createRecipe);
-router.post('/saveRecipe/:recipeId', authenticateUser, authorizeUser,  saveRecipe);
+router.post('/createRecipe', authenticateUser, authorizeUser, createRecipe);
 router.post('publishRecipe/:recipeId', authenticateUser, authorizeUser,  publishRecipe);
 router.put('/editRecipe/:recipeId', authenticateUser, authorizeUser,  editRecipe);
 router.delete('/deleteRecipe/:userId', authenticateUser, authorizeUser,  deleteRecipe);

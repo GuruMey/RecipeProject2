@@ -3,6 +3,8 @@ import {useEffect} from "react";
 import Link from 'next/link';
 import axios from "axios";
 import styles from "./RecipesGallery.module.css";
+import { getAllRecipes } from '../../services/recipeService';
+
 
 
 export default function RecipesGallery() {
@@ -12,7 +14,7 @@ export default function RecipesGallery() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/recipe`);
+                const response = await getAllRecipes();
                 setRecipes(response.data.data);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -31,16 +33,13 @@ export default function RecipesGallery() {
             <div className={styles.gallery_main}>
                 {recipes.map((recipe: any) => (
                     <div key={recipe._id} className={styles.gallery_card}>
-                        <div className={styles.gallery_card_top}>
-                            <img className={styles.gallery_card_img} src={recipe.coverUrl} alt="recipe-image"/></div>
-                        <div className={styles.gallery_card_center}>
+                        <div className={styles.gallery_card_content}>
+                            <img className={styles.gallery_card_img} src={recipe.coverUrl} alt="recipe-image"/>
                             <Link className={styles.gallery_card_title} href={`/recipes/${recipe._id}`}>{recipe.title}</Link>
                             <Link className={styles.gallery_card_tags}
                                   href={`/recipes/${recipe._id}`}>{recipe.tags.map((tag: any) => <span
                                 className={styles.card_tags}> #{tag} </span>)}</Link></div>
-                        <div className={styles.gallery_card_bottom}>
                             <Link href={`/recipes/${recipe._id}`}><button className="button_primary">Open Recipe</button></Link>
-                        </div>
                     </div>
                 ))}
             </div>

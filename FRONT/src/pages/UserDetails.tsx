@@ -1,12 +1,16 @@
-import UserAdmin from "../components/UserAccount/UserAdmin";
-import UserNonAdmin from "../components/UserAccount/UserNonAdmin";
+import UserAdmin from "../components/UserProfile/UserAdmin";
+import UserNonAdmin from "../components/UserProfile/UserNonAdmin";
+import {useContext} from "react";
+import MyContext from "../context/MyContext";
 
 export default function UserDetails() {
+    const context:any = useContext(MyContext)
+    const isAdmin = context?.globalState?.isAdmin;
     return (
         <div>
-            <h1>UserDetails</h1>
-            <UserAdmin/>
-            <UserNonAdmin/>
+            { isAdmin ? <UserAdmin /> : <UserNonAdmin />}
         </div>
     );
+
+
 }
