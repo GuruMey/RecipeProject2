@@ -28,8 +28,9 @@ npm run start
 
 Optionally, you can seed the DB:
 ```
-todo
+npm run seed
 ```
+/!\ Do not forget the --please-do-seed flag, otherwise the DB will not be seeded
 
 Start the front:
 ```
