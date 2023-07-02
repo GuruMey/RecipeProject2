@@ -29,9 +29,6 @@ const UserSchema = new Schema({
         type: String,
         required: false,
         default: ''
-    },
-    favorites: {
-        type: [String]
     }
 });
 

@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+const { AUTH_MAX_AGE } = process.env;
 const { JWT_SECRET } = process.env;
 
 const generateToken =  (payload) => {
@@ -32,7 +33,7 @@ const refreshAuthTokenCookie = (req, res, next) => {
         const newToken = generateToken(decoded);
         res.cookie('token', newToken, {
             httpOnly: true,
-            maxAge: 900000,
+            maxAge: AUTH_MAX_AGE,
         });
         next();
     } catch (error) {

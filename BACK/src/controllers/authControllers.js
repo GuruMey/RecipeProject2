@@ -62,8 +62,9 @@ async function signUp (req, res) {
         const token = await generateToken(payload);
 
         res.cookie('token', token, {
-            httpOnly: true,
-            maxAge: 900000, // =(15 minutes)
+            httpOnly: false,
+            secure: true,
+            maxAge: AUTH_MAX_AGE,
         });
 
         return res.status(200).json({message:'user signed up successfully'});

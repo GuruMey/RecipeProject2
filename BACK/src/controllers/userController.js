@@ -16,7 +16,6 @@ const createUser = async (req, res) => {
         admin: Joi.boolean().default(false).valid(false , true),
         createdAt: Joi.date(),
         profilePicture: Joi.string(),
-        favorites: Joi.array().items(Joi.string())
     });
 
     try {
@@ -25,7 +24,7 @@ const createUser = async (req, res) => {
             return res.status(400).json({message: error.details[0].message});
         }
 
-        const {username, password, email, admin, createdAt, profilePicture, favorites} = req.body;
+        const {username, password, email, admin, createdAt, profilePicture} = req.body;
 
         const found = UserModel.findOne({email});
 
@@ -41,8 +40,7 @@ const createUser = async (req, res) => {
             email,
             admin,
             createdAt,
-            profilePicture,
-            favorites
+            profilePicture
         });
 
         return res.status(201).json({data: newUser});
@@ -106,7 +104,6 @@ const editUser = async (req, res) => {
         admin: Joi.boolean().default(false).valid(false , true),
         createdAt: Joi.date(),
         profilePicture: Joi.string(),
-        favorites: Joi.array().items(Joi.string())
     });
 
     try {
@@ -115,7 +112,7 @@ const editUser = async (req, res) => {
             return res.status(400).json({message: error.details[0].message});
         }
 
-        const {username, password, email, admin, createdAt, profilePicture, favorites} = req.body;
+        const {username, password, email, admin, createdAt, profilePicture} = req.body;
 
         const found = userModel.findOne({email});
 
@@ -132,7 +129,6 @@ const editUser = async (req, res) => {
                 admin,
                 createdAt,
                 profilePicture,
-                favorites
             },
             {new: true}
         ).select('-password');
@@ -145,7 +141,6 @@ const editUser = async (req, res) => {
                     admin,
                     createdAt,
                     profilePicture,
-                    favorites
                 },
                 {new: true}
             ).select('-password');
@@ -160,18 +155,6 @@ const editUser = async (req, res) => {
     }
         };
 
-
-
-//     try {
-//         await UserModel.updateOne({ _id: receivedUserId }, fieldValuesToUpdate);
-//
-//         res.status(200).json({ message: "User updated successfully", user: "existingUser" });
-//     } catch (error) {
-//         // Handle errors
-//         console.error("An error has occurred during the user creation process :", error);
-//         res.status(500).json({ message: "An error has occurred during the user creation process" });
-//     }
-// };
 
 //----------------- DELETE USER ----------------- //
 const deleteUser = async (req, res) => {
@@ -202,17 +185,5 @@ const deleteUser = async (req, res) => {
 //     }
 // };
 
-//----------------- ADD FAVORITE ----------------- //
-const addFavorite = async (req, res) => {
 
-}
-
-
-//----------------- REMOVE FAVORITE ----------------- //
-
-const removeFavorite = async (req, res) => {
-
-}
-
-
-export {editUser, deleteUser, addFavorite, removeFavorite, getAllUsers, getUserById, createUser};
+export {editUser, deleteUser, getAllUsers, getUserById, createUser};

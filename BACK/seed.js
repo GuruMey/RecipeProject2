@@ -29,7 +29,6 @@ const seedUsers = async () => {
                         admin: false,
                         createdAt: "2023-05-30T10:00:00Z",
                         profilePicture: "",
-                        favorites: []
                     },
                     {
                         username: "emilybrown",
@@ -38,7 +37,6 @@ const seedUsers = async () => {
                         admin: false,
                         createdAt: "2023-05-30T11:00:00Z",
                         profilePicture: "",
-                        favorites: []
                     },
                     {
                         username: "michaeldavis",
@@ -47,7 +45,6 @@ const seedUsers = async () => {
                         admin: false,
                         createdAt: "2023-05-30T12:00:00Z",
                         profilePicture: "",
-                        favorites: []
                     },
                     {
                         username: "sophiawilson",
@@ -56,7 +53,6 @@ const seedUsers = async () => {
                         admin: false,
                         createdAt: "2023-05-30T13:00:00Z",
                         profilePicture: "",
-                        favorites: []
                     }
         ]
 
