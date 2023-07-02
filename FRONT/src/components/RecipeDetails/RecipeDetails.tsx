@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link, useParams} from 'react-router-dom';
+import Link from 'next/link';
 import axios from 'axios';
 
 export default function RecipeDetails() {
@@ -25,16 +25,16 @@ export default function RecipeDetails() {
             {_id && (
                 <div key={_id} className="recipe">
                     <div className="title-banner">
-                        <div className="recipe-view-title"><Link to={`/recipe/${_id}`}>{title}</Link></div>
-                        <div className="recipe-view-description"><Link to={`/recipe/${_id}`}>{description}</Link></div>
-                        <div className="recipe-view-time"><Link to={`/recipe/${_id}`}>Preparation time: {preparation_time} min</Link></div>
-                        <div className="recipe-view-tags"><Link to={`/recipe/${_id}`}>{recipe.tags.map((tag: any) => <span
+                        <div className="recipe-view-title"><Link href={`/recipe/${_id}`}>{title}</Link></div>
+                        <div className="recipe-view-description"><Link href={`/recipe/${_id}`}>{description}</Link></div>
+                        <div className="recipe-view-time"><Link href={`/recipe/${_id}`}>Preparation time: {preparation_time} min</Link></div>
+                        <div className="recipe-view-tags"><Link href={`/recipe/${_id}`}>{recipe.tags.map((tag: any) => <span
                             className="card-tag">{tag} </span>)}</Link></div>
                     </div>
                     <div className="recipe-view-text">
                         <div className="recipe-view-ingredients">
                             Ingredients:
-                            <Link to={`/recipe/${_id}`}>
+                            <Link href={`/recipe/${_id}`}>
                                 <ul>
                                     {ingredients.map((ingredient: string) => (
                                         <li key={ingredient}>{ingredient}</li>
@@ -44,7 +44,7 @@ export default function RecipeDetails() {
                         </div>
                         <div className="recipe-view-steps">
                             Steps to follow:
-                            <Link to={`/recipe/${_id}`}>
+                            <Link href={`/recipe/${_id}`}>
                                 <ol>
                                     {steps.map((step: string) => (
                                         <li key={step}>{step}</li>

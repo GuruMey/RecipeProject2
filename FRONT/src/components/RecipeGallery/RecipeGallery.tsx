@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {useEffect} from "react";
-import {Link} from "react-router-dom";
-import '../../Styles/receipesgalleries.css';
+import Link from 'next/link';
 import axios from "axios";
 
 export default function RecipeGallery() {
@@ -31,12 +30,12 @@ export default function RecipeGallery() {
                         <div className="gallery-card-top">
                             <img className="gallery-card-img" src={recipe.coverUrl} alt="pizza"/></div>
                         <div className="gallery-card-center">
-                            <Link className="gallery-card-title" to={`/recipes/${recipe._id}`}>{recipe.title}</Link>
+                            <Link className="gallery-card-title" href={`/recipes/${recipe._id}`}>{recipe.title}</Link>
                             <Link className="gallery-card-tags"
-                                  to={`/recipes/${recipe._id}`}>{recipe.tags.map((tag: any) => <span
+                                  href={`/recipes/${recipe._id}`}>{recipe.tags.map((tag: any) => <span
                                 className="card-tag"> #{tag} </span>)}</Link></div>
                         <div className="gallery-card-bottom">
-                            <Link to={`/recipes/${recipe._id}`}><button className="button-primary">Open Recipe</button></Link>
+                            <Link href={`/recipes/${recipe._id}`}><button className="button-primary">Open Recipe</button></Link>
                         </div>
                     </div>
                 ))}
