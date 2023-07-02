@@ -23,8 +23,12 @@ const UserSchema = new Schema({
     createdAt: {
         type: Date
     },
-    profilePicture: String,
-    favorites: [String]
+    profilePicture: {
+        type: String
+    },
+    favorites: {
+        type: [String]
+    }
 });
 
 const UserModel = model('users', UserSchema);

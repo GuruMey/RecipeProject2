@@ -3,7 +3,7 @@ import {generateToken} from "../config/jwt.js";
 import UserModel from "../models/UserModel.js";
 
 // ----------------- SIGN UP ----------------- //
-const signUp = async (req,res) => {
+async function signUp (req, res) {
     const receivedUsername = req.body.username;
     const receivedEmail = req.body.email;
     const receivedPassword = req.body.password;
@@ -19,7 +19,8 @@ const signUp = async (req,res) => {
                 email: receivedEmail
             }, {
                 username: receivedUsername
-        }] });
+            }]
+        });
 
         if (existingUser && existingUser.email === receivedEmail) {
             return res.status(409).json({error: 'You already have an account with this email'});
