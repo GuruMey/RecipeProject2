@@ -5,57 +5,30 @@ import {useState} from "react";
 import Link from "next/link";
 
 
-function getLoginDataInvalidFields(loginData: any) {
-    const invalidFields = [];
-
-    if (!loginData.email) {
-        invalidFields.push('email')
-    }
-
-    if (!loginData.password) {
-        invalidFields.push('password')
-    }
-
-    return invalidFields;
-}
-
 export default function LogIn(props: any) {
     const [logInData, setLogInData] = React.useState({
         email: "",
         password: ""
     });
 
-    const [showErrors, setShowErrors] = useState(false);
-
     const [apiError, setApiError] = useState('');
-
-    const [success, setSuccess] = useState(false);
-
 
     async function handleLogIn(e: any) {
         e.preventDefault();
 
         setApiError('')
 
-        alert("Login form submitted")
-
-        const errors = getLoginDataInvalidFields(logInData);
-
-        if (errors.length !== 0) {
-            setShowErrors(true);
-            return;
-        }
-
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/auth/login`, logInData, {
                 withCredentials: true
             })
 
-            console.log(response.data);
-            alert("Logged in successfully")
-            props.setPageType('SignUp');
-        } catch (error) {
+            if (response.status === 200) {
+
+            }
+        } catch (error: any) {
             console.error(error)
+            setApiError(error.response?.data?.error || 'An error occurred');
         }
     }
 
@@ -75,6 +48,8 @@ export default function LogIn(props: any) {
                     <button disabled={!logInData.email || !logInData.password} className="button_primary"
                             type="submit">Log In
                     </button>
+
+                    {apiError && <p className={"colorError"}>{apiError}</p>}
                 </form>
                 <p>Not a member yet? Sign up <Link href={'/auth/signup'}>
                     <button className="button_secondary">
