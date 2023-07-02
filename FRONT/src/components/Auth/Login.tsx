@@ -4,7 +4,6 @@ import styles from "./auth.module.css"
 import {useState} from "react";
 import Link from "next/link";
 
-
 export default function LogIn(props: any) {
     const [logInData, setLogInData] = React.useState({
         email: "",

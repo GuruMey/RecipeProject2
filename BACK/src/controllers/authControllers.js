@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import {generateToken} from "../config/jwt.js";
 import UserModel from "../models/UserModel.js";
 import Joi from 'joi';
+import jwt from 'jsonwebtoken';
 
 const { AUTH_MAX_AGE } = process.env;
 
@@ -119,15 +120,10 @@ const logIn = async (req, res, next) => {
 
         const payload = {
             id: user._id,
-            username: user.username,
             admin: user.admin,
         };
 
-        console.log(payload)
-
         const token = await generateToken(payload);
-
-        console.log(token)
 
         res.cookie('token', token, {
             httpOnly: true,
@@ -153,4 +149,52 @@ const signOut = (req, res, next) => {
     }
 };
 
-export {signUp, logIn, signOut};
+const whoAmI = async (req, res, next) => {
+    const token = req.cookies.token
+
+    if (!token) {
+        return res.status(200).json({
+            loggedIn: false,
+            admin: false,
+            username: "",
+            message: "No token found"
+        });
+    }
+
+    try {
+        let decoded;
+
+        try {
+            decoded = jwt.verify(token, process.env.JWT_SECRET);
+        } catch(error) {
+            res.status(403).json({
+                status: "forbidden",
+                message: "Invalid token"
+            })
+        }
+
+        const { id } = decoded;
+
+        const user = await UserModel.findOne({ _id: id });
+
+        if (!user) {
+            return res.status(403).json({
+                status: "forbidden",
+                message: "User not found"
+            })
+        }
+
+        const admin = user.admin;
+        const username = user.username;
+
+        res.status(200).json({
+            loggedIn: true,
+            admin: admin,
+            username: username
+        });
+    } catch(error) {
+        next(error);
+    }
+}
+
+export {signUp, logIn, signOut, whoAmI};
