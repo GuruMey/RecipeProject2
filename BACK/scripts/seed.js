@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
-import RecipeModel  from './src/models/RecipeModel.js';
-import UserModel from './src/models/UserModel.js';
+import RecipeModel  from '../src/models/RecipeModel.js';
+import UserModel from '../src/models/UserModel.js';
 import mongoose from "mongoose";
-import seedRecipesJson from './data/seedRecipes.json' assert { type: "json" };
+import seedRecipesJson from '../data/seedRecipes.json' assert { type: "json" };
 import bcrypt from "bcrypt";
 
 dotenv.config();
