@@ -100,6 +100,7 @@ const saveRecipe = async (req, res) => {
 //----------------- PUBLISH RECIPE ----------------- //
 const publishRecipe = async (req, res) => {
     const recipeId = req.params.recipeId;
+    const published = req.body.published;
 
     try {
         const existingRecipe = await RecipeModel.findById(recipeId);
@@ -108,9 +109,7 @@ const publishRecipe = async (req, res) => {
             return res.status(404).json({ message: "Cannot find recipe" });
         }
 
-        existingRecipe.saved = true;
-        existingRecipe.published = true;
-        await existingRecipe.save();
+        await RecipeModel.findByIdAndUpdate(recipeId, { published: published });
 
         res.status(200).json({ message: "Recipe saved and published successfully" });
     } catch (error) {

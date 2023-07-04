@@ -13,10 +13,10 @@ const router = express.Router();
 
 router.get('/', getAllRecipes);
 router.get('/getRecipe/:recipeId', getRecipe);
-router.post('/', authenticateUser, createRecipe);
-router.post('publishRecipe/:recipeId', authenticateUser, authorizeRoles,  publishRecipe);
-router.put('/editRecipe/:recipeId', authenticateUser, authorizeRoles,  editRecipe);
-router.delete('/deleteRecipe/:userId', authenticateUser, authorizeRoles,  deleteRecipe);
+router.post('/', authenticateUser, createRecipe); // ok
+router.patch('/publish/:recipeId', authenticateUser,  publishRecipe);
+router.put('/editRecipe/:recipeId', authenticateUser,  editRecipe);
+router.delete('/deleteRecipe/:userId', authenticateUser,  deleteRecipe);
 
 
 export default router;
