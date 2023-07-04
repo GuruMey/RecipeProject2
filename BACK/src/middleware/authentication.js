@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import '../models/UserModel.js'
+
 const { JWT_SECRET } = process.env;
 
 const authenticateUser = (req, res, next) => {
@@ -10,15 +11,14 @@ const authenticateUser = (req, res, next) => {
     };
 
     try {
-        const decoded = jwt.verify(token, JWT_SECRET);
-        req.user = decoded;
+        req.user = jwt.verify(token, process.env.JWT_SECRET);
         next();
     } catch (error) {
-        return res.status(401).json({error: 'invalid token'});
+        return res.status(401).json({error: 'Invalid token'});
     }
 };
 
-const authorizeUser = (roles) => {
+const authorizeRoles = (roles) => {
     return (req, res, next) => {
         const { role } = req.user;
         if (!roles.includes(role)) {
@@ -28,4 +28,4 @@ const authorizeUser = (roles) => {
     }
 }
 
-export { authenticateUser, authorizeUser };
+export { authenticateUser, authorizeRoles };

@@ -27,6 +27,7 @@ const getRecipe = async (req, res, next) => {
 
 //----------------- CREATE RECIPE ----------------- //
 const createRecipe = async (req, res) => {
+    console.log(req.body)
     const receivedTitle = req.body.title;
     const receivedDescription = req.body.description;
     const receivedPreparationTime = req.body.preparationTime;

@@ -8,15 +8,15 @@ import {
     getAllRecipes,
     getRecipe
 } from "../controllers/recipeController.js";
-import {authenticateUser, authorizeUser} from "../middleware/authentication.js";
+import {authenticateUser, authorizeRoles} from "../middleware/authentication.js";
 const router = express.Router();
 
 router.get('/', getAllRecipes);
 router.get('/getRecipe/:recipeId', getRecipe);
-router.post('/createRecipe', authenticateUser, authorizeUser, createRecipe);
-router.post('publishRecipe/:recipeId', authenticateUser, authorizeUser,  publishRecipe);
-router.put('/editRecipe/:recipeId', authenticateUser, authorizeUser,  editRecipe);
-router.delete('/deleteRecipe/:userId', authenticateUser, authorizeUser,  deleteRecipe);
+router.post('/', authenticateUser, createRecipe);
+router.post('publishRecipe/:recipeId', authenticateUser, authorizeRoles,  publishRecipe);
+router.put('/editRecipe/:recipeId', authenticateUser, authorizeRoles,  editRecipe);
+router.delete('/deleteRecipe/:userId', authenticateUser, authorizeRoles,  deleteRecipe);
 
 
 export default router;

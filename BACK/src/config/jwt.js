@@ -8,7 +8,7 @@ const generateToken =  (payload) => {
         },
         process.env.JWT_SECRET,
         {
-            expiresIn: process.env.AUTH_MAX_AGE
+            expiresIn: process.env.AUTH_MAX_AGE * 1000
         }
     );
 };
