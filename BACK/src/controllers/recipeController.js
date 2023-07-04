@@ -1,4 +1,5 @@
 import RecipeModel from "../models/RecipeModel.js";
+import Joi from "joi";
 
 
 
@@ -27,38 +28,45 @@ const getRecipe = async (req, res, next) => {
 
 //----------------- CREATE RECIPE ----------------- //
 const createRecipe = async (req, res) => {
-    console.log(req.body)
-    const receivedTitle = req.body.title;
-    const receivedDescription = req.body.description;
-    const receivedPreparationTime = req.body.preparationTime;
-    const receivedIngredients = req.body.ingredients;
-    const receivedSteps = req.body.steps;
-    const receivedTags = req.body.tags;
+    const schema = Joi.object({
+        title: Joi.string().min(1).max(100).required(),
+        description: Joi.string().max(300).optional().allow(''),
+        time: Joi.number().required(),
+        coverPhoto: Joi.string().max(100).optional().allow(''),
+        ingredients: Joi.array().items(Joi.string().max(300)).required(),
+        steps: Joi.array().items(Joi.string().max(300)).required(),
+        tags: Joi.array().items(Joi.string().max(300)).required(),
+    })
 
-    if (!receivedTitle || !receivedDescription || !receivedPreparationTime || !receivedIngredients || !receivedSteps || !receivedTags) {
-        return res.status(400).json({error: 'Missing required fields'});
+    const validation = schema.validate(req.body);
+
+    if (validation.error) {
+        return res.status(400).json({
+            status: "error",
+            error: validation.error
+        });
     }
 
     try {
-        const existingRecipe = await RecipeModel.findOne({ title: receivedTitle });
+        const existingRecipe = await RecipeModel.findOne({ title: req.body.title });
 
         if (existingRecipe) {
             return res.status(409).json({error: 'You already have created a recipe with this title'});
         }
 
         const newRecipe = await RecipeModel.create({
-            title: receivedTitle,
-            description: receivedDescription,
-            preparationTime: receivedPreparationTime,
-            ingredients: receivedIngredients,
-            steps: receivedSteps,
-            tags: receivedTags,
+            createdBy: req.user.id,
+            title: req.body.title,
+            description: req.body.description,
+            time: req.body.time,
+            ingredients: req.body.ingredients,
+            steps: req.body.steps,
+            tags: req.body.tags,
             published: false,
-            saved: false,
             createdAt: new Date(),
         });
 
-        return res.status(200).json({message:'Recipe has been created successfully', newRecipe});
+        return res.status(200).json({status: "success", message:'Recipe has been created successfully'});
 
     } catch(error) {
         console.error(" An error has occurred during the recipe creation process :", error);
