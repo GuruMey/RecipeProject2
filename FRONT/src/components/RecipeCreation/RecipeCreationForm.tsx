@@ -2,17 +2,16 @@ import * as React from 'react';
 import styles from "./RecipeCreationForm.module.css"
 import {useEffect, useState} from "react";
 import getInvalidFieldsForNewRecipes from "./getInvalidFieldsForNewRecipes";
+import axios from "axios";
 
 
-export default function RecipeCreationForm() {
-
-    // Initialise un état pour gérer la liste d'ingrédients, d'étapes et de tags :
-    const [coverPhoto, setCoverPhoto] = React.useState<File | null>(null);
+export default function RecipeCreationForm(props: any) {
+    // const [coverPhoto, setCoverPhoto] = React.useState<File | null>(null);
 
     const [formData, setFormData] = useState<any>({
         title: '',
         description: '',
-        time: '',
+        time: 0,
         coverPhoto: '',
         ingredients: [],
         steps: [],
@@ -34,15 +33,52 @@ export default function RecipeCreationForm() {
             setShowErrors(true);
             return;
         }
+
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/recipe`, {
+                ...formData
+            }, {
+                withCredentials: true
+            })
+        } catch(error) {
+            console.log(error)
+        }
     }
 
+    const handleSubmitAndPublish = async (event: any) => {
+        event.preventDefault();
 
-    const CoverPhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files[0]) {
-            setCoverPhoto(event.target.files[0]);
-        }
-    };
+        await handleSubmit(event);
 
+        // todo: perform save
+    }
+
+    // const CoverPhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (event.target.files && event.target.files[0]) {
+    //         setCoverPhoto(event.target.files[0]);
+    //     }
+    // };
+
+    const deleteIngredient = (index: number) => {
+        setFormData((prevState: any) => ({
+            ...prevState,
+            ingredients: prevState.ingredients.filter((_: any, i: number) => i !== index)
+        }))
+    }
+
+    const deleteStep = (index: number) => {
+        setFormData((prevState: any) => ({
+            ...prevState,
+            steps: prevState.steps.filter((_: any, i: number) => i !== index)
+        }))
+    }
+
+    const deleteTag = (index: number) => {
+        setFormData((prevState: any) => ({
+            ...prevState,
+            tags: prevState.tags.filter((_: any, i: number) => i !== index)
+        }))
+    }
 
     return (
         <div className="main_form_container">
@@ -50,42 +86,42 @@ export default function RecipeCreationForm() {
                 <h2>Create a new recipe</h2>
             </div>
 
-            <form className="form" >
+            <form className="form" onSubmit={(e) => e.preventDefault()} >
                 <div className={styles.input_button_field_container}>
-                    <label>Recipe Title:</label>
+                    <label>Choose a name for your recipe: *</label>
                     <input className="input_medium" type="text" name="title" value={formData.title} onChange={(e)=>{
                         setFormData({...formData, title: e.target.value})
                     }} />
                 </div>
 
-                {getInvalidFieldsForNewRecipes(formData).includes('title') && showErrors && <>Invalid title</>}
+                {getInvalidFieldsForNewRecipes(formData).includes('title') && showErrors && <div className={"colorError"}>Invalid title</div>}
 
                 <div className={styles.input_button_field_container}>
-                    <label>Short description:</label>
+                    <label>Describe your recipe:</label>
                     <input className="input_medium" type="text" name="description" value={formData.description} onChange={(e)=>{
                         setFormData({...formData, description: e.target.value})
                     }} />
                 </div>
 
-                {getInvalidFieldsForNewRecipes(formData).includes('description') && showErrors && <>Invalid description</>}
+                {getInvalidFieldsForNewRecipes(formData).includes('description') && showErrors && <div className={"colorError"}>Invalid description</div>}
 
                 <div className={styles.input_button_field_container}>
-                    <label>Recipe Time (min):</label>
+                    <label>Time to cook (min): *</label>
                     <input className="input_short" type="number" name="time" value={formData.time} onChange={(e) => {
-                        setFormData({...formData, time: e.target.value})
+                        setFormData({...formData, time: parseInt(e.target.value)})
                     }
                     }/>
                 </div>
 
-                {getInvalidFieldsForNewRecipes(formData).includes('time') && showErrors && <>Invalid time</>}
+                {getInvalidFieldsForNewRecipes(formData).includes('time') && showErrors && <div className={"colorError"}>Invalid time</div>}
+
+                {/*<div className={styles.input_button_field_container}>*/}
+                {/*    <label>Cover Photo:</label>*/}
+                {/*    <input type="file" name="cover-photo" accept="image/*" onChange={CoverPhotoChange} />*/}
+                {/*</div>*/}
 
                 <div className={styles.input_button_field_container}>
-                    <label>Cover Photo:</label>
-                    <input type="file" name="cover-photo" accept="image/*" onChange={CoverPhotoChange} />
-                </div>
-
-                <div className={styles.input_button_field_container}>
-                    <label>Ingredients:</label>
+                    <label>Ingredients: *</label>
                     <div className="recipe_fields">
                         <input
                             className="input_medium"
@@ -109,17 +145,16 @@ export default function RecipeCreationForm() {
                     {formData.ingredients.length !== 0 && <div className={styles.recipe_list_container}>
                         <ul className={styles.recipe_list}>
                             {formData.ingredients.map((ingredient: string, index: number) => (
-                                <li key={index}>{ingredient}</li>
+                                <li key={index}>{ingredient} <button onClick={() => deleteIngredient(index)}>delete</button></li>
                             ))}
                         </ul>
                     </div> }
                 </div>
 
-                {getInvalidFieldsForNewRecipes(formData).includes('ingredients') && showErrors && <>Invalid ingredients</>}
-
+                {getInvalidFieldsForNewRecipes(formData).includes('ingredients') && showErrors && <div className={"colorError"}>Invalid ingredients</div>}
 
                 <div className={styles.input_button_field_container}>
-                    <label>Steps:</label>
+                    <label>Steps: *</label>
                     <div className="recipe_fields">
                         <input
                             className="input_long"
@@ -143,14 +178,13 @@ export default function RecipeCreationForm() {
                     {formData.steps.length !== 0 && <div className={styles.recipe_list_container}>
                         <ul className={styles.recipe_list}>
                             {formData.steps.map((steps: string, index: number) => (
-                                <li key={index}>{steps}</li>
+                                <li key={index}>{steps}  <button onClick={() => deleteStep(index)}>delete</button></li>
                             ))}
                         </ul>
                     </div>}
                 </div>
 
-                {getInvalidFieldsForNewRecipes(formData).includes('steps') && showErrors && <>Invalid steps</>}
-
+                {getInvalidFieldsForNewRecipes(formData).includes('steps') && showErrors && <div className={"colorError"}>Invalid steps</div>}
 
                 <div className={styles.input_button_field_container}>
                     <label>Tags:</label>
@@ -176,21 +210,20 @@ export default function RecipeCreationForm() {
                     {formData.tags.length !== 0 && <div className={styles.recipe_list_container}>
                     <ul className={styles.recipe_list}>
                         {formData.tags.map((tag:string, index:number) => (
-                            <li key={index}>{tag}</li>
+                            <li key={index}>{tag}  <button onClick={() => deleteTag(index)}>delete</button></li>
                         ))}
                     </ul>
                     </div> }
                 </div>
 
-                {getInvalidFieldsForNewRecipes(formData).includes('tags') && showErrors && <>Invalid tags</>}
-
+                {getInvalidFieldsForNewRecipes(formData).includes('tags') && showErrors && <div className={"colorError"}>Invalid tags</div>}
 
                 <div className="button_container">
                     <button className="button_primary" type="submit" onClick={handleSubmit}>
-                        Save
+                        Save (without publishing)
                     </button>
-                    <button className="button_primary" type="submit" onClick={handleSubmit}>
-                        Publish
+                    <button className="button_primary" type="submit" onClick={handleSubmitAndPublish}>
+                        Save & Publish
                     </button>
                 </div>
             </form>
