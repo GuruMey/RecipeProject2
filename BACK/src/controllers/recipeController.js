@@ -66,7 +66,13 @@ const createRecipe = async (req, res) => {
             createdAt: new Date(),
         });
 
-        return res.status(200).json({status: "success", message:'Recipe has been created successfully'});
+        return res.status(200).json({
+            status: "success",
+            message:'Recipe has been created successfully',
+            data: {
+                id: newRecipe._id,
+            }
+        });
 
     } catch(error) {
         console.error(" An error has occurred during the recipe creation process :", error);

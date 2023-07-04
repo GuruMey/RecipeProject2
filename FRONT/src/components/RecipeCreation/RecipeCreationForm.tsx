@@ -40,17 +40,35 @@ export default function RecipeCreationForm(props: any) {
             }, {
                 withCredentials: true
             })
+
+            // todo: user info
+
+            return response.data?.data?.id;
         } catch(error) {
             console.log(error)
+            // todo: show error in ui
         }
     }
 
     const handleSubmitAndPublish = async (event: any) => {
         event.preventDefault();
 
-        await handleSubmit(event);
+        const id = await handleSubmit(event);
 
-        // todo: perform save
+        if (id) {
+            try {
+                await axios.patch(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/recipe/publish/${id}`, {
+                    published: true
+                }, {
+                    withCredentials: true
+                })
+            } catch(error) {
+                console.log(error)
+                // todo: show error in ui
+            }
+        }
+
+        // todo: perform redirect
     }
 
     // const CoverPhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
