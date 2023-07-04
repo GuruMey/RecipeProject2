@@ -102,6 +102,10 @@ const publishRecipe = async (req, res) => {
     const recipeId = req.params.recipeId;
     const published = req.body.published;
 
+    if (typeof published !== "boolean") {
+        return res.status(400).json({ message: "Published must be a boolean" });
+    }
+
     try {
         const existingRecipe = await RecipeModel.findById(recipeId);
 
