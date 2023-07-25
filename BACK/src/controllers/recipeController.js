@@ -12,6 +12,8 @@ const getAllRecipes = async (req, res, next) => {
 
         const userId = req.query.userId || "";
 
+        const favorites = req.query.favorites === "true";
+
         const query = {
             published: true
         }
@@ -20,9 +22,15 @@ const getAllRecipes = async (req, res, next) => {
             query.title = { $regex: search, $options: "i" };
         }
 
-        if (userId) {
+        // Show user's own recipes
+        if (!favorites && userId) {
             query.createdBy = userId;
             delete query.published;
+        }
+
+        // Show user's favorite recipes
+        if (favorites && userId) {
+            query.likedBy = userId;
         }
 
         const nPages = Math.ceil(await RecipeModel.countDocuments(query) / pageSize) || 1;

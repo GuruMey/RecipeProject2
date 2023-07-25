@@ -8,6 +8,10 @@ export default function MyRecipes() {
     return (
         <div>
             <RecipesGallery title={"Browse your recipes"} userId={context?.globalState?.userId}/>
+
+            <RecipesGallery title={"Your favorite recipes"} userId={context?.globalState?.userId} favorites={true}/>
+
+            <br/><br/><br/>
         </div>
     );
 }

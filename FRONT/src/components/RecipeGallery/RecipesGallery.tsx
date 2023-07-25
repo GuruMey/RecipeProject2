@@ -32,6 +32,17 @@ export default function RecipesGallery(props: {
         updateRecipies();
     }, [page]);
 
+    if (recipes.length === 0) {
+        return <div className={styles.gallery_page}>
+            <div className={styles.before_gallery}>
+                <h2 className={styles.gallery_page_title}>{props.title}</h2>
+                <div>
+                    No recipes found
+                </div>
+            </div>
+        </div>
+    }
+
     return (
         <div className={styles.gallery_page}>
             <div className={styles.before_gallery}>

@@ -10,7 +10,8 @@ const RecipeSchema = new Schema({
     steps: [String],
     tags: [String],
     createdAt: Date,
-    published: Boolean
+    published: Boolean,
+    likedBy: [String],
 });
 
 const RecipeModel = model('recipe', RecipeSchema);
