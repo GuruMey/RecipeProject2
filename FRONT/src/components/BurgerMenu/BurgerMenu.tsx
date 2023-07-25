@@ -17,8 +17,8 @@ export default (props: any) => {
         <h1 className={styles.navbar_title_burger}>DELISHDISH</h1>
         <Link href="/" className={`${styles.navbar_element_burger} display-on-tablet-only`}> Home</Link>
         {context?.globalState?.loggedIn &&<Link href="/CreateRecipe" className={`${styles.navbar_element_burger} display-on-tablet-only`} > Create Recipe </Link>}
-        {context?.globalState?.loggedIn &&<Link href="/MyFavourites" className={`${styles.navbar_element_burger} display-on-tablet-only`}>My Favorites </Link>}
-        <Link href="/authpage" className={`${styles.navbar_element_burger} display-on-tablet-only`}>Login </Link>
+        {context?.globalState?.loggedIn &&<Link href="/MyRecipes" className={`${styles.navbar_element_burger} display-on-tablet-only`}>My Recipes </Link>}
+        <Link href="/auth/login" className={`${styles.navbar_element_burger} display-on-tablet-only`}>Login </Link>
 
     </div>
     </div>

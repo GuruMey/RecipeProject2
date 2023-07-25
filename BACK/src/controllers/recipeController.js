@@ -1,12 +1,12 @@
 import RecipeModel from "../models/RecipeModel.js";
 import Joi from "joi";
 
-
-
 // //----------------- GET ALL RECIPES ----------------- //
 const getAllRecipes = async (req, res, next) => {
     try {
-        const recipes = await RecipeModel.find();
+        const recipes = await RecipeModel.find({
+            published: true
+        });
         return res.status(200).json({data: recipes});
     } catch(error) {
         next(error);
@@ -14,7 +14,6 @@ const getAllRecipes = async (req, res, next) => {
 };
 
 // //----------------- GET RECIPE ----------------- //
-
 const getRecipe = async (req, res, next) => {
     const recipeId = req.params.recipeId;
 
@@ -80,29 +79,6 @@ const createRecipe = async (req, res) => {
     }
 }
 
-
-//----------------- SAVE RECIPE ----------------- //
-const saveRecipe = async (req, res) => {
-    const recipeId = req.params.recipeId;
-
-    try {
-        const existingRecipe = await RecipeModel.findById(recipeId);
-
-        if (!existingRecipe) {
-            return res.status(404).json({ message: "Cannot find recipe" });
-        }
-
-        existingRecipe.saved = true;
-        existingRecipe.published = false;
-        await existingRecipe.save();
-
-        res.status(200).json({ message: "Recipe saved successfully" });
-    } catch (error) {
-        console.error("An error has occurred while saving the recipe:", error);
-        res.status(500).json({ message: "An error has occurred while saving the recipe" });
-    }
-};
-
 //----------------- PUBLISH RECIPE ----------------- //
 const publishRecipe = async (req, res) => {
     const recipeId = req.params.recipeId;
@@ -121,14 +97,12 @@ const publishRecipe = async (req, res) => {
 
         await RecipeModel.findByIdAndUpdate(recipeId, { published: published });
 
-        res.status(200).json({ message: "Recipe saved and published successfully" });
+        res.status(200).json({ message: "Recipe published successfully" });
     } catch (error) {
         console.error("An error has occurred while publishing the recipe:", error);
         res.status(500).json({ message: "An error has occurred while publishing the recipe" });
     }
 };
-
-
 
 //----------------- EDIT RECIPE ----------------- //
 const editRecipe = async (req, res) => {
@@ -149,7 +123,6 @@ const editRecipe = async (req, res) => {
     }
 };
 
-
 //----------------- DELETE RECIPE ----------------- //
 const deleteRecipe = async (req, res) => {
     const RecipeId = req.params.recipeId;
@@ -168,4 +141,4 @@ const deleteRecipe = async (req, res) => {
     }
 };
 
-export {getAllRecipes, getRecipe ,createRecipe, saveRecipe, publishRecipe, editRecipe, deleteRecipe};
+export {getAllRecipes, getRecipe ,createRecipe, publishRecipe, editRecipe, deleteRecipe};

@@ -42,7 +42,7 @@ export default function Header() {
                     <h2 className={styles.navbar_undertitle}>The best vegan recipes</h2>
                 </div>
                 <div className={styles.navbar_right}>
-                    {context?.globalState?.loggedIn &&<Link href="/MyFavourites" className={`${styles.navbar_element} display-on-desktop-only`}>My Favorites </Link>}
+                    {context?.globalState?.loggedIn &&<Link href="/MyRecipes" className={`${styles.navbar_element} display-on-desktop-only`}>My Recipes </Link>}
                     {context?.globalState?.loggedIn &&<Link href="/UserDetails" className={`${styles.navbar_element} display-on-desktop-only`}>Profile</Link>}
                     {!context?.globalState?.loggedIn &&<Link href="/auth/login" className={`${styles.navbar_element} display-on-desktop-only`}>Login </Link>}
                     {context?.globalState?.loggedIn &&<button onClick={signOut}>Log out</button> }

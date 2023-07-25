@@ -3,10 +3,13 @@ import styles from "./RecipeCreationForm.module.css"
 import {useEffect, useState} from "react";
 import getInvalidFieldsForNewRecipes from "./getInvalidFieldsForNewRecipes";
 import axios from "axios";
+import Link from "next/link";
 
 
 export default function RecipeCreationForm(props: any) {
     // const [coverPhoto, setCoverPhoto] = React.useState<File | null>(null);
+
+    const [createdSuccessfully, setCreatedSuccessfully] = React.useState<boolean>(false);
 
     const [formData, setFormData] = useState<any>({
         title: '',
@@ -23,6 +26,8 @@ export default function RecipeCreationForm(props: any) {
     const [newTag, setNewTag] = useState<string>('');
 
     const [showErrors, setShowErrors] = useState(false);
+
+    const [serverError, setServerError] = useState<string>('');
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
@@ -41,12 +46,12 @@ export default function RecipeCreationForm(props: any) {
                 withCredentials: true
             })
 
-            // todo: user info
+            setCreatedSuccessfully(true)
 
             return response.data?.data?.id;
-        } catch(error) {
-            console.log(error)
-            // todo: show error in ui
+        } catch(error: any) {
+            console.error(error)
+            setServerError(error?.response?.data?.message || 'An error occurred')
         }
     }
 
@@ -62,13 +67,11 @@ export default function RecipeCreationForm(props: any) {
                 }, {
                     withCredentials: true
                 })
-            } catch(error) {
-                console.log(error)
-                // todo: show error in ui
+            } catch(error: any) {
+                console.error(error)
+                setServerError(error?.response?.data?.message || 'An error occurred')
             }
         }
-
-        // todo: perform redirect
     }
 
     // const CoverPhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,6 +99,14 @@ export default function RecipeCreationForm(props: any) {
             ...prevState,
             tags: prevState.tags.filter((_: any, i: number) => i !== index)
         }))
+    }
+
+    if (createdSuccessfully) {
+        return <div className={"section"}>
+            <br/><br/><br/>
+            The recipe was created successfully ! You can now manage it from <Link href={"/MyRecipes"}><button>My Recipes</button></Link> or <Link href={"/"}><button>keep browsing</button></Link>.
+            <br/><br/><br/>
+        </div>
     }
 
     return (
@@ -235,6 +246,8 @@ export default function RecipeCreationForm(props: any) {
                 </div>
 
                 {getInvalidFieldsForNewRecipes(formData).includes('tags') && showErrors && <div className={"colorError"}>Invalid tags</div>}
+
+                {serverError !== "" && <div className={"colorError"}>{serverError}</div>}
 
                 <div className="button_container">
                     <button className="button_primary" type="submit" onClick={handleSubmit}>
