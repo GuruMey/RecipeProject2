@@ -37,7 +37,7 @@ export default function RecipesGallery() {
                 <div>
                     <input className={styles.search_input} type="text" value={search} onChange={(e) => {
                         setSearch(e.target.value);
-                    }} placeholder="Search for a recipe..."/>
+                    }} placeholder="Search for a recipe by its title..."/>
                     <button onClick={() => {
                         updateRecipies();
                     }}>Search</button>
@@ -59,7 +59,7 @@ export default function RecipesGallery() {
 
             <div className={styles.pages_count_container}>
                 {
-                    Array.from({length: nPages}, (_, i) => i + 1).map((i: number) => (
+                    nPages > 0 && recipes?.length > 0 && Array.from({length: nPages}, (_, i) => i + 1).map((i: number) => (
                         <button className={`${styles.pages_count_button} ${page === i ? styles.pages_count_button_selected : ""}`} onClick={() => setPage(i)}>{i}</button>
                     ))
                 }
