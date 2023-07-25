@@ -173,11 +173,13 @@ const whoAmI = async (req, res, next) => {
 
         const admin = user.admin;
         const username = user.username;
+        const userId = user._id;
 
         res.status(200).json({
             loggedIn: true,
             admin: admin,
-            username: username
+            username: username,
+            userId: userId,
         });
     } catch(error) {
         next(error);

@@ -12,7 +12,8 @@ function MyApp({ Component, pageProps }) {
         showBurgerMenu: false,
         loggedIn: false,
         isAdmin: false,
-        username: ""
+        username: "",
+        userId: "",
     })
 
     useEffect(() => {
@@ -25,7 +26,8 @@ function MyApp({ Component, pageProps }) {
                     ...prevState,
                     loggedIn: response.data.loggedIn,
                     admin: response.data.admin,
-                    username: response.data.username
+                    username: response.data.username,
+                    userId: response.data.userId,
                 }))
             } catch (error) {
                 console.log(error)

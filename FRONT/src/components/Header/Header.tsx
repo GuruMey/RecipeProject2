@@ -43,7 +43,7 @@ export default function Header() {
                 </div>
                 <div className={styles.navbar_right}>
                     {context?.globalState?.loggedIn &&<Link href="/MyRecipes" className={`${styles.navbar_element} display-on-desktop-only`}>My Recipes </Link>}
-                    {context?.globalState?.loggedIn &&<Link href="/UserDetails" className={`${styles.navbar_element} display-on-desktop-only`}>Profile</Link>}
+                    {/*{context?.globalState?.loggedIn &&<Link href="/UserDetails" className={`${styles.navbar_element} display-on-desktop-only`}>Profile</Link>}*/}
                     {!context?.globalState?.loggedIn &&<Link href="/auth/login" className={`${styles.navbar_element} display-on-desktop-only`}>Login </Link>}
                     {context?.globalState?.loggedIn &&<button onClick={signOut}>Log out</button> }
                 </div>

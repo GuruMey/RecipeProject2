@@ -10,12 +10,19 @@ const getAllRecipes = async (req, res, next) => {
 
         const search = decodeURIComponent(req.query.search || "");
 
+        const userId = req.query.userId || "";
+
         const query = {
             published: true
         }
 
         if (search) {
             query.title = { $regex: search, $options: "i" };
+        }
+
+        if (userId) {
+            query.createdBy = userId;
+            delete query.published;
         }
 
         const nPages = Math.ceil(await RecipeModel.countDocuments(query) / pageSize) || 1;

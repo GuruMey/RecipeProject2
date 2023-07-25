@@ -5,9 +5,11 @@ import axios from "axios";
 import styles from "./RecipesGallery.module.css";
 import { getAllRecipes } from '../../services/recipeService';
 
-
-
-export default function RecipesGallery() {
+export default function RecipesGallery(props: {
+    title: string,
+    userId?: string,
+    favorites?: boolean,
+}) {
     const [page, setPage] = React.useState(1);
     const [recipes, setRecipes] = React.useState<any>([]);
     const [nPages, setNPages] = React.useState<any>(1);
@@ -16,7 +18,7 @@ export default function RecipesGallery() {
     function updateRecipies () {
         const fetchData = async () => {
             try {
-                const response = await getAllRecipes(page, search);
+                const response = await getAllRecipes(page, search, props.userId || "", props.favorites || false);
                 setRecipes(response.data.data.recipes);
                 setNPages(response.data.data.nPages);
             } catch (error) {
@@ -33,7 +35,7 @@ export default function RecipesGallery() {
     return (
         <div className={styles.gallery_page}>
             <div className={styles.before_gallery}>
-                <h2 className={styles.gallery_page_title}>Recipes</h2>
+                <h2 className={styles.gallery_page_title}>{props.title}</h2>
                 <div>
                     <input className={styles.search_input} type="text" value={search} onChange={(e) => {
                         setSearch(e.target.value);
