@@ -5,7 +5,6 @@ import getInvalidFieldsForNewRecipes from "./getInvalidFieldsForNewRecipes";
 import axios from "axios";
 import Link from "next/link";
 
-
 export default function RecipeCreationForm(props: any) {
     // const [coverPhoto, setCoverPhoto] = React.useState<File | null>(null);
 

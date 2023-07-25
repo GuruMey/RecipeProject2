@@ -4,10 +4,31 @@ import Joi from "joi";
 // //----------------- GET ALL RECIPES ----------------- //
 const getAllRecipes = async (req, res, next) => {
     try {
-        const recipes = await RecipeModel.find({
+        const pageSize = 8;
+        const page = parseInt(req.query.page || "1");
+
+        const query = {
             published: true
+        }
+
+        const nPages = Math.ceil(await RecipeModel.countDocuments(query) / pageSize) || 1;
+
+        if (page < 1) {
+            return res.status(400).json({
+                status: "error",
+                error: "Invalid page number"
+            });
+        }
+
+        const recipes = await RecipeModel.find(query).limit(pageSize).skip((page - 1) * pageSize).sort({createdAt: -1});
+
+        return res.status(200).json({
+            status: "success",
+            data: {
+                recipes,
+                nPages
+            }
         });
-        return res.status(200).json({data: recipes});
     } catch(error) {
         next(error);
     }

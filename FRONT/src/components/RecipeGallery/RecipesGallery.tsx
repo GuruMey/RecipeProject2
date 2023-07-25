@@ -8,20 +8,22 @@ import { getAllRecipes } from '../../services/recipeService';
 
 
 export default function RecipesGallery() {
+    const [page, setPage] = React.useState(1);
     const [recipes, setRecipes] = React.useState<any>([]);
-
+    const [nPages, setNPages] = React.useState<any>(1);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getAllRecipes();
-                setRecipes(response.data.data);
+                const response = await getAllRecipes(page);
+                setRecipes(response.data.data.recipes);
+                setNPages(response.data.data.nPages);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
         fetchData();
-    }, []);
+    }, [page]);
 
 
     return (
@@ -42,6 +44,14 @@ export default function RecipesGallery() {
                             <Link href={`/recipes/${recipe._id}`}><button className="button_primary">Open Recipe</button></Link>
                     </div>
                 ))}
+            </div>
+
+            <div className={styles.pages_count_container}>
+                {
+                    Array.from({length: nPages}, (_, i) => i + 1).map((i: number) => (
+                        <button className={`${styles.pages_count_button} ${page === i ? styles.pages_count_button_selected : ""}`} onClick={() => setPage(i)}>{i}</button>
+                    ))
+                }
             </div>
         </div>
     );
