@@ -4,8 +4,6 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100vh - 240px);
-
 }
 
 .signup_page {
@@ -15,7 +13,6 @@
     justify-content: center;
     width: 100vw;
     padding: 20px 0;
-    height: calc(100vh - 240px);
 }
 
 .auth_form_container {
@@ -27,6 +24,7 @@
     align-items: center;
     border: 1px solid #7D8844;
     border-radius: 25px;
+    margin: 30px auto;
 }
 
 .auth_form{
@@ -36,6 +34,7 @@
     width: 100%;
 }
 
-@media only screen and (max-width: 600px) {
-
+.password_rules {
+    font-size: 0.8rem;
+    color: #7a7a7a;
 }

@@ -69,6 +69,7 @@ export default function SignUp(props:any) {
         <div className={styles.signup_page}>
             <div className={styles.auth_form_container}>
                 <h2>SIGN UP</h2>
+
                 <form className={styles.auth_form} onSubmit={handleSignUp}>
                     <input className="input_medium"  type="text" name="username" id="username" placeholder="Username" value={signUpData.username} onChange={
                         (e)=> setSignUpData((prevState)=> ({...prevState, username: e.target.value}))}/>
@@ -76,21 +77,36 @@ export default function SignUp(props:any) {
                     {getSignUpDataInvalidFields(signUpData).includes('username') && showErrors && <>Invalid username</>}
 
                     <br></br>
+
                     <input className="input_medium"  type="email" name="email" id="email" placeholder="Email" value={signUpData.email} onChange={
                         (e)=> setSignUpData((prevState)=> ({...prevState, email: e.target.value}))}/>
 
                     {getSignUpDataInvalidFields(signUpData).includes('email') && showErrors && <>Invalid email</>}
 
                     <br></br>
+
                     <input className="input_medium"  type="password" name="password" id="password" placeholder="Password" value={signUpData.password} onChange={
                         (e)=> setSignUpData((prevState)=> ({...prevState, password: e.target.value}))}/>
 
-                    {getSignUpDataInvalidFields(signUpData).includes('password') && showErrors && <>Invalid password</>}
+                    {getSignUpDataInvalidFields(signUpData).includes('password') && showErrors && <>Invalid password<br/></>}
 
-                    <br></br>
+                    <br/>
+
+                    <div>
+                        <div className={styles.password_rules}>Rules For the password:</div>
+                        <ul className={styles.password_rules}>
+                            <li>It must be at least 8 characters long.</li>
+                            <li>It must contain at least one lowercase letter.</li>
+                            <li>It must contain at least one uppercase letter.</li>
+                            <li>It must contain a sequence of at least 4 digits.</li>
+                            <li>It must contain at least one of those special character:<br/> !, @, #, $, %, ^, &, *, -, and _.</li>
+                        </ul>
+                    </div>
+
                     <button className="button_primary" type="submit">Sign Up</button>
 
                     {apiError && <p className={"colorError"}>{apiError}</p>}
+
                     {success && <p className={"colorSuccess"}>Account created successfully, you can now login.</p>}
                 </form>
 
