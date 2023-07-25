@@ -5,6 +5,8 @@ import MyContext from "../context/MyContext";
 export default function MyRecipes() {
     const context:any = useContext(MyContext)
 
+    if (!context?.globalState?.userId) return null
+
     return (
         <div>
             <RecipesGallery title={"Browse your recipes"} userId={context?.globalState?.userId}/>
