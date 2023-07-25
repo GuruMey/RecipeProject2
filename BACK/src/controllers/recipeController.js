@@ -5,10 +5,17 @@ import Joi from "joi";
 const getAllRecipes = async (req, res, next) => {
     try {
         const pageSize = 8;
+
         const page = parseInt(req.query.page || "1");
+
+        const search = decodeURIComponent(req.query.search || "");
 
         const query = {
             published: true
+        }
+
+        if (search) {
+            query.title = { $regex: search, $options: "i" };
         }
 
         const nPages = Math.ceil(await RecipeModel.countDocuments(query) / pageSize) || 1;

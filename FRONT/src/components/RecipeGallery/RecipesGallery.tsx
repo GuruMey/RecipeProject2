@@ -11,11 +11,12 @@ export default function RecipesGallery() {
     const [page, setPage] = React.useState(1);
     const [recipes, setRecipes] = React.useState<any>([]);
     const [nPages, setNPages] = React.useState<any>(1);
+    const [search, setSearch] = React.useState("");
 
-    useEffect(() => {
+    function updateRecipies () {
         const fetchData = async () => {
             try {
-                const response = await getAllRecipes(page);
+                const response = await getAllRecipes(page, search);
                 setRecipes(response.data.data.recipes);
                 setNPages(response.data.data.nPages);
             } catch (error) {
@@ -23,14 +24,24 @@ export default function RecipesGallery() {
             }
         };
         fetchData();
-    }, [page]);
+    }
 
+    useEffect(() => {
+        updateRecipies();
+    }, [page]);
 
     return (
         <div className={styles.gallery_page}>
             <div className={styles.before_gallery}>
                 <h2 className={styles.gallery_page_title}>Recipes</h2>
-                <input className={styles.search_input} type="text" placeholder="Search for a recipe..."/>
+                <div>
+                    <input className={styles.search_input} type="text" value={search} onChange={(e) => {
+                        setSearch(e.target.value);
+                    }} placeholder="Search for a recipe..."/>
+                    <button onClick={() => {
+                        updateRecipies();
+                    }}>Search</button>
+                </div>
             </div>
             <div className={styles.gallery_main}>
                 {recipes.map((recipe: any) => (

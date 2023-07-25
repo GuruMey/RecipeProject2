@@ -1,7 +1,7 @@
 import http from "./httpService";
 
-export async function getAllRecipes(page) {
-    return http.get(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/recipe?page=${page}`);
+export async function getAllRecipes(page, search) {
+    return http.get(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/recipe?page=${page}&search=${encodeURIComponent(search)}`);
 }
 
 export async function getRecipeById(recipeId) {
