@@ -76,7 +76,7 @@ export default function SignUp(props:any) {
 
                     {getSignUpDataInvalidFields(signUpData).includes('username') && showErrors && <>Invalid username</>}
 
-                    <br></br>
+                    <br/>
 
                     <input className="input_medium"  type="email" name="email" id="email" placeholder="Email" value={signUpData.email} onChange={
                         (e)=> setSignUpData((prevState)=> ({...prevState, email: e.target.value}))}/>

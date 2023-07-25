@@ -71,22 +71,6 @@ async function signUp (req, res, next) {
             createdAt: new Date(),
         });
 
-        // To use only if we want to automatically log in the user after signing up
-        //
-        // const payload = {
-        //     id: newUser.id,
-        //     admin: newUser.admin,
-        // };
-        //
-        // const token = await generateToken(payload);
-        //
-        // res.cookie('token', token, {
-        //     httpOnly: true,
-        //     maxAge: process.env.AUTH_MAX_AGE,
-        //     sameSite: 'none',
-        //     secure: true
-        // });
-
         return res.status(200).json({
             status: 'success',
             message:'user signed up successfully'
@@ -127,7 +111,7 @@ const logIn = async (req, res, next) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            maxAge: 900000,
+            maxAge: process.env.AUTH_MAX_AGE * 1000,
             sameSite: 'none',
             secure: true
         });
