@@ -1,9 +1,10 @@
 import * as React from 'react';
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
 import Link from 'next/link';
 import axios from "axios";
 import styles from "./RecipesGallery.module.css";
 import { getAllRecipes } from '../../services/recipeService';
+import MyContext from "../../context/MyContext";
 
 export default function RecipesGallery(props: {
     title: string,
@@ -14,6 +15,8 @@ export default function RecipesGallery(props: {
     const [recipes, setRecipes] = React.useState<any>([]);
     const [nPages, setNPages] = React.useState<any>(1);
     const [search, setSearch] = React.useState("");
+
+    const context:any = useContext(MyContext)
 
     function updateRecipies () {
         const fetchData = async () => {
@@ -60,6 +63,10 @@ export default function RecipesGallery(props: {
                 {recipes.map((recipe: any) => (
                     <div key={recipe._id} className={styles.gallery_card}>
                         <div className={styles.gallery_card_content}>
+                            {!recipe.published && <div className={styles.gallery_card_draft}>Draft</div>}
+                            {context?.globalState?.userId &&
+                                (recipe.likedBy || []).includes(context?.globalState?.userId) &&
+                                <div className={styles.gallery_card_liked}>Liked</div>}
                             <img className={styles.gallery_card_img} src={recipe.coverUrl} alt="recipe-image"/>
                             <Link className={styles.gallery_card_title} href={`/recipes/${recipe._id}`}>{recipe.title}</Link>
                             <Link className={styles.gallery_card_tags}
