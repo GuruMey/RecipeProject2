@@ -12,7 +12,6 @@ import errorHandler from './middleware/errorHandler.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from "./routes/userRoutes.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
-import ratingRoutes from "./routes/ratingRoutes.js";
 
 // Activate express
 const app = express();
@@ -38,7 +37,6 @@ connectDatabase();
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/recipe', recipeRoutes);
-app.use('/api/rating', ratingRoutes);
 
 // Error handler middleware
 app.use(errorHandler);

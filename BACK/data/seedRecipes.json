@@ -3,7 +3,7 @@
     "createdBy": "John Smith",
     "title": "Vegan Chickpea Curry",
     "description": "A flavorful and creamy chickpea curry with aromatic spices.",
-    "preparationTime": 45,
+    "time": 45,
     "ingredients": [
       "1 can chickpeas, drained and rinsed",
       "1 onion, chopped",
@@ -33,7 +33,7 @@
     "createdBy": "Alice Johnson",
     "title": "Vegan Vegetable Stir-Fry",
     "description": "A colorful and nutritious stir-fry with a variety of fresh vegetables.",
-    "preparationTime": 25,
+    "time": 25,
     "ingredients": [
       "2 cups mixed vegetables (broccoli, bell peppers, carrots, snap peas, etc.)",
       "1 tablespoon soy sauce",
@@ -63,7 +63,7 @@
     "createdBy": "Emily Brown",
     "title": "Vegan Lentil Salad",
     "description": "A refreshing and protein-packed salad with lentils and fresh vegetables.",
-    "preparationTime": 20,
+    "time": 20,
     "ingredients": [
       "1 cup cooked lentils",
       "1 cucumber, diced",
@@ -92,7 +92,7 @@
     "createdBy": "Michael Davis",
     "title": "Vegan Tofu Scramble",
     "description": "A delicious and protein-rich breakfast scramble made with tofu and vegetables.",
-    "preparationTime": 15,
+    "time": 15,
     "ingredients": [
       "1 block firm tofu, crumbled",
       "1 onion, chopped",
@@ -121,7 +121,7 @@
     "createdBy": "Sophia Wilson",
     "title": "Vegan Black Bean Burger",
     "description": "A flavorful and hearty burger made with black beans and spices.",
-    "preparationTime": 40,
+    "time": 40,
     "ingredients": [
       "1 can black beans, drained and rinsed",
       "1/2 cup cooked quinoa",
@@ -151,7 +151,7 @@
     "createdBy": "Olivia Anderson",
     "title": "Vegan Quinoa Salad",
     "description": "A light and refreshing salad with quinoa, vegetables, and a zesty dressing.",
-    "preparationTime": 25,
+    "time": 25,
     "ingredients": [
       "1 cup cooked quinoa",
       "1 cucumber, diced",
@@ -179,7 +179,7 @@
     "createdBy": "Daniel Johnson",
     "title": "Vegan Sweet Potato Curry",
     "description": "A rich and flavorful curry made with sweet potatoes and aromatic spices.",
-    "preparationTime": 50,
+    "time": 50,
     "ingredients": [
       "2 medium sweet potatoes, peeled and diced",
       "1 onion, chopped",
@@ -209,7 +209,7 @@
     "createdBy": "Sophie Martin",
     "title": "Vegan Chickpea Salad Sandwich",
     "description": "A satisfying and protein-packed sandwich made with mashed chickpeas and flavorful seasonings.",
-    "preparationTime": 15,
+    "time": 15,
     "ingredients": [
       "1 can chickpeas, drained and rinsed",
       "2 tablespoons vegan mayonnaise",
@@ -240,7 +240,7 @@
     "createdBy": "Ethan Wilson",
     "title": "Vegan Mushroom Risotto",
     "description": "A creamy and comforting risotto made with mushrooms and Arborio rice.",
-    "preparationTime": 40,
+    "time": 40,
     "ingredients": [
       "1 cup Arborio rice",
       "1 onion, chopped",
@@ -272,7 +272,7 @@
     "createdBy": "Oliver Davis",
     "title": "Vegan Chocolate Avocado Pudding",
     "description": "A rich and indulgent chocolate pudding made with avocados and plant-based ingredients.",
-    "preparationTime": 15,
+    "time": 15,
     "ingredients": [
       "2 ripe avocados",
       "1/4 cup cocoa powder",

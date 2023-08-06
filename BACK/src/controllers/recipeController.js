@@ -147,6 +147,37 @@ const publishRecipe = async (req, res) => {
     }
 };
 
+
+//----------------- LIKE RECIPE ----------------- //
+const likeRecipe = async (req, res) => {
+    const recipeId = req.params.recipeId;
+    const liked = req.body.liked;
+    const userId = req.body.userId;
+
+    if (typeof liked !== "boolean") {
+        return res.status(400).json({ message: "Liked must be a boolean" });
+    }
+
+    try {
+        const existingRecipe = await RecipeModel.findById(recipeId);
+
+        if (!existingRecipe) {
+            return res.status(404).json({ message: "Cannot find recipe" });
+        }
+
+        if (liked) {
+            await RecipeModel.findByIdAndUpdate(recipeId, { $addToSet: { likedBy: userId } });
+        } else {
+            await RecipeModel.findByIdAndUpdate(recipeId, { $pull: { likedBy: userId } });
+        }
+
+        res.status(200).json({ message: "Recipe published successfully" });
+    } catch (error) {
+        console.error("An error has occurred while publishing the recipe:", error);
+        res.status(500).json({ message: "An error has occurred while publishing the recipe" });
+    }
+};
+
 //----------------- EDIT RECIPE ----------------- //
 const editRecipe = async (req, res) => {
     const recipeId = req.params.recipeId;
@@ -171,11 +202,16 @@ const deleteRecipe = async (req, res) => {
     const RecipeId = req.params.recipeId;
 
     try {
-        const existingRecipe = await RecipeModel.findByIdAndRemove(RecipeId);
+        const existingRecipe = await RecipeModel.findOne({
+            _id: RecipeId,
+            createdBy: req.user.id
+        });
 
         if (!existingRecipe) {
             return res.status(404).json({ message: "Cannot find recipe" });
         }
+
+        await RecipeModel.findByIdAndRemove(RecipeId);
 
         res.status(200).json({ message: "Recipe deleted successfully" });
     } catch (error) {
@@ -184,4 +220,4 @@ const deleteRecipe = async (req, res) => {
     }
 };
 
-export {getAllRecipes, getRecipe ,createRecipe, publishRecipe, editRecipe, deleteRecipe};
+export {getAllRecipes, getRecipe ,createRecipe, publishRecipe, editRecipe, likeRecipe, deleteRecipe};
