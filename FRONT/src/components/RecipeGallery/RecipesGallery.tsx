@@ -67,7 +67,7 @@ export default function RecipesGallery(props: {
                             {context?.globalState?.userId &&
                                 (recipe.likedBy || []).includes(context?.globalState?.userId) &&
                                 <div className={styles.gallery_card_liked}>Liked</div>}
-                            <img className={styles.gallery_card_img} src={recipe.coverUrl} alt="recipe-image"/>
+                            <img className={styles.gallery_card_img} src={recipe.coverPhoto} alt="recipe-image"/>
                             <Link className={styles.gallery_card_title} href={`/recipes/${recipe._id}`}>{recipe.title}</Link>
                             <Link className={styles.gallery_card_tags}
                                   href={`/recipes/${recipe._id}`}>{recipe.tags.map((tag: any) => <span

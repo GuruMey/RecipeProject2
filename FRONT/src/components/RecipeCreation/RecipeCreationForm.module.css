@@ -10,7 +10,13 @@
     max-width: 100%;
 }
 
-
+.preview_image {
+    width: 70px;
+    height: 90px;
+    border: 1px solid black;
+    border-radius: 15px;
+    object-fit: cover;
+}
 
 .recipe_cover_photo{
     display: flex;

@@ -6,7 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 
 export default function RecipeCreationForm(props: any) {
-    // const [coverPhoto, setCoverPhoto] = React.useState<File | null>(null);
+    const [coverPhoto, setCoverPhoto] = React.useState<string | null>(null);
 
     const [createdSuccessfully, setCreatedSuccessfully] = React.useState<boolean>(false);
 
@@ -14,7 +14,6 @@ export default function RecipeCreationForm(props: any) {
         title: '',
         description: '',
         time: 0,
-        coverPhoto: '',
         ingredients: [],
         steps: [],
         tags: [],
@@ -25,6 +24,8 @@ export default function RecipeCreationForm(props: any) {
     const [newTag, setNewTag] = useState<string>('');
 
     const [showErrors, setShowErrors] = useState(false);
+
+    const [showImageError, setShowImageError] = useState<boolean>(false);
 
     const [serverError, setServerError] = useState<string>('');
 
@@ -40,7 +41,8 @@ export default function RecipeCreationForm(props: any) {
 
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/api/recipe`, {
-                ...formData
+                ...formData,
+                coverPhoto: coverPhoto || '',
             }, {
                 withCredentials: true
             })
@@ -73,11 +75,26 @@ export default function RecipeCreationForm(props: any) {
         }
     }
 
-    // const CoverPhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     if (event.target.files && event.target.files[0]) {
-    //         setCoverPhoto(event.target.files[0]);
-    //     }
-    // };
+    const CoverPhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+            const fileSizeInBytes = file.size;
+            const fileSizeInKB = fileSizeInBytes / 1024;
+            const fileSizeInMB = fileSizeInKB / 1024;
+
+            if (fileSizeInMB > 3) {
+                setShowImageError(true);
+                return;
+            }
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                const base64String = reader.result as string;
+                setCoverPhoto(base64String)
+                setShowImageError(false);
+            }
+            reader.readAsDataURL(file);
+        }
+    };
 
     const deleteIngredient = (index: number) => {
         setFormData((prevState: any) => ({
@@ -143,10 +160,18 @@ export default function RecipeCreationForm(props: any) {
 
                 {getInvalidFieldsForNewRecipes(formData).includes('time') && showErrors && <div className={"colorError"}>Invalid time</div>}
 
-                {/*<div className={styles.input_button_field_container}>*/}
-                {/*    <label>Cover Photo:</label>*/}
-                {/*    <input type="file" name="cover-photo" accept="image/*" onChange={CoverPhotoChange} />*/}
-                {/*</div>*/}
+
+                <div className={styles.input_button_field_container}>
+                    {
+                        coverPhoto && <div className={styles.input_button_field_container}>
+                            <img src={coverPhoto} alt="preview" className={styles.preview_image} />
+                        </div>
+                    }
+                    <label>Cover Photo (3mB):</label>
+                    <input type="file" name="cover-photo" accept="image/*" onChange={CoverPhotoChange} />
+                </div>
+
+                {showImageError && <div className={"colorError"}>Invalid picture (file too big)</div>}
 
                 <div className={styles.input_button_field_container}>
                     <label>Ingredients: *</label>
