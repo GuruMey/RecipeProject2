@@ -8,8 +8,6 @@ import {useRouter} from "next/router";
 import {getRecipeById} from "../../services/recipeService";
 
 export default function EditRecipeForm(props: any) {
-    // const [coverPhoto, setCoverPhoto] = React.useState<File | null>(null);
-
     const route = useRouter()
 
     const [savedSuccessfully, setSavedSuccessfully] = React.useState<boolean>(false);
@@ -21,6 +19,7 @@ export default function EditRecipeForm(props: any) {
         ingredients: [],
         steps: [],
         tags: [],
+        coverPhoto: ''
     });
 
     useEffect(() => {
@@ -33,6 +32,7 @@ export default function EditRecipeForm(props: any) {
                 ingredients: response.data.data.ingredients ?? [],
                 steps: response.data.data.steps ?? [],
                 tags: response.data.data.tags ?? [],
+                coverPhoto: response.data.data.coverPhoto ?? ''
             })
         }
         if (route.query.id) {
@@ -47,6 +47,8 @@ export default function EditRecipeForm(props: any) {
     const [showErrors, setShowErrors] = useState(false);
 
     const [serverError, setServerError] = useState<string>('');
+
+    const [showImageError, setShowImageError] = useState<boolean>(false);
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
@@ -95,6 +97,30 @@ export default function EditRecipeForm(props: any) {
         }))
     }
 
+    const CoverPhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+            const fileSizeInBytes = file.size;
+            const fileSizeInKB = fileSizeInBytes / 1024;
+            const fileSizeInMB = fileSizeInKB / 1024;
+
+            if (fileSizeInMB > 3) {
+                setShowImageError(true);
+                return;
+            }
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                const base64String = reader.result as string;
+                setFormData((prevState: any) => ({
+                    ...prevState,
+                    coverPhoto: base64String
+                }))
+                setShowImageError(false);
+            }
+            reader.readAsDataURL(file);
+        }
+    };
+
     if (savedSuccessfully) {
         return <div className={"section"}>
             <br/><br/><br/>
@@ -138,10 +164,17 @@ export default function EditRecipeForm(props: any) {
 
                 {getInvalidFieldsForNewRecipes(formData).includes('time') && showErrors && <div className={"colorError"}>Invalid time</div>}
 
-                {/*<div className={styles.input_button_field_container}>*/}
-                {/*    <label>Cover Photo:</label>*/}
-                {/*    <input type="file" name="cover-photo" accept="image/*" onChange={CoverPhotoChange} />*/}
-                {/*</div>*/}
+                <div className={styles.input_button_field_container}>
+                    {
+                        formData.coverPhoto && <div className={styles.input_button_field_container}>
+                            <img src={formData.coverPhoto} alt="preview" className={styles.preview_image} />
+                        </div>
+                    }
+                    <label>Cover Photo (3mB):</label>
+                    <input type="file" name="cover-photo" accept="image/*" onChange={CoverPhotoChange} />
+                </div>
+
+                {showImageError && <div className={"colorError"}>Invalid picture (file too big)</div>}
 
                 <div className={styles.input_button_field_container}>
                     <label>Ingredients: *</label>
