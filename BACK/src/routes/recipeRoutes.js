@@ -15,7 +15,7 @@ router.get('/getRecipe/:recipeId', getRecipe); // ok
 router.post('/', authenticateUser, createRecipe); // ok
 router.patch('/publish/:recipeId', authenticateUser,  publishRecipe); // ok
 router.patch('/like/:recipeId', authenticateUser,  likeRecipe); // ok
-router.put('/editRecipe/:recipeId', authenticateUser,  editRecipe);
+router.put('/editRecipe/:recipeId', authenticateUser,  editRecipe); // ok
 router.delete('/:recipeId', authenticateUser,  deleteRecipe); // ok
 
 export default router;

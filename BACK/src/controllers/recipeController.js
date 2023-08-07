@@ -181,14 +181,33 @@ const likeRecipe = async (req, res) => {
 //----------------- EDIT RECIPE ----------------- //
 const editRecipe = async (req, res) => {
     const recipeId = req.params.recipeId;
-    const fieldValuesToUpdate = req.body;
+
+    const schema = Joi.object({
+        title: Joi.string().min(1).max(100).required(),
+        description: Joi.string().max(300).optional().allow(''),
+        time: Joi.number().required(),
+        coverPhoto: Joi.string().max(100).optional().allow(''),
+        ingredients: Joi.array().items(Joi.string().max(300)).required(),
+        steps: Joi.array().items(Joi.string().max(300)).required(),
+        tags: Joi.array().items(Joi.string().max(300)).required(),
+    })
+
+    const validation = schema.validate(req.body);
+
+    if (validation.error) {
+        return res.status(400).json({
+            status: "error",
+            error: validation.error
+        });
+    }
 
     try {
-        const updatedRecipe = await RecipeModel.findByIdAndUpdate(recipeId, fieldValuesToUpdate, { new: true });
-
-        if (!updatedRecipe) {
-            return res.status(404).json({ message: "Cannot find recipe" });
-        }
+        const updatedRecipe = await RecipeModel.updateOne({
+            _id: recipeId,
+            createdBy: req.user.id
+        }, {
+            ...req.body,
+        });
 
         res.status(200).json({ message: "Recipe updated successfully", recipe: updatedRecipe });
     } catch (error) {
