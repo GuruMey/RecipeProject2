@@ -12,6 +12,7 @@ const RecipeSchema = new Schema({
     createdAt: Date,
     published: Boolean,
     likedBy: [String],
+    coverPhoto: String,
 });
 
 const RecipeModel = model('recipe', RecipeSchema);

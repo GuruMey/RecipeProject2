@@ -74,7 +74,7 @@ const createRecipe = async (req, res) => {
         title: Joi.string().min(1).max(100).required(),
         description: Joi.string().max(300).optional().allow(''),
         time: Joi.number().required(),
-        coverPhoto: Joi.string().max(100).optional().allow(''),
+        coverPhoto: Joi.string().optional().allow(''),
         ingredients: Joi.array().items(Joi.string().max(300)).required(),
         steps: Joi.array().items(Joi.string().max(300)).required(),
         tags: Joi.array().items(Joi.string().max(300)).required(),
@@ -106,6 +106,7 @@ const createRecipe = async (req, res) => {
             tags: req.body.tags,
             published: false,
             createdAt: new Date(),
+            coverPhoto: req.body.coverPhoto,
         });
 
         return res.status(200).json({
