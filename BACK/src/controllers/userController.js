@@ -63,7 +63,7 @@ const getAllUsers = async (req, res, next) => {
             status: "success",
             data: {
                 users,
-                nUsers
+                nPages: Math.ceil(nUsers / pageSize)
             }
         });
     } catch (error) {

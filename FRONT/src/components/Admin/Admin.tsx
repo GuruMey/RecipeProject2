@@ -62,6 +62,16 @@ export default function Admin(props: any) {
             {users.map((user: any) => <div className={styles.user}>
                 {user.username} - {user.email} - {moment(user.createdAt).format("DD/MM/yyyy")} <button onClick={() => deleteUser(user._id)}>Delete</button>
             </div>)}
+
+            {nPages > 1 && <div className={styles.pagination}>
+                {
+                    Array.from({length: nPages}, (_, i) => i + 1).map((i: number) => <button
+                        onClick={() => setPage(i)}
+                    >
+                        {i}
+                    </button>)
+                }
+            </div>}
         </div>
     )
 
