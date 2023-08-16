@@ -2,8 +2,6 @@ import UserModel from "../models/UserModel.js";
 import Joi from "joi";
 import bcrypt from "bcrypt";
 
-
-
 //----------------- CREATE USER ----------------- //
 
 const createUser = async (req, res) => {
@@ -51,33 +49,30 @@ const createUser = async (req, res) => {
 };
 
 //----------------- GET ALL USERS (with pagination) ----------------- //
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res, next) => {
     try {
-        const {page = 1, limit = 25} = req.query;
+        const pageSize = 10;
 
-        const options = {
-            page: parseInt(page),
-            limit: parseInt(limit),
-            select: '-password -',
+        const page = parseInt(req.query.page || "1");
 
-        }
+        const nUsers = await UserModel.countDocuments({admin: false});
 
-         const users = await UserModel.paginate({}, options);
+        const users = await UserModel.find({admin: false}).limit(pageSize).skip((page - 1) * pageSize).sort({createdAt: -1}).select('-password')
 
-        const userFixed = {... userModel};
-        userModel.data = usersFixed.docs;
-        delete usersFixed.docs;
-
-        return res.status(200).json(users);
-
-
+        return res.status(200).json({
+            status: "success",
+            data: {
+                users,
+                nUsers
+            }
+        });
     } catch (error) {
         next(error);
     }
 };
 
 //----------------- GET USER BY ID ----------------- //
-const getUserById = async (req, res) => {
+const getUserById = async (req, res, next) => {
     try {
         const user = await UserModel.findById(req.params.userId).select('-password');
         if (!user) {
@@ -157,33 +152,18 @@ const editUser = async (req, res) => {
 
 
 //----------------- DELETE USER ----------------- //
-const deleteUser = async (req, res) => {
-
+const deleteUser = async (req, res, next) => {
     try {
         const deletedUser = await UserModel.findByIdAndRemove(req.params.userId);
+
         if (!deletedUser) {
             return res.status(404).json({message: 'User not found'});
         }
+
         return res.status(200).json({message: 'User deleted successfully'});
     } catch (error) {
         next(error);
     }
 }
-//     const userId = req.params.userId;
-//
-//     try {
-//         const existingUser = await UserModel.findByIdAndRemove(userId);
-//
-//         if (!existingUser) {
-//             return res.status(404).json({ message: "Cannot find user" });
-//         }
-//
-//         res.status(200).json({ message: "User deleted successfully" });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: "Error in user deletion" });
-//     }
-// };
-
 
 export {editUser, deleteUser, getAllUsers, getUserById, createUser};

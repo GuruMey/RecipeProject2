@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
     const [globalState, setGlobalState] = useState({
         showBurgerMenu: false,
         loggedIn: false,
-        isAdmin: false,
+        admin: false,
         username: "",
         userId: "",
     })

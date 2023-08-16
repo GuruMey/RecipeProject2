@@ -1,0 +1,8 @@
+
+.user {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    background-color: #ccc;
+    margin: 5px 0;
+}

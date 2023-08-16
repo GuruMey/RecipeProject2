@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {useContext, useEffect} from "react";
 import Link from 'next/link';
-import axios from "axios";
 import styles from "./RecipesGallery.module.css";
 import { getAllRecipes } from '../../services/recipeService';
 import MyContext from "../../context/MyContext";
