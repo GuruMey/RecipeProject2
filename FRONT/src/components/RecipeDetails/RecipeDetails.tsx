@@ -151,7 +151,7 @@ export default function RecipeDetails() {
             {_id && (
                 <div key={_id} className={styles.recipe}>
                     <div className={styles.main_recipe_banner}>
-                        <Link href={'/'}><img className={styles.recipe_img} src={recipe.coverPhoto} alt="recipe-image"/></Link>
+                        <img className={styles.recipe_img} src={recipe.coverPhoto || "/logo.svg"} alt="recipe-image"/>
                         <div className={styles.title_banner}>
                         <div className={styles.recipe_view_title}>
                             <Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{title}</Link>

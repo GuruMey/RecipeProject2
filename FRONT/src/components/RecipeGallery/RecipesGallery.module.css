@@ -2,14 +2,6 @@
     background-color: white;
 }
 
-.before_gallery {
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .gallery_page_title {
     font-size: 30px;
     color: #2f2f2f;
@@ -17,12 +9,34 @@
     padding: 40px;
 }
 
+.search_bar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.no_recipe {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto 30px auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .search_bar {
+        flex-flow: column nowrap;
+    }
+}
+
 .search_input {
     color: #414040;
-    width: 500px;
+    width: 80%;
+    max-width: 400px;
     height: 40px;
-    padding: 0 20px;
-    margin: 0 auto;
+    padding: 0 10px;
     border-radius: 25px;
     border: 1px solid #7D8844;
 }
@@ -103,15 +117,6 @@
     text-decoration: none;
     align-items: flex-end;
 
-}
-
-
-@media only screen and (max-width: 600px) {
-    .search_input {
-        max-width: 60%;
-        height: 60px;
-        margin: auto;
-        }
 }
 
 .pages_count_container {
