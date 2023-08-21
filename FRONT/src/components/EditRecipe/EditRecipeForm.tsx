@@ -132,7 +132,7 @@ export default function EditRecipeForm(props: any) {
     return (
         <div className="main_form_container">
             <div className="recipe_form_title">
-                <h2>Create a new recipe</h2>
+                <h2>Edit the recipe</h2>
             </div>
 
             <form className="form" onSubmit={(e) => e.preventDefault()} >
@@ -213,7 +213,7 @@ export default function EditRecipeForm(props: any) {
                     <label>Steps: *</label>
                     <div className="recipe_fields">
                         <input
-                            className="input_long"
+                            className="input_medium"
                             value={newStep}
                             onChange={(e) => {
                                 setNewStep(e.target.value);

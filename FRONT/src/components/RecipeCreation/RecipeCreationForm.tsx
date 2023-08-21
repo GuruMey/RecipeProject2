@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from "./RecipeCreationForm.module.css"
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import getInvalidFieldsForNewRecipes from "./getInvalidFieldsForNewRecipes";
 import axios from "axios";
 import Link from "next/link";
@@ -160,7 +160,6 @@ export default function RecipeCreationForm(props: any) {
 
                 {getInvalidFieldsForNewRecipes(formData).includes('time') && showErrors && <div className={"colorError"}>Invalid time</div>}
 
-
                 <div className={styles.input_button_field_container}>
                     {
                         coverPhoto && <div className={styles.input_button_field_container}>
@@ -210,7 +209,7 @@ export default function RecipeCreationForm(props: any) {
                     <label>Steps: *</label>
                     <div className="recipe_fields">
                         <input
-                            className="input_long"
+                            className="input_medium"
                             value={newStep}
                             onChange={(e) => {
                                 setNewStep(e.target.value);

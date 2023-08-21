@@ -55,7 +55,6 @@
     font-size: 12px;
 }
 
-
 .recipe_view_text{
     display: flex;
     flex-direction: column;
@@ -63,7 +62,6 @@
     justify-content: center;
     margin: 50px auto;
 }
-
 
 .recipe_view_ingredients{
     border: 1px solid #7D8844;

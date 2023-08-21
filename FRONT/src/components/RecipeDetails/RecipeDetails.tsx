@@ -141,12 +141,12 @@ export default function RecipeDetails() {
                 </div>
                 {
                     own === true && <div>
-                        {!! published && <button onClick={() => action('unpublish')}>Un-publish</button>}
-                        {! published && <button onClick={() => action('publish')}>Publish</button>}
+                        {!! published && <button className={"button_primary"} onClick={() => action('unpublish')}>Un-publish</button>}
+                        {! published && <button className={"button_primary"} onClick={() => action('publish')}>Publish</button>}
                         <Link href={`/EditRecipe?id=${recipeId}`}>
-                            <button>Edit recipe</button>
+                            <button className={"button_primary"}>Edit recipe</button>
                         </Link>
-                        <button onClick={() => action('delete')}>Delete recipe</button>
+                        <button className={"button_primary"} onClick={() => action('delete')}>Delete recipe</button>
                     </div>
                 }
             </div>
