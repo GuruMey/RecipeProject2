@@ -30,14 +30,14 @@ export default function Header() {
                         //@ts-ignore
                         context.setGlobalState((ps) => ({...ps, showBurgerMenu: !ps.showBurgerMenu}))
                     }} className={`${styles.navbar_burger} display-on-tablet-only`}>
-                        <img  src={`./burger.svg`} alt="burger" />
+                        <img  src={`/burger.svg`} alt="burger" />
                     </button>
                     <Link href="/" className={`${styles.navbar_element} display-on-desktop-only`}> Home</Link>
                     {context?.globalState?.loggedIn &&<Link href="/CreateRecipe" className={`${styles.navbar_element} display-on-desktop-only`} > Create Recipe </Link>}
                 </div>
 
                 <div className={styles.navbar_center}>
-                    <img className={styles.navbar_logo} src={`./logo.svg`} alt="logo" />
+                    <img className={styles.navbar_logo} src={`/logo.svg`} alt="logo" />
                     <h1 className={styles.navbar_title}>DELISHDISH</h1>
                     <h2 className={styles.navbar_undertitle}>The best vegan recipes</h2>
                 </div>
@@ -46,7 +46,7 @@ export default function Header() {
                     {context?.globalState?.loggedIn &&<Link href="/MyRecipes" className={`${styles.navbar_element} display-on-desktop-only`}>My Recipes</Link>}
                     {!context?.globalState?.loggedIn &&<Link href="/auth/login" className={`${styles.navbar_element} display-on-desktop-only`}>Login</Link>}
                     {context?.globalState?.loggedIn &&<button onClick={signOut} className={`${styles.navbar_element} ${styles.logout} display-on-desktop-only`}>
-                        <img src={`./logout.svg`} alt="logout" className={styles.logout} />
+                        <img src={`/logout.svg`} alt="logout" className={styles.logout} />
                     </button> }
                 </div>
             </nav>

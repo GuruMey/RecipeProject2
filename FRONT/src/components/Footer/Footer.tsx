@@ -5,7 +5,7 @@ export default function Footer() {
     return <div className={styles.footer}>
             <div className={styles.footer_container}>
                 <div className={styles.footer_section}>
-                    <img className={styles.navbar_logo} src={`./logo.svg`} alt="logo" />
+                    <img className={styles.navbar_logo} src={`/logo.svg`} alt="logo" />
                 </div>
                 <div className={styles.footer_section}>
                     <div className={styles.footer_title}>Browse the website</div>

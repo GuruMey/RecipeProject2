@@ -33,7 +33,7 @@ export default (props: any) => {
                 close()
             }}>X</button>
 
-            <img className={styles.navbar_logo_burger} src={`./logo.svg`} alt="logo" />
+            <img className={styles.navbar_logo_burger} src={`/logo.svg`} alt="logo" />
 
             <h1 className={styles.navbar_title_burger}>DELISHDISH</h1>
 

@@ -66,6 +66,21 @@
     position: relative;
 }
 
+.gallery_card_liked {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.gallery_card_draft {
+    position: absolute;
+    top: 60px;
+    left: 13px;
+    width: 30px;
+    height: 30px;
+}
 
 .gallery_card_content{
     display: flex;
