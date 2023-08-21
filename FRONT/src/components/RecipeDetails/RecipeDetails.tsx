@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
 import Link from 'next/link';
-import axios from 'axios';
 import {useRouter} from "next/router";
 import styles from "./RecipeDetails.module.css";
 import { getRecipeById } from '../../services/recipeService';
@@ -133,8 +132,12 @@ export default function RecipeDetails() {
 
             <div className={styles.main_recipe_buttons}>
                 <div>
-                    {like === true && !own && <button onClick={() => action('unlike')}>Unlike</button>}
-                    {like === false && !own && <button onClick={() => action('like')}>Like</button>}
+                    {like === true && !own && <button className={styles.button_shallow} onClick={() => action('unlike')}>
+                        <img alt={"Unlike the recipe"} className={styles.icon} src={"/heart-full.svg"} />
+                    </button>}
+                    {like === false && !own && <button className={styles.button_shallow} onClick={() => action('like')}>
+                        <img alt={"Like the recipe"} className={styles.icon} src={"/heart.svg"} />
+                    </button>}
                 </div>
                 {
                     own === true && <div>
@@ -149,20 +152,25 @@ export default function RecipeDetails() {
             </div>
 
             {_id && (
-                <div key={_id} className={styles.recipe}>
+                <div key={_id}>
                     <div className={styles.main_recipe_banner}>
                         <img className={styles.recipe_img} src={recipe.coverPhoto || "/logo.svg"} alt="recipe-image"/>
                         <div className={styles.title_banner}>
-                        <div className={styles.recipe_view_title}>
-                            <Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{title}</Link>
+                            <div className={styles.recipe_view_title}>{title}
+                            </div>
+                            <div className={styles.recipe_view_description}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{description}</Link></div>
+
+                            <div className={styles.recipe_view_time}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>Preparation time: {time} min</Link></div>
+                            <br/>
+
+                            <div className={styles.recipe_view_tags}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{recipe.tags.map((tag: any) => <span
+                                className={styles.recipe_view_tag}> #{tag} </span>)}</Link></div>
+                            <br/>
+
+                            {recipe.likedBy?.length > 0 && <div>Like(s): {recipe.likedBy.length}</div>}
                         </div>
-                        <div className={styles.recipe_view_description}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{description}</Link></div>
-                        <div className={styles.recipe_view_time}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>Preparation time: {time} min</Link></div>
-                        <div className={styles.recipe_view_tags}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{recipe.tags.map((tag: any) => <span
-                            className={styles.recipe_view_tag}> #{tag} </span>)}</Link></div>
                     </div>
-                        {recipe.likedBy?.length > 0 && <div>Like(s): {recipe.likedBy.length}</div>}
-                    </div>
+
                     <div className={styles.recipe_view_text}>
                         <div className={styles.recipe_view_ingredients}>
                             Ingredients:
@@ -185,10 +193,7 @@ export default function RecipeDetails() {
                             </Link>
                         </div>
                     </div>
-
-
                 </div>
-
             )}
         </div>
     );
