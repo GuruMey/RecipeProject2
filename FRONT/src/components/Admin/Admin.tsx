@@ -57,13 +57,18 @@ export default function Admin(props: any) {
 
     return (
         <div className="section">
-            <h2>Manage users</h2>
+            <div className={styles.users_title}>
+                <h2>Manage users</h2>
+            </div>
 
             {users.map((user: any) => <div className={styles.user}>
-                {user.username} - {user.email} - {moment(user.createdAt).format("DD/MM/yyyy")} <button onClick={() => deleteUser(user._id)}>Delete</button>
+               <div className={styles.user_info}>
+                   <div>{user.username} - {user.email} - {moment(user.createdAt).format("DD/MM/yyyy")}</div>
+               </div>
+                <button onClick={() => deleteUser(user._id)}>Delete</button>
             </div>)}
 
-            {nPages > 1 && <div className={styles.pagination}>
+            {nPages > 1 && <div className={styles.users_page}>
                 {
                     Array.from({length: nPages}, (_, i) => i + 1).map((i: number) => <button
                         onClick={() => setPage(i)}
