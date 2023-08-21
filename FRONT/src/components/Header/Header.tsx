@@ -45,7 +45,9 @@ export default function Header() {
                     {context?.globalState?.loggedIn && context?.globalState?.admin && <Link href="/admin" className={`${styles.navbar_element} display-on-desktop-only`}>Admin</Link>}
                     {context?.globalState?.loggedIn &&<Link href="/MyRecipes" className={`${styles.navbar_element} display-on-desktop-only`}>My Recipes</Link>}
                     {!context?.globalState?.loggedIn &&<Link href="/auth/login" className={`${styles.navbar_element} display-on-desktop-only`}>Login</Link>}
-                    {context?.globalState?.loggedIn &&<button onClick={signOut}>Log out</button> }
+                    {context?.globalState?.loggedIn &&<button onClick={signOut} className={`${styles.navbar_element} ${styles.logout} display-on-desktop-only`}>
+                        <img src={`./logout.svg`} alt="logout" className={styles.logout} />
+                    </button> }
                 </div>
             </nav>
         </div>

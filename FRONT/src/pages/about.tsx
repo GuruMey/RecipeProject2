@@ -1,8 +1,8 @@
 export default function About() {
     return <div>
-        <p className={"section"}>
+        <div className={"section"}>
             <h2>About</h2>
-        </p>
+        </div>
 
         <p className={"section"}>Welcome to DelishDish ! Where culinary passion meets digital innovation. We've designed a platform for food enthusiasts just like you—a place where you can not only share your treasured recipes with the world but also discover new favorites curated by our vibrant community. Whether you're a seasoned chef or someone just starting their culinary journey, our platform is tailored to give you the best recipe-sharing experience.</p>
 

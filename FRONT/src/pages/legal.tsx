@@ -14,7 +14,7 @@ export default function Legal() {
 
         <p className={"section"}>
         1. Acceptance of Terms<br/><br/>
-        By accessing and using [Your Site's Name], you agree to comply with and be bound by these terms and conditions. If you do not agree to these terms, please refrain from using our site.
+        By accessing and using Delish Dish, you agree to comply with and be bound by these terms and conditions. If you do not agree to these terms, please refrain from using our site.
         </p>
 
         <br/><br/>
@@ -28,7 +28,7 @@ export default function Legal() {
 
         <p className={"section"}>
         3. Content and Copyright<br/><br/>
-        All recipes and content uploaded to [Your Site's Name] remain the intellectual property of the original creator. By uploading content, you grant [Your Site's Name] a non-exclusive, royalty-free license to use, modify, and display the content on our platform.
+        All recipes and content uploaded to Delish Dish remain the intellectual property of the original creator. By uploading content, you grant Delish Dish a non-exclusive, royalty-free license to use, modify, and display the content on our platform.
         </p>
 
         <br/><br/>
@@ -42,7 +42,7 @@ export default function Legal() {
 
         <p className={"section"}>
         5. Liability and Warranty<br/><br/>
-        [Your Site's Name] is provided "as is" without any warranties of any kind. We do not guarantee the accuracy, completeness, or usefulness of any content provided. We are not responsible for any loss or damage caused by your reliance on information obtained through the site.
+        Delish Dish is provided "as is" without any warranties of any kind. We do not guarantee the accuracy, completeness, or usefulness of any content provided. We are not responsible for any loss or damage caused by your reliance on information obtained through the site.
         </p>
 
         <br/><br/>
@@ -63,14 +63,14 @@ export default function Legal() {
 
         <p className={"section"}>
         8. Governing Law<br/><br/>
-        These terms and conditions are governed by [relevant country or state's laws]. Any disputes arising from these terms will be resolved in the jurisdiction of [relevant country or state].
+        These terms and conditions are governed by Israel. Any disputes arising from these terms will be resolved in the jurisdiction of Israel.
         </p>
 
         <br/><br/>
 
         <p className={"section"}>
         9. Contact<br/><br/>
-        For any queries or concerns regarding these terms, please contact us at [Your Email or Contact Information].
+        For any queries or concerns regarding these terms, please contact us at leshem.m@gmail.com.
         </p>
 
         <br/><br/>
