@@ -13,23 +13,16 @@ const seedUsers = async () => {
 
         const mockUsers = [
             {
+                _id: "60b3f5b8e8b7c2a0e8f6b1a0",
                 username: "johnsmith",
                 password: await bcrypt.hash('password123', 10),
                 email: "johnsmith@example.com",
                 admin: false,
                 createdAt: "2023-05-30T09:00:00Z",
                 profilePicture: "",
-                favorites: []
             },
             {
-                username: "alicejohnson",
-                password: await bcrypt.hash('password456', 10),
-                email: "alicejohnson@example.com",
-                admin: false,
-                createdAt: "2023-05-30T10:00:00Z",
-                profilePicture: "",
-            },
-            {
+                _id: "60b3f5b8e8b7c2a0e8f6b1a2",
                 username: "emilybrown",
                 password: await bcrypt.hash('password789', 10),
                 email: "emilybrown@example.com",
@@ -38,18 +31,11 @@ const seedUsers = async () => {
                 profilePicture: "",
             },
             {
-                username: "michaeldavis",
-                password: await bcrypt.hash('passwordabc', 10),
-                email: "michaeldavis@example.com",
-                admin: false,
-                createdAt: "2023-05-30T12:00:00Z",
-                profilePicture: "",
-            },
-            {
+                _id: "60b3f5b8e8b7c2a0e8f6b1a4",
                 username: "sophiawilson",
-                password: await bcrypt.hash('passworddef', 10),
+                password: await bcrypt.hash('password456', 10),
                 email: "sophiawilson@example.com",
-                admin: false,
+                admin: true,
                 createdAt: "2023-05-30T13:00:00Z",
                 profilePicture: "",
             }
@@ -77,9 +63,9 @@ const seedRecipes = async () => {
 
 const seedAll = async () => {
     // Guard
-    const arg = process.argv;
+    const args = process.argv;
 
-    if (!arg.includes('please-do-seed')) {
+    if (!args.includes('please-do-seed')) {
         console.log('WARNING!!');
         console.log('You are about to replace all the data in your database');
         console.log('with mockup / seed data ! This operation is irreversible !!');

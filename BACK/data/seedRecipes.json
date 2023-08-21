@@ -1,6 +1,6 @@
 [
   {
-    "createdBy": "John Smith",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a0",
     "title": "Vegan Chickpea Curry",
     "description": "A flavorful and creamy chickpea curry with aromatic spices.",
     "time": 45,
@@ -25,12 +25,12 @@
     ],
     "tags": ["curry", "vegan", "chickpeas"],
     "createdAt": "2023-05-30T09:00:00Z",
-    "photo": "https://peasandcrayons.com/wp-content/uploads/2020/12/vegetable-stir-fry-noodles-recipe-.jpg",
-    "saved": false,
-    "published": true
+    "coverPhoto": "https://peasandcrayons.com/wp-content/uploads/2020/12/vegetable-stir-fry-noodles-recipe-.jpg",
+    "published": true,
+    "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a2", "60b3f5b8e8b7c2a0e8f6b1a4"]
   },
   {
-    "createdBy": "Alice Johnson",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a0",
     "title": "Vegan Vegetable Stir-Fry",
     "description": "A colorful and nutritious stir-fry with a variety of fresh vegetables.",
     "time": 25,
@@ -56,11 +56,10 @@
     ],
     "tags": ["stir-fry", "vegan", "vegetables"],
     "createdAt": "2023-05-30T10:30:00Z",
-    "saved": true,
-    "published": true
+    "published": false
   },
   {
-    "createdBy": "Emily Brown",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a0",
     "title": "Vegan Lentil Salad",
     "description": "A refreshing and protein-packed salad with lentils and fresh vegetables.",
     "time": 20,
@@ -85,11 +84,11 @@
     ],
     "tags": ["salad", "vegan", "lentils"],
     "createdAt": "2023-05-30T11:00:00Z",
-    "saved": false,
-    "published": true
+    "published": true,
+    "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a2"]
   },
   {
-    "createdBy": "Michael Davis",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a0",
     "title": "Vegan Tofu Scramble",
     "description": "A delicious and protein-rich breakfast scramble made with tofu and vegetables.",
     "time": 15,
@@ -114,11 +113,11 @@
     ],
     "tags": ["breakfast", "vegan", "tofu"],
     "createdAt": "2023-05-30T11:30:00Z",
-    "saved": true,
-    "published": true
+    "published": true,
+    "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a4"]
   },
   {
-    "createdBy": "Sophia Wilson",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a2",
     "title": "Vegan Black Bean Burger",
     "description": "A flavorful and hearty burger made with black beans and spices.",
     "time": 40,
@@ -144,11 +143,12 @@
     ],
     "tags": ["burger", "vegan", "black beans"],
     "createdAt": "2023-05-30T12:00:00Z",
-    "saved": false,
-    "published": true
+    "published": true,
+    "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a0", "60b3f5b8e8b7c2a0e8f6b1a4"]
+
   },
   {
-    "createdBy": "Olivia Anderson",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a2",
     "title": "Vegan Quinoa Salad",
     "description": "A light and refreshing salad with quinoa, vegetables, and a zesty dressing.",
     "time": 25,
@@ -172,11 +172,10 @@
     ],
     "tags": ["salad", "vegan", "quinoa"],
     "createdAt": "2023-05-30T12:30:00Z",
-    "saved": true,
     "published": true
   },
   {
-    "createdBy": "Daniel Johnson",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a2",
     "title": "Vegan Sweet Potato Curry",
     "description": "A rich and flavorful curry made with sweet potatoes and aromatic spices.",
     "time": 50,
@@ -202,11 +201,11 @@
     ],
     "tags": ["curry", "vegan", "sweet potatoes"],
     "createdAt": "2023-05-30T13:00:00Z",
-    "saved": false,
-    "published": true
+    "published": true,
+    "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a0", "60b3f5b8e8b7c2a0e8f6b1a4"]
   },
   {
-    "createdBy": "Sophie Martin",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a2",
     "title": "Vegan Chickpea Salad Sandwich",
     "description": "A satisfying and protein-packed sandwich made with mashed chickpeas and flavorful seasonings.",
     "time": 15,
@@ -233,11 +232,10 @@
     ],
     "tags": ["sandwich", "vegan", "chickpeas"],
     "createdAt": "2023-05-30T13:30:00Z",
-    "saved": true,
     "published": true
   },
   {
-    "createdBy": "Ethan Wilson",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a2",
     "title": "Vegan Mushroom Risotto",
     "description": "A creamy and comforting risotto made with mushrooms and Arborio rice.",
     "time": 40,
@@ -265,11 +263,11 @@
     ],
     "tags": ["risotto", "vegan", "mushrooms"],
     "createdAt": "2023-05-30T14:00:00Z",
-    "saved": false,
-    "published": true
+    "published": true,
+    "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a0", "60b3f5b8e8b7c2a0e8f6b1a4"]
   },
   {
-    "createdBy": "Oliver Davis",
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a2",
     "title": "Vegan Chocolate Avocado Pudding",
     "description": "A rich and indulgent chocolate pudding made with avocados and plant-based ingredients.",
     "time": 15,
@@ -292,7 +290,6 @@
     ],
     "tags": ["dessert", "vegan", "chocolate"],
     "createdAt": "2023-05-30T14:30:00Z",
-    "saved": true,
     "published": true
   }
 ]
