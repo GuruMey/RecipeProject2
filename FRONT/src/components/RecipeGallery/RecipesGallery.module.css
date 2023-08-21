@@ -9,6 +9,12 @@
     padding: 40px;
 }
 
+.gallery_page_title_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .search_bar {
     display: flex;
     flex-flow: row nowrap;

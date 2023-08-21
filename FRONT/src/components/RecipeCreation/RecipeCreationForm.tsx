@@ -163,7 +163,7 @@ export default function RecipeCreationForm(props: any) {
                 <div className={styles.input_button_field_container}>
                     {
                         coverPhoto && <div className={styles.input_button_field_container}>
-                            <img src={coverPhoto} alt="preview" className={styles.preview_image} />
+                            <img src={coverPhoto} alt="preview of the picture of the recipe" className={styles.preview_image} />
                         </div>
                     }
                     <label>Cover Photo (3mB):</label>

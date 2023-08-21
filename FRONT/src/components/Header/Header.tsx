@@ -30,7 +30,7 @@ export default function Header() {
                         //@ts-ignore
                         context.setGlobalState((ps) => ({...ps, showBurgerMenu: !ps.showBurgerMenu}))
                     }} className={`${styles.navbar_burger} display-on-tablet-only`}>
-                        <img  src={`/burger.svg`} alt="burger" />
+                        <img  src={`/burger.svg`} alt="burger menu" />
                     </button>
                     <Link href="/" className={`${styles.navbar_element} display-on-desktop-only`}> Home</Link>
                     {context?.globalState?.loggedIn &&<Link href="/CreateRecipe" className={`${styles.navbar_element} display-on-desktop-only`} > Create Recipe </Link>}

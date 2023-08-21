@@ -25,8 +25,6 @@ export default function LogIn(props: any) {
                 withCredentials: true
             })
 
-            console.log(response.data)
-
             if (response.data.status === "success") {
                 await router.push('/')
                 router.reload();

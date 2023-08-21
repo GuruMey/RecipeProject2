@@ -154,7 +154,7 @@ export default function RecipeDetails() {
             {_id && (
                 <div key={_id}>
                     <div className={styles.main_recipe_banner}>
-                        <img className={styles.recipe_img} src={recipe.coverPhoto || "/logo.svg"} alt="recipe-image"/>
+                        <img className={styles.recipe_img} src={recipe.coverPhoto || "/logo.svg"} alt="Image of the recipe"/>
                         <div className={styles.title_banner}>
                             <div className={styles.recipe_view_title}>{title}
                             </div>

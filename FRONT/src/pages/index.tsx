@@ -4,7 +4,7 @@ export default function Index() {
 
         return (
             <div>
-                <RecipesGallery title={"Browse recipes"}/>
+                <RecipesGallery title={"Browse all recipes"}/>
             </div>
         );
     }

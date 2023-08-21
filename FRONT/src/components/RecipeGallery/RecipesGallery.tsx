@@ -38,7 +38,9 @@ export default function RecipesGallery(props: {
         <div className={styles.gallery_page}>
 
             <div className={styles.before_gallery}>
-                <h2 className={styles.gallery_page_title}>{props.title}</h2>
+                <div className={styles.gallery_page_title_wrapper}>
+                    <h2 className={styles.gallery_page_title}>{props.title}</h2>
+                </div>
                 <div className={styles.search_bar}>
                     <input className={styles.search_input} type="text" value={search} onChange={(e) => {
                         setSearch(e.target.value);
