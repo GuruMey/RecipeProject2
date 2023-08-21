@@ -13,5 +13,9 @@ export default function About() {
         <br/>
 
         <p className={"section"}>Join us in making DelishDish the ultimate destination for recipes and culinary exploration. Craft, share, favorite, and most importantly, enjoy the delicious journey!</p>
+
+        <br/>
+
+        <p className={"section"}>Create an account to add favorites, create and manage your recipes.</p>
     </div>
 }
