@@ -12,12 +12,11 @@
 .navbar_left {
     display: flex;
     justify-content: flex-start;
-    flex-grow: 1;
+    flex: 1;
     align-items: center;
 }
 
 .navbar_center{
-    flex-grow: 2;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -29,7 +28,7 @@
 }
 
 .navbar_right {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -76,9 +75,6 @@
     width: 30px;
     height: 30px;
 }
-
-
-
 
 @media only screen and (max-width: 600px) {
     .navbar_title{

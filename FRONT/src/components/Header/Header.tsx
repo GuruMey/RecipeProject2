@@ -42,6 +42,7 @@ export default function Header() {
                     <h2 className={styles.navbar_undertitle}>The best vegan recipes</h2>
                 </div>
                 <div className={styles.navbar_right}>
+                    {context?.globalState?.loggedIn && <div className={"display-on-desktop-only"}>Hi {context?.globalState?.username} !</div>}
                     {context?.globalState?.loggedIn && context?.globalState?.admin && <Link href="/admin" className={`${styles.navbar_element} display-on-desktop-only`}>Admin</Link>}
                     {context?.globalState?.loggedIn &&<Link href="/MyRecipes" className={`${styles.navbar_element} display-on-desktop-only`}>My Recipes</Link>}
                     {!context?.globalState?.loggedIn &&<Link href="/auth/login" className={`${styles.navbar_element} display-on-desktop-only`}>Login</Link>}
