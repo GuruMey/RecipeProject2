@@ -71,8 +71,8 @@ export default function RecipesGallery(props: {
                                 <img className={styles.gallery_card_img} src={recipe.coverPhoto ?? "/logo.svg"} alt="recipe-image"/>
                                 <Link className={styles.gallery_card_title} href={`/recipes/${recipe._id}`}>{recipe.title}</Link>
                                 <Link className={styles.gallery_card_tags}
-                                      href={`/recipes/${recipe._id}`}>{recipe.tags.map((tag: any) => <span
-                                    className={styles.card_tags}> #{tag} </span>)}</Link></div>
+                                      href={`/recipes/${recipe._id}`}>{recipe.tags.map((tag: any, key: number) => <span
+                                    className={styles.card_tags} key={key}> #{tag} </span>)}</Link></div>
                             <Link href={`/recipes/${recipe._id}`}><button className="button_primary">Open Recipe</button></Link>
                         </div>
                     ))}
@@ -81,7 +81,7 @@ export default function RecipesGallery(props: {
                 <div className={styles.pages_count_container}>
                     {
                         nPages > 0 && recipes?.length > 0 && Array.from({length: nPages}, (_, i) => i + 1).map((i: number) => (
-                            <button className={`${styles.pages_count_button} ${page === i ? styles.pages_count_button_selected : ""}`} onClick={() => setPage(i)}>{i}</button>
+                            <button key={i} className={`${styles.pages_count_button} ${page === i ? styles.pages_count_button_selected : ""}`} onClick={() => setPage(i)}>{i}</button>
                         ))
                     }
                 </div>

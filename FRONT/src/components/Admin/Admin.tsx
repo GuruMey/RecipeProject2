@@ -70,7 +70,7 @@ export default function Admin(props: any) {
 
             {nPages > 1 && <div className={styles.users_page}>
                 {
-                    Array.from({length: nPages}, (_, i) => i + 1).map((i: number) => <button
+                    Array.from({length: nPages}, (_, i) => i + 1).map((i: number, key: number) => <button key={key}
                         onClick={() => setPage(i)}
                     >
                         {i}

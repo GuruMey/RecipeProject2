@@ -163,8 +163,8 @@ export default function RecipeDetails() {
                             <div className={styles.recipe_view_time}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>Preparation time: {time} min</Link></div>
                             <br/>
 
-                            <div className={styles.recipe_view_tags}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{recipe.tags.map((tag: any) => <span
-                                className={styles.recipe_view_tag}> #{tag} </span>)}</Link></div>
+                            <div className={styles.recipe_view_tags}><Link style={{ textDecoration: 'none', color: 'black' }} href={`/recipe/${_id}`}>{recipe.tags.map((tag: any, key: number) => <span
+                                className={styles.recipe_view_tag} key={key}> #{tag} </span>)}</Link></div>
                             <br/>
 
                             {recipe.likedBy?.length > 0 && <div>Like(s): {recipe.likedBy.length}</div>}
