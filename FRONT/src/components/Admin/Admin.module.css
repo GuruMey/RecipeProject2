@@ -1,13 +1,28 @@
 
 .user{
     display: flex;
-    flex-flow:  row ;
-    justify-content: space-between;
-    /*background-color: #13a613;*/
+    flex-flow:  column ;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
-    max-width: 500px;
-    margin: 5px auto;
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 0 5px;
+}
+
+.user_top {
+    display: flex;
+    flex-flow:  row ;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.user_bottom {
+    display: flex;
+    flex-flow:  row ;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.8rem;
 }
 
 .users_title {
@@ -31,4 +46,22 @@
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+}
+
+.filters {
+    background-color: #ccc;
+    margin: 15px auto 30px auto;
+    width: 95%;
+    max-width: 500px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.filters_title {
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.filter_small_title {
+    font-size: 0.9rem;
 }

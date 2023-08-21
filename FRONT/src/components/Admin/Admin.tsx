@@ -8,9 +8,15 @@ import moment from "moment";
 export default function Admin(props: any) {
     const context:any = useContext(MyContext)
 
-    const [page, setPage] = useState(1)
     const [users, setUsers] = useState<any[]>([])
-    const [nPages, setNPages] = useState<any>(1)
+
+    const [filters, setFilters] = useState<any>({
+        username: "",
+        email: "",
+        admin: false,
+        user: true,
+        createdAfter: ""
+    })
 
     useEffect(() => {
         (async () => {
@@ -19,16 +25,14 @@ export default function Admin(props: any) {
                     return
                 }
 
-                const response = await getAllUsers(page);
+                const response = await getAllUsers();
 
                 setUsers(response.data.data.users);
-
-                setNPages(response.data.data.nPages);
             } catch(error: any) {
                 console.log(error)
             }
         })()
-    }, [context?.globalState?.admin, page])
+    }, [context?.globalState?.admin])
 
     async function deleteUser(id: string) {
         try {
@@ -61,22 +65,71 @@ export default function Admin(props: any) {
                 <h2>Manage users</h2>
             </div>
 
-            {users.map((user: any) => <div className={styles.user}>
-               <div className={styles.user_info}>
-                   <div>{user.username} - {user.email} - {moment(user.createdAt).format("DD/MM/yyyy")}</div>
-               </div>
-                <button onClick={() => deleteUser(user._id)}>Delete</button>
-            </div>)}
+            <div className={styles.filters}>
+                <div className={styles.filters_title}>Filters:</div>
 
-            {nPages > 1 && <div className={styles.users_page}>
-                {
-                    Array.from({length: nPages}, (_, i) => i + 1).map((i: number, key: number) => <button key={key}
-                        onClick={() => setPage(i)}
-                    >
-                        {i}
-                    </button>)
+                <div>
+                    <label className={styles.filter_small_title}>Filter by username:</label><br/>
+                    <input type={"text"} value={filters.username} onChange={(e) => {
+                        setFilters((ps: any) => ({...ps, username: e.target.value}))
+                    }} className={"input_medium"} />
+                </div>
+
+                <div>
+                    <label className={styles.filter_small_title}>Filter by email:</label><br/>
+                    <input type={"text"} value={filters.email} onChange={(e) => {
+                        setFilters((ps: any) => ({...ps, email: e.target.value}))
+                    }} className={"input_medium"} />
+                </div>
+
+                <div>
+                    <label className={styles.filter_small_title}>Filter by type:</label><br/>
+                    <input type={"checkbox"} checked={filters.admin} onClick={() => {
+                        setFilters((ps: any) => ({...ps, admin: !ps.admin}))
+                    }} /> Admin<br/>
+                    <input type={"checkbox"} checked={filters.user} onClick={() => {
+                        setFilters((ps: any) => ({...ps, user: !ps.user}))
+                    }} /> User<br/><br/>
+                </div>
+            </div>
+
+            {users.filter((user: any) => {
+                if (filters.username !== "" && !user.username.includes(filters.username)) {
+                    return false
                 }
-            </div>}
+
+                if (filters.email !== "" && !user.email.includes(filters.email)) {
+                    return false
+                }
+
+                if (!filters.admin && !filters.user) {
+                    return false
+                }
+
+                if (filters.admin && !filters.user) {
+                    if (!user.admin) {
+                        return false
+                    }
+                }
+
+                if (!filters.admin && filters.user) {
+                    if (user.admin) {
+                        return false
+                    }
+                }
+
+                return true
+            }).map((user: any) => <div className={styles.user}>
+                <div className={styles.user_top}>
+                   <div className={styles.user_info}>
+                       <div>{user.username} {user.admin ? "(admin)" : ""} - {user.email}</div>
+                   </div>
+                    <button onClick={() => deleteUser(user._id)}>Delete</button>
+                </div>
+                <div className={styles.user_bottom}>
+                    Created at {moment(user.createdAt).format("DD/MM/yyyy")}
+                </div>
+            </div>)}
         </div>
     )
 

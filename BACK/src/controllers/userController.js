@@ -48,19 +48,12 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res, next) => {
     try {
-        const pageSize = 10;
-
-        const page = parseInt(req.query.page || "1");
-
-        const nUsers = await UserModel.countDocuments({admin: false});
-
-        const users = await UserModel.find({admin: false}).limit(pageSize).skip((page - 1) * pageSize).sort({createdAt: -1}).select('-password')
+        const users = await UserModel.find().select('-password')
 
         return res.status(200).json({
             status: "success",
             data: {
                 users,
-                nPages: Math.ceil(nUsers / pageSize)
             }
         });
     } catch (error) {
