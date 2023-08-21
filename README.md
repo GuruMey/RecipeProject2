@@ -44,11 +44,11 @@ Log in with the following credentials:
 
 **Regular user:**
 
-username: ```johnsmith```
+email: ```johnsmith@example.com```
 password: ```password123```
 
 **Admin user:**
 
-username: ```sophiawilson```
+email: ```sophiawilson@example.com```
 password: ```password456```
 

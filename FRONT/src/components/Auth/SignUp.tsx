@@ -12,7 +12,6 @@ function isPasswordValid(password:string) {
 
 function getSignUpDataInvalidFields(signUpData: any) {
     const invalidFields = [];
-    // todo meyrav: ajouter des regles plus complexes
 
     if(!signUpData.username) {
         invalidFields.push('username')

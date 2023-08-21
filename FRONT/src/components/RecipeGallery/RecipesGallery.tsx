@@ -70,7 +70,7 @@ export default function RecipesGallery(props: {
                                 {context?.globalState?.userId &&
                                     (recipe.likedBy || []).includes(context?.globalState?.userId) &&
                                     <img alt={"liked"} className={styles.gallery_card_liked} src={"/heart-full.svg"}/>}
-                                <img className={styles.gallery_card_img} src={recipe.coverPhoto ?? "/logo.svg"} alt="recipe-image"/>
+                                <img className={styles.gallery_card_img} src={recipe.coverPhoto || "/logo.svg"} alt="recipe-image"/>
                                 <Link className={styles.gallery_card_title} href={`/recipes/${recipe._id}`}>{recipe.title}</Link>
                                 <Link className={styles.gallery_card_tags}
                                       href={`/recipes/${recipe._id}`}>{recipe.tags.map((tag: any, key: number) => <span

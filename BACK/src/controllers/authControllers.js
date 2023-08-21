@@ -11,7 +11,6 @@ function isPasswordValid(password) {
     return reg.test(password);
 }
 
-// ----------------- SIGN UP ----------------- //
 async function signUp (req, res, next) {
     const schema = Joi.object({
         email: Joi.string().min(3).max(50).email().required(),
@@ -80,7 +79,6 @@ async function signUp (req, res, next) {
     }
 };
 
-// ----------------- LOG IN ----------------- //
 const logIn = async (req, res, next) => {
     const receivedEmail = req.body.email?.trim().toLowerCase();
     const receivedPassword = req.body.password;
@@ -126,7 +124,6 @@ const logIn = async (req, res, next) => {
     }
 }
 
-// ----------------- SIGN OUT ----------------- //
 const signOut = (req, res, next) => {
     try {
         res.clearCookie('token');

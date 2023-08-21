@@ -10,12 +10,12 @@ import {
 import {authenticateUser} from "../middleware/authentication.js";
 const router = express.Router();
 
-router.get('/', getAllRecipes); // ok
-router.get('/getRecipe/:recipeId', getRecipe); // ok
-router.post('/', authenticateUser, createRecipe); // ok
-router.patch('/publish/:recipeId', authenticateUser,  publishRecipe); // ok
-router.patch('/like/:recipeId', authenticateUser,  likeRecipe); // ok
-router.put('/editRecipe/:recipeId', authenticateUser,  editRecipe); // ok
-router.delete('/:recipeId', authenticateUser,  deleteRecipe); // ok
+router.get('/', getAllRecipes);
+router.get('/getRecipe/:recipeId', getRecipe);
+router.post('/', authenticateUser, createRecipe);
+router.patch('/publish/:recipeId', authenticateUser,  publishRecipe);
+router.patch('/like/:recipeId', authenticateUser,  likeRecipe);
+router.put('/editRecipe/:recipeId', authenticateUser,  editRecipe);
+router.delete('/:recipeId', authenticateUser,  deleteRecipe);
 
 export default router;

@@ -24,10 +24,81 @@
       "Garnish with fresh cilantro and serve over rice or with naan bread."
     ],
     "tags": ["curry", "vegan", "chickpeas"],
-    "createdAt": "2023-05-30T09:00:00Z",
+    "createdAt": "2023-01-14T10:15:00Z",
     "coverPhoto": "https://peasandcrayons.com/wp-content/uploads/2020/12/vegetable-stir-fry-noodles-recipe-.jpg",
     "published": true,
     "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a2", "60b3f5b8e8b7c2a0e8f6b1a4"]
+  },
+  {
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a0",
+    "title": "Vegan Berry Cheesecake",
+    "description": "A delightful no-bake cheesecake bursting with berry flavor.",
+    "time": 180,
+    "ingredients": [
+      "1 1/2 cups raw cashews, soaked overnight",
+      "1 cup mixed berries (blueberries, raspberries, strawberries)",
+      "1/2 cup coconut milk",
+      "1/4 cup maple syrup",
+      "1/4 cup coconut oil, melted",
+      "1 teaspoon vanilla extract",
+      "1 cup dates, pitted",
+      "1 cup raw almonds",
+      "Pinch of salt"
+    ],
+    "steps": [
+      "Start by making the crust: In a food processor, blend the dates, almonds, and a pinch of salt until a sticky mixture forms.",
+      "Press the mixture into the bottom of a springform pan, creating an even base.",
+      "In a blender, combine the soaked cashews, mixed berries, coconut milk, maple syrup, melted coconut oil, and vanilla extract.",
+      "Blend until smooth and creamy.",
+      "Pour the berry mixture over the crust in the springform pan.",
+      "Smooth out the top using a spatula.",
+      "Place the cheesecake in the freezer for at least 3 hours or until set.",
+      "Before serving, allow the cheesecake to sit at room temperature for about 10 minutes.",
+      "Remove from the springform pan and place on a serving plate.",
+      "Garnish with additional fresh berries and a drizzle of maple syrup.",
+      "Serve and enjoy!"
+    ],
+    "tags": ["dessert", "cheesecake", "berries"],
+    "createdAt": "2023-03-27T08:45:00Z",
+    "coverPhoto": "https://beplantwell.com/wp-content/uploads/2019/02/vegan-blueberry-cheesecake-featured-735x490.jpg",
+    "published": true
+  },
+  {
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a2",
+    "title": "Vegan Lentil Soup",
+    "description": "A hearty and wholesome lentil soup, perfect for cold days.",
+    "time": 45,
+    "ingredients": [
+      "2 cups green lentils, rinsed and drained",
+      "1 onion, chopped",
+      "2 carrots, diced",
+      "2 celery stalks, chopped",
+      "3 cloves garlic, minced",
+      "6 cups vegetable broth",
+      "1 bay leaf",
+      "1 teaspoon cumin",
+      "2 tomatoes, diced",
+      "2 tablespoons olive oil",
+      "Salt and pepper to taste",
+      "Fresh cilantro for garnish"
+    ],
+    "steps": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add onion, carrots, and celery and sauté until onion is translucent.",
+      "Add garlic and sauté for another minute.",
+      "Stir in lentils, vegetable broth, cumin, and bay leaf.",
+      "Bring the mixture to a boil, then reduce to a simmer.",
+      "Cover and let cook for 25-30 minutes or until lentils are tender.",
+      "Add diced tomatoes and simmer for another 10 minutes.",
+      "Season with salt and pepper.",
+      "Remove the bay leaf.",
+      "Serve hot and garnish with fresh cilantro.",
+      "Enjoy with a slice of crusty bread."
+    ],
+    "tags": ["soup", "vegan", "lentils"],
+    "createdAt": "2023-05-30T11:30:00Z",
+    "coverPhoto": "https://simple-veganista.com/wp-content/uploads/2019/10/vegan-lentil-soup-recipe-5.jpg",
+    "published": true
   },
   {
     "createdBy": "60b3f5b8e8b7c2a0e8f6b1a0",
@@ -56,7 +127,8 @@
     ],
     "tags": ["stir-fry", "vegan", "vegetables"],
     "createdAt": "2023-05-30T10:30:00Z",
-    "published": false
+    "coverPhoto": "https://therecipecritic.com/wp-content/uploads/2019/08/vegetable_stir_fry-500x500.jpg",
+    "published": true
   },
   {
     "createdBy": "60b3f5b8e8b7c2a0e8f6b1a0",
@@ -84,6 +156,7 @@
     ],
     "tags": ["salad", "vegan", "lentils"],
     "createdAt": "2023-05-30T11:00:00Z",
+    "coverPhoto": "https://www.twopeasandtheirpod.com/wp-content/uploads/2021/01/lentil-salad-7.jpg",
     "published": true,
     "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a2"]
   },
@@ -113,6 +186,7 @@
     ],
     "tags": ["breakfast", "vegan", "tofu"],
     "createdAt": "2023-05-30T11:30:00Z",
+    "coverPhoto": "https://fullofplants.com/wp-content/uploads/2022/05/the-creamiest-tofu-scramble-eggs-vegan-easy-plant-based-dish-thumb-1.jpg",
     "published": true,
     "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a4"]
   },
@@ -143,6 +217,7 @@
     ],
     "tags": ["burger", "vegan", "black beans"],
     "createdAt": "2023-05-30T12:00:00Z",
+    "coverPhoto": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_4:3/k%2Farchive%2F9fbb73a7cba9b7b75c3d05484f6b6d087470641d",
     "published": true,
     "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a0", "60b3f5b8e8b7c2a0e8f6b1a4"]
 
@@ -172,6 +247,42 @@
     ],
     "tags": ["salad", "vegan", "quinoa"],
     "createdAt": "2023-05-30T12:30:00Z",
+    "coverPhoto": "https://simple-veganista.com/wp-content/uploads/2013/01/best-vegan-quinoa-salad-1.jpg",
+    "published": true
+  },
+  {
+    "createdBy": "60b3f5b8e8b7c2a0e8f6b1a2",
+    "title": "Vegan Tiramisu",
+    "description": "A delightful vegan version of the classic Italian dessert, using coconut cream and almond milk for a creamy texture.",
+    "time": 240,
+    "ingredients": [
+      "1 cup raw cashews, soaked overnight",
+      "1 can coconut cream, refrigerated overnight",
+      "1/2 cup almond milk",
+      "1/4 cup maple syrup",
+      "1 teaspoon vanilla extract",
+      "1 cup strong brewed coffee, cooled",
+      "2 tablespoons coffee liqueur (optional)",
+      "1 pack vegan ladyfingers or sponge cake slices",
+      "Cocoa powder for dusting",
+      "Dark chocolate shavings (optional)"
+    ],
+    "steps": [
+      "Begin by preparing the creamy layer: In a blender, combine the soaked cashews, coconut cream, almond milk, maple syrup, and vanilla extract.",
+      "Blend until the mixture is smooth and creamy.",
+      "In a shallow dish, mix the brewed coffee and coffee liqueur (if using).",
+      "Briefly dip each ladyfinger or sponge cake slice into the coffee mixture, ensuring they don't become too soggy.",
+      "Place a layer of the dipped ladyfingers at the bottom of a serving dish.",
+      "Spread a layer of the cashew and coconut cream mixture over the ladyfingers.",
+      "Repeat the process, layering dipped ladyfingers and cream, until all ingredients are used, finishing with a cream layer on top.",
+      "Refrigerate the tiramisu for at least 4 hours, or overnight for best results.",
+      "Before serving, dust the top with cocoa powder and garnish with dark chocolate shavings if desired.",
+      "Serve chilled and enjoy the creamy, coffee-infused delight!",
+      "Store any leftovers in the refrigerator and consume within 2-3 days."
+    ],
+    "tags": ["dessert", "tiramisu", "Italian"],
+    "createdAt": "2023-05-30T16:30:00Z",
+    "coverPhoto": "https://greedybearbakes.files.wordpress.com/2021/06/img_8154-1.jpg",
     "published": true
   },
   {
@@ -201,6 +312,7 @@
     ],
     "tags": ["curry", "vegan", "sweet potatoes"],
     "createdAt": "2023-05-30T13:00:00Z",
+    "coverPhoto": "https://lovingitvegan.com/wp-content/uploads/2018/06/Vegan-Sweet-Potato-Curry-6.jpg",
     "published": true,
     "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a0", "60b3f5b8e8b7c2a0e8f6b1a4"]
   },
@@ -232,6 +344,7 @@
     ],
     "tags": ["sandwich", "vegan", "chickpeas"],
     "createdAt": "2023-05-30T13:30:00Z",
+    "coverPhoto": "https://static01.nyt.com/images/2021/07/12/dining/kc-chickpea-salad-sandwich/kc-chickpea-salad-sandwich-videoSixteenByNineJumbo1600.jpg",
     "published": true
   },
   {
@@ -263,6 +376,7 @@
     ],
     "tags": ["risotto", "vegan", "mushrooms"],
     "createdAt": "2023-05-30T14:00:00Z",
+    "coverPhoto": "https://lovingitvegan.com/wp-content/uploads/2020/08/Vegan-Mushroom-Risotto-Square.jpg",
     "published": true,
     "likedBy": ["60b3f5b8e8b7c2a0e8f6b1a0", "60b3f5b8e8b7c2a0e8f6b1a4"]
   },
@@ -290,6 +404,7 @@
     ],
     "tags": ["dessert", "vegan", "chocolate"],
     "createdAt": "2023-05-30T14:30:00Z",
+    "coverPhoto": "https://www.kindearth.net/wp-content/uploads/2016/04/Chocolate-avocado-mouse_a2-1.jpg",
     "published": true
   }
 ]

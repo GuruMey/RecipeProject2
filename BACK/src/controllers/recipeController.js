@@ -1,7 +1,6 @@
 import RecipeModel from "../models/RecipeModel.js";
 import Joi from "joi";
 
-// //----------------- GET ALL RECIPES ----------------- //
 const getAllRecipes = async (req, res, next) => {
     try {
         const pageSize = 8;
@@ -22,13 +21,11 @@ const getAllRecipes = async (req, res, next) => {
             query.title = { $regex: search, $options: "i" };
         }
 
-        // Show user's own recipes
         if (!favorites && userId) {
             query.createdBy = userId;
             delete query.published;
         }
 
-        // Show user's favorite recipes
         if (favorites && userId) {
             query.likedBy = userId;
         }
@@ -56,7 +53,6 @@ const getAllRecipes = async (req, res, next) => {
     }
 };
 
-// //----------------- GET RECIPE ----------------- //
 const getRecipe = async (req, res, next) => {
     const recipeId = req.params.recipeId;
 
@@ -68,7 +64,6 @@ const getRecipe = async (req, res, next) => {
     }
 }
 
-//----------------- CREATE RECIPE ----------------- //
 const createRecipe = async (req, res) => {
     const schema = Joi.object({
         title: Joi.string().min(1).max(100).required(),
@@ -123,7 +118,6 @@ const createRecipe = async (req, res) => {
     }
 }
 
-//----------------- PUBLISH RECIPE ----------------- //
 const publishRecipe = async (req, res) => {
     const recipeId = req.params.recipeId;
     const published = req.body.published;
@@ -149,7 +143,6 @@ const publishRecipe = async (req, res) => {
 };
 
 
-//----------------- LIKE RECIPE ----------------- //
 const likeRecipe = async (req, res) => {
     const recipeId = req.params.recipeId;
     const liked = req.body.liked;
@@ -179,7 +172,6 @@ const likeRecipe = async (req, res) => {
     }
 };
 
-//----------------- EDIT RECIPE ----------------- //
 const editRecipe = async (req, res) => {
     const recipeId = req.params.recipeId;
 
@@ -217,7 +209,6 @@ const editRecipe = async (req, res) => {
     }
 };
 
-//----------------- DELETE RECIPE ----------------- //
 const deleteRecipe = async (req, res) => {
     const RecipeId = req.params.recipeId;
 

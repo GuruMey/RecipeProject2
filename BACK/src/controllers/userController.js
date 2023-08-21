@@ -2,11 +2,9 @@ import UserModel from "../models/UserModel.js";
 import Joi from "joi";
 import bcrypt from "bcrypt";
 
-//----------------- CREATE USER ----------------- //
 
 const createUser = async (req, res) => {
 
-    //Validation schema for user data
     const userModel= Joi.object({
         username: Joi.string().required(),
         password: Joi.string().required(),
@@ -48,7 +46,6 @@ const createUser = async (req, res) => {
     }
 };
 
-//----------------- GET ALL USERS (with pagination) ----------------- //
 const getAllUsers = async (req, res, next) => {
     try {
         const pageSize = 10;
@@ -71,7 +68,6 @@ const getAllUsers = async (req, res, next) => {
     }
 };
 
-//----------------- GET USER BY ID ----------------- //
 const getUserById = async (req, res, next) => {
     try {
         const user = await UserModel.findById(req.params.userId).select('-password');
@@ -84,14 +80,11 @@ const getUserById = async (req, res, next) => {
     }
 };
 
-//----------------- EDIT USER ----------------- //
 const editUser = async (req, res) => {
     const receivedUserId = req.params.userId;
     const fieldValuesToUpdate = req.body.fieldValuesToUpdate;
 
-    // todo: validate fieldValuesToUpdate
 
-    //Validation schema for user data
     const userModel= Joi.object({
         username: Joi.string().required(),
         password: Joi.string().required(),
@@ -151,7 +144,6 @@ const editUser = async (req, res) => {
         };
 
 
-//----------------- DELETE USER ----------------- //
 const deleteUser = async (req, res, next) => {
     try {
         const deletedUser = await UserModel.findByIdAndRemove(req.params.userId);

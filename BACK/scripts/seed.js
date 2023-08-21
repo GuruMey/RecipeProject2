@@ -27,7 +27,7 @@ const seedUsers = async () => {
                 password: await bcrypt.hash('password789', 10),
                 email: "emilybrown@example.com",
                 admin: false,
-                createdAt: "2023-05-30T11:00:00Z",
+                createdAt: "2023-02-30T11:00:00Z",
                 profilePicture: "",
             },
             {
@@ -37,6 +37,33 @@ const seedUsers = async () => {
                 email: "sophiawilson@example.com",
                 admin: true,
                 createdAt: "2023-05-30T13:00:00Z",
+                profilePicture: "",
+            },
+            {
+                _id: "60b3f5c8e8b7c2a0e8f6b1a1",
+                username: "emilyjones",
+                password: await bcrypt.hash('password566', 10),
+                email: "emilyjones@example.com",
+                admin: false,
+                createdAt: "2023-01-31T10:00:00Z",
+                profilePicture: "",
+            },
+            {
+                _id: "60b3f5d8e8b7c2a0e8f6b1a2",
+                username: "michaelbrown",
+                password: await bcrypt.hash('password789', 10),
+                email: "michaelbrown@example.com",
+                admin: false,
+                createdAt: "2023-06-01T11:00:00Z",
+                profilePicture: "",
+            },
+            {
+                _id: "60b3f5e8e8b7c2a0e8f6b1a3",
+                username: "sarahwhite",
+                password: await bcrypt.hash('password012', 10),
+                email: "sarahwhite@example.com",
+                admin: false,
+                createdAt: "2023-06-02T12:00:00Z",
                 profilePicture: "",
             }
         ]
@@ -62,7 +89,6 @@ const seedRecipes = async () => {
 };
 
 const seedAll = async () => {
-    // Guard
     const args = process.argv;
 
     if (!args.includes('please-do-seed')) {
@@ -73,17 +99,14 @@ const seedAll = async () => {
         process.exit(1);
     }
 
-    // Connect to MongoDB
     await mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
 
-    // Run the seed functions
     await seedUsers();
     await seedRecipes();
 
-    // Finish up
     console.log('Done seeding');
     process.exit(0);
 }
